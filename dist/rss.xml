@@ -1,113 +1,212 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-  <title>Avadh Kulkarni · The Bibliophile's Desk & Almanac</title>
-  <link>https://avadhkulkarni.github.io/portfolio</link>
-  <description>Infinite floating manuscript canvas and personal essays on leverage, specific knowledge, books, and mental models.</description>
+  <title>Avdhut Kulkarni · Bibliophile · Cinephile · Audiophile</title>
+  <link>https://avdhutkulkarni.github.io/portfolio</link>
+  <description>Personal multi-potentialite portfolio of Avdhut Kulkarni: writing canvas, Letterboxd film reviews, audiophile vinyl listening logs, and product design work.</description>
   <language>en-us</language>
   
   <item>
+    <title><![CDATA[Spring Reading & Thought Journal: Fragments from the Margins]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/2026-spring-reading-journal.html</link>
+    <description><![CDATA[Raw notebook entries from early morning reading sessions. Thoughts before they turn into polished essays.]]></description>
+    <pubDate>Thu, 26 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/2026-spring-reading-journal.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Avdhut Kulkarni — Work, Craft, and Product Architecture]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/overview.html</link>
+    <description><![CDATA[[!quote] The Multi-Potentialite Advantage
+ "Specialization is for insects. A human being should be able to write an essay, design a system, critique a film,...]]></description>
+    <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/overview.html</guid>
+  </item>
+
+  <item>
     <title><![CDATA[The Stormlight Archive: Kaladin and the Weight of Protection]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</link>
     <description><![CDATA[In Brandon Sanderson's epic, Kaladin Stormblessed begins as a broken slave carrying heavy wooden bridges across chasms. His transcendence is not through power, but through duty.]]></description>
     <pubDate>Tue, 24 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Mistborn: The Final Empire and the Secret in the Mists]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</link>
     <description><![CDATA[A thousand years of ash falling from the sky. Brandon Sanderson's Mistborn reimagines rebellion not as a battle of armies, but as a daring heist of faith and steel.]]></description>
     <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Red Rising: The Rage of Lykos and the Cost of Liberty]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</link>
     <description><![CDATA[Pierce Brown's Red Rising is Homeric Greek tragedy injected into the cold vacuum of the solar system. Darrow does not fight for power; he fights for Eo's song.]]></description>
     <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</guid>
   </item>
 
   <item>
     <title><![CDATA[The Lord of the Rings: Gandalf and the Stewardship of Time]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</link>
     <description><![CDATA[Tolkien's legendarium is not a escapist distraction; it is a profound Catholic and pagan meditation on grief, temptation, and unexpected grace.]]></description>
     <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</guid>
   </item>
 
   <item>
     <title><![CDATA[The Architecture of Specific Knowledge]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/specific-knowledge.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/specific-knowledge.html</link>
     <description><![CDATA[Specific knowledge is found much more by pursuing your innate curiosity than by chasing whatever is trending.]]></description>
     <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/specific-knowledge.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/specific-knowledge.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Oppenheimer (2023): Fire, Theory, and the Terror of Chain Reactions]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/oppenheimer-2023.html</link>
+    <description><![CDATA[[!quote] The Trinity Test
+ "We knew the world would not be the same. A few people laughed, a few people cried, most people were silent." — J. Robert Oppenhe...]]></description>
+    <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/oppenheimer-2023.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Radiohead — In Rainbows (2007): The Analog Warmth of Disconnection]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/radiohead-in-rainbows.html</link>
+    <description><![CDATA[[!quote] Thom Yorke on Reckoner
+ "An entire song anchored by a single cymbal crash and a golden string arrangement."
+
+ The Masterpiece of Dynamic Range
+
+I...]]></description>
+    <pubDate>Sun, 08 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/radiohead-in-rainbows.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Blade Runner 2049 (2017): The Miracle of an Manufactured Soul]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/blade-runner-2049.html</link>
+    <description><![CDATA[[!quote] K's Realization
+ "I have memories, but they're not real. They're just someone else's."
+
+ The Brutalist Melancholy of K
+
+Sequels arrived 35 years...]]></description>
+    <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/blade-runner-2049.html</guid>
   </item>
 
   <item>
     <title><![CDATA[The Bibliophile's Guide to Reading and Forgetting]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/reading-and-retention.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/reading-and-retention.html</link>
     <description><![CDATA[Reading is not a competitive race to count volumes on Goodreads. It is conversation across centuries with departed minds.]]></description>
     <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/reading-and-retention.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/reading-and-retention.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Midnight Marginalia: The Paradox of the Creative Night]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/stream-of-consciousness-midnight.html</link>
+    <description><![CDATA[The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes.]]></description>
+    <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/stream-of-consciousness-midnight.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Dune: Part Two (2024): The Descent of the False Messiah]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/dune-part-two-2024.html</link>
+    <description><![CDATA[[!quote] The Prophecy of Arrakis
+ "He who can destroy a thing has the real control of it." — Paul Atreides
+
+ Cinema as Ancient Religious Myth
+
+Where most...]]></description>
+    <pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/dune-part-two-2024.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Hans Zimmer — Interstellar (2014): The Breath of the Temple Organ]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/hans-zimmer-interstellar.html</link>
+    <description><![CDATA[[!quote] Christopher Nolan's Brief to Zimmer
+ "I gave Hans an envelope with one piece of paper containing a fable about a father having to leave his child....]]></description>
+    <pubDate>Sun, 22 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/hans-zimmer-interstellar.html</guid>
   </item>
 
   <item>
     <title><![CDATA[The Judgment Trade]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/the-judgment-trade.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/the-judgment-trade.html</link>
     <description><![CDATA[A runner who sprints frantically in the wrong direction loses to someone who strolls deliberately toward the summit.]]></description>
     <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/the-judgment-trade.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/the-judgment-trade.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Past Lives (2023): In-Yun, The Ferry, and The Weight of Unlived Lives]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/past-lives-2023.html</link>
+    <description><![CDATA[[!quote] The Philosophy of In-Yun
+ "There is a word in Korean: In-Yun. It means providence or fate. It’s an In-Yun if even two strangers just walk by each o...]]></description>
+    <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/past-lives-2023.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Case Study: Scaling an Atomic Token System Across 40+ Products]]></title>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/design-system-scale.html</link>
+    <description><![CDATA[How redesigning the core token pipeline eliminated 120 recurring handoff bugs and aligned three cross-functional squads.]]></description>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/design-system-scale.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Permissionless Leverage: Code, Media, & The Gutenberg Engine]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/permissionless-leverage.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/permissionless-leverage.html</link>
     <description><![CDATA[Humans spent millennia needing someone else's approval to build an empire. Today, a text editor and a keyboard is all that stands between you and infinite reproduction.]]></description>
     <pubDate>Wed, 04 Feb 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/permissionless-leverage.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/permissionless-leverage.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Marginalia on Borges and the Infinite Library]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</link>
     <description><![CDATA[In The Library of Babel, every permutation of letters exists somewhere. The problem is not lack of truth; it is drowning in infinite noise.]]></description>
     <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Via Negativa: The Subtraction Heuristic]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</link>
     <description><![CDATA[We are addicted to additive solutions: more apps, more books, more meetings. Yet the greatest leaps come from elimination.]]></description>
     <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Stoic Equations of Peace: Aurelius at Midnight]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</link>
     <description><![CDATA[When Marcus Aurelius wrote his private notebook at the edge of the Danubian frontier, he was not writing for the Roman senate. He was talking himself down from rage.]]></description>
     <pubDate>Sun, 28 Dec 2025 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</guid>
   </item>
 
   <item>
     <title><![CDATA[The Ten Books That Rewired My Mental Software]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</link>
     <description><![CDATA[If you read the same books everyone else is reading, you will think the same thoughts everyone else is thinking. Here is my foundational shelf.]]></description>
     <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</guid>
   </item>
 
   <item>
     <title><![CDATA[Calm Mind, Clear Thinking: The Engine of Pure Signal]]></title>
-    <link>https://avadhkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</link>
+    <link>https://avdhutkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</link>
     <description><![CDATA[In a hyper-connected society where everyone is outraged and reactive, the person who can sit quietly in a room for two hours thinking clearly is unstoppable.]]></description>
     <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://avadhkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</guid>
+    <guid>https://avdhutkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</guid>
   </item>
 </channel>
 </rss>

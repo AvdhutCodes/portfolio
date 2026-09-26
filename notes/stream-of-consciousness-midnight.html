@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midnight Marginalia: The Paradox of the Creative Night · Avdhut Kulkarni</title>
+  <meta name="description" content="The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes.">
+  <meta property="og:title" content="Midnight Marginalia: The Paradox of the Creative Night · Avdhut Kulkarni">
+  <meta property="og:description" content="The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes.">
+  <meta property="og:type" content="article">
+  <meta property="article:author" content="Avdhut Kulkarni">
+  <meta property="article:published_time" content="2026-03-01">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/reader.css">
+  <link rel="stylesheet" href="../assets/css/cursor.css">
+  <style>
+    body {
+      overflow-y: auto !important;
+      user-select: text !important;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+    }
+    .standalone-page-wrap {
+      max-width: 760px;
+      margin: 3rem auto 6rem;
+      padding: 0 1.5rem;
+    }
+    .standalone-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+    }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-dot"></div>
+  </div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reader-progress-bar" id="readerProgressBar"></div>
+
+  <main class="standalone-page-wrap">
+    
+    <!-- Top Bar Navigation -->
+    <nav class="standalone-nav-bar">
+      <a href="../index.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to Desk Sanctuary</span>
+      </a>
+
+      <span style="color: var(--text-muted);">1 min read · 2026-03-01</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="reader-header">
+      <span class="reader-stamp-tag">ARCHIVE · FOLIO 02</span>
+      <h1 class="reader-title">Midnight Marginalia: The Paradox of the Creative Night</h1>
+      <p class="reader-subtitle">Why the quietest hours between 1 AM and 4 AM belong entirely to the maker</p>
+      <div class="reader-details">
+        <span>By Avdhut Kulkarni</span>
+        <span>·</span>
+        <span>2026-03-01</span>
+        <span>·</span>
+        <span>1 min read</span>
+        <div class="reader-tags">
+          <span class="reader-tag">#Archive</span><span class="reader-tag">#Night</span><span class="reader-tag">#Reflection</span><span class="reader-tag">#Solitude</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Essay Body -->
+    <article class="reader-body">
+      <aside class="obsidian-callout callout-note">
+      <div class="callout-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> <span>Midnight Log</span></div>
+      <div class="callout-content"><p>&quot;The world is asleep. There are no notifications to respond to, no peer expectations, no meetings. In this brief pocket of time, you are entirely free.&quot;</p>
+</div>
+    </aside><h2>The Solitude Dividend</h2>
+<p>Why do bibliophiles and makers love late hours? It is not about sleep deprivation; it is about <strong>psychological insulation</strong>.
+When society powers down, the atmospheric pressure of other people&#39;s anxieties lifts. You can sit with a book, a sketch, or a musical passage and exist purely in the moment.</p>
+
+    </article>
+
+    <!-- Footer -->
+    <footer class="reader-footer">
+      <div>
+        <p class="author-signature">Avdhut Kulkarni</p>
+        <p>Bibliophile · Cinephile · Audiophile · Product Designer</p>
+      </div>
+      <a href="../index.html" class="back-link">Return to Desk Sanctuary →</a>
+    </footer>
+
+  </main>
+
+  <script src="../assets/js/cursor.js"></script>
+  <script>
+    // Reading progress
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('readerProgressBar');
+      if (!bar) return;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+    });
+  </script>
+</body>
+</html>

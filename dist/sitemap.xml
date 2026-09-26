@@ -1,97 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/index.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/2026-spring-reading-journal.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/overview.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/the-stormlight-archive-kaladin.html</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/mistborn-vin-and-kelsier.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/red-rising-the-reaper.html</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/lord-of-the-rings-gandalf.html</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/specific-knowledge.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/specific-knowledge.html</loc>
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/reading-and-retention.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/oppenheimer-2023.html</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/radiohead-in-rainbows.html</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/blade-runner-2049.html</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/reading-and-retention.html</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/the-judgment-trade.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/stream-of-consciousness-midnight.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/dune-part-two-2024.html</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/hans-zimmer-interstellar.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/the-judgment-trade.html</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/permissionless-leverage.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/past-lives-2023.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/design-system-scale.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/permissionless-leverage.html</loc>
     <lastmod>2026-02-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</loc>
     <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</loc>
     <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</loc>
     <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://avadhkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</loc>
+    <loc>https://avdhutkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

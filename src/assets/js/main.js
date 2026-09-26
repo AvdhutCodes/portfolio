@@ -1,82 +1,116 @@
 /**
- * AVADH KULKARNI — THE BIBLIOPHILE'S PORTFOLIO
- * Main Controller: Views, Filtering, Clock, Theme
+ * AVDHUT KULKARNI — THE MULTI-POTENTIALITE PORTFOLIO
+ * Main Controller: 4 Personas, Theme Shifts, Archive Drawer, Projection Beam
  */
 
 (function (window, document) {
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Initialize components
+    // 1. Initialize components
     const desk = new window.InfiniteDesk();
     const reader = new window.EssayReader();
     const cursor = new window.CustomCursor();
 
-    // Clock
-    initClock();
+    // 2. Initialize Persona Sections Switcher
+    initPersonaSwitching();
 
-    // View Switching (Canvas vs Archive List)
-    initViewSwitching();
+    // 3. Initialize Archive Drawer
+    initArchiveDrawer();
 
-    // Tag Filtering
+    // 4. Initialize Tag Filtering on Bibliophile Desk
     initTagFiltering(desk);
 
-    // Theme Toggle
+    // 5. Initialize Theme Toggle (Dark / Light)
     initThemeToggle();
 
-    // Ambient Book & Character Carousel
+    // 6. Initialize Ambient Book & Character Carousel
     initBookCarousel(reader);
+
+    // 7. Initialize Direct Click Handlers for Films, Audio, and Work
+    initCardReaders(reader);
   });
 
-  function initClock() {
-    const clockEl = document.getElementById('liveClock');
-    if (!clockEl) return;
+  // Persona Switching (Bibliophile, Cinephile, Audiophile, Work)
+  function initPersonaSwitching() {
+    const personaButtons = document.querySelectorAll('.persona-nav-btn');
+    const sectionViews = document.querySelectorAll('.persona-section-view');
+    const personaLabel = document.getElementById('personaLabel');
 
-    function update() {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      clockEl.textContent = `${timeStr}`;
+    const personaLabelsMap = {
+      'bibliophile': 'Bibliophile',
+      'cinephile': 'Cinephile',
+      'audiophile': 'Audiophile',
+      'work': 'Product Designer'
+    };
+
+    personaButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetSection = btn.dataset.section;
+
+        // Update nav buttons
+        personaButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update active section
+        sectionViews.forEach(view => {
+          if (view.id === `section-${targetSection}`) {
+            view.classList.add('active');
+          } else {
+            view.classList.remove('active');
+          }
+        });
+
+        // Update persona label under Avdhut Kulkarni
+        if (personaLabel && personaLabelsMap[targetSection]) {
+          personaLabel.textContent = personaLabelsMap[targetSection];
+        }
+
+        // Apply theme mood to body
+        document.body.classList.remove('persona-bibliophile', 'persona-cinephile', 'persona-audiophile', 'persona-work');
+        document.body.classList.add(`persona-${targetSection}`);
+      });
+    });
+  }
+
+  // Separate Archive Drawer
+  function initArchiveDrawer() {
+    const drawer = document.getElementById('archiveDrawer');
+    const btnToggle = document.getElementById('btnToggleArchive');
+    const btnClose = document.getElementById('btnCloseArchive');
+
+    if (!drawer || !btnToggle) return;
+
+    btnToggle.addEventListener('click', () => {
+      const isOpen = drawer.classList.contains('active');
+      if (isOpen) {
+        drawer.classList.remove('active');
+        btnToggle.classList.remove('active');
+      } else {
+        drawer.classList.add('active');
+        btnToggle.classList.add('active');
+      }
+    });
+
+    if (btnClose) {
+      btnClose.addEventListener('click', () => {
+        drawer.classList.remove('active');
+        btnToggle.classList.remove('active');
+      });
     }
 
-    update();
-    setInterval(update, 30000);
-  }
-
-  function initViewSwitching() {
-    const btnCanvas = document.getElementById('viewCanvasBtn');
-    const btnArchive = document.getElementById('viewArchiveBtn');
-    const deskViewport = document.getElementById('deskViewport');
-    const archiveView = document.getElementById('archiveView');
-    const bottomBar = document.getElementById('bottomBar');
-    const canvasHud = document.getElementById('canvasHud');
-    const canvasHint = document.getElementById('canvasHint');
-
-    if (!btnCanvas || !btnArchive || !deskViewport || !archiveView) return;
-
-    btnCanvas.addEventListener('click', () => {
-      btnCanvas.classList.add('active');
-      btnArchive.classList.remove('active');
-      archiveView.classList.remove('active');
-      deskViewport.style.display = 'block';
-      if (bottomBar) bottomBar.style.display = 'flex';
-      if (canvasHud) canvasHud.style.display = 'flex';
-      if (canvasHint) canvasHint.style.display = 'flex';
-    });
-
-    btnArchive.addEventListener('click', () => {
-      btnArchive.classList.add('active');
-      btnCanvas.classList.remove('active');
-      archiveView.classList.add('active');
-      deskViewport.style.display = 'none';
-      if (canvasHud) canvasHud.style.display = 'none';
-      if (canvasHint) canvasHint.style.display = 'none';
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('active')) {
+        drawer.classList.remove('active');
+        btnToggle.classList.remove('active');
+      }
     });
   }
 
+  // Bibliophile Tag Filtering
   function initTagFiltering(deskInstance) {
     const filterChips = document.querySelectorAll('.filter-chip');
     const cards = document.querySelectorAll('.manuscript-card');
-    const archiveItems = document.querySelectorAll('.archive-item');
 
     filterChips.forEach(chip => {
       chip.addEventListener('click', () => {
@@ -85,23 +119,12 @@
 
         const tag = chip.dataset.tag.toLowerCase();
 
-        // Filter cards
         cards.forEach(card => {
           const cardTags = (card.dataset.tags || '').toLowerCase().split(',');
           if (tag === 'all' || cardTags.includes(tag)) {
             card.classList.remove('is-filtered-out');
           } else {
             card.classList.add('is-filtered-out');
-          }
-        });
-
-        // Filter archive list
-        archiveItems.forEach(item => {
-          const itemTags = (item.dataset.tags || '').toLowerCase().split(',');
-          if (tag === 'all' || itemTags.includes(tag)) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
           }
         });
 
@@ -112,18 +135,60 @@
     });
   }
 
+  // Theme Toggle with LocalStorage & Correct Contrast
   function initThemeToggle() {
     const btnTheme = document.getElementById('btnThemeToggle');
     if (!btnTheme) return;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('avdhut-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
 
     btnTheme.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
-      btnTheme.title = next === 'light' ? 'Switch to Night Torch' : 'Switch to Day Paper';
+      localStorage.setItem('avdhut-theme', next);
     });
   }
 
+  // Card Clicks on Film, Audio, and Work Sections
+  function initCardReaders(readerInstance) {
+    if (!readerInstance) return;
+
+    // Cinephile film reviews
+    document.addEventListener('click', (e) => {
+      const filmBtn = e.target.closest('.film-review-btn');
+      const filmCard = e.target.closest('.film-card');
+      if (filmBtn && filmBtn.dataset.slug) {
+        e.preventDefault();
+        readerInstance.open(filmBtn.dataset.slug);
+      } else if (filmCard && filmCard.dataset.slug && !e.target.closest('a')) {
+        e.preventDefault();
+        readerInstance.open(filmCard.dataset.slug);
+      }
+
+      // Audiophile listening logs
+      const audioBtn = e.target.closest('.audio-notes-btn');
+      if (audioBtn && audioBtn.dataset.slug) {
+        e.preventDefault();
+        readerInstance.open(audioBtn.dataset.slug);
+      }
+
+      // Work case studies
+      const caseBtn = e.target.closest('.case-read-btn');
+      const caseCard = e.target.closest('.case-study-card');
+      if (caseBtn && caseBtn.dataset.slug) {
+        e.preventDefault();
+        readerInstance.open(caseBtn.dataset.slug);
+      } else if (caseCard && caseCard.dataset.slug) {
+        e.preventDefault();
+        readerInstance.open(caseCard.dataset.slug);
+      }
+    });
+  }
+
+  // Ambient Favorite Books & Heroes Carousel
   function initBookCarousel(readerInstance) {
     const wrap = document.getElementById('ambientCarousel');
     const btnToggle = document.getElementById('btnToggleBooksCarousel');
@@ -176,7 +241,6 @@
       }
     }
 
-    // Toggle spotlight
     if (btnToggle) {
       btnToggle.addEventListener('click', () => {
         const isOpen = wrap.classList.contains('is-spotlight');
@@ -190,7 +254,6 @@
       });
     }
 
-    // Close button
     if (btnClose) {
       btnClose.addEventListener('click', () => {
         wrap.classList.remove('is-spotlight');
@@ -198,16 +261,13 @@
       });
     }
 
-    // Prev / Next buttons
     if (btnPrev) btnPrev.addEventListener('click', prevSlide);
     if (btnNext) btnNext.addEventListener('click', nextSlide);
 
-    // Dots
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => showSlide(idx));
     });
 
-    // Close on Escape key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && wrap.classList.contains('is-spotlight')) {
         wrap.classList.remove('is-spotlight');
@@ -215,7 +275,6 @@
       }
     });
 
-    // Read essay button inside slide
     document.querySelectorAll('.slide-read-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const slug = btn.dataset.slug;
@@ -231,4 +290,3 @@
   }
 
 })(window, document);
-

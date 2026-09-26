@@ -73,7 +73,7 @@ function triggerRebuild(event, filename) {
 
 // Watch directories
 const watchDirs = [
-  path.join(__dirname, 'content', 'notes'),
+  path.join(__dirname, 'content'),
   path.join(__dirname, 'src', 'templates'),
   path.join(__dirname, 'src', 'assets')
 ];
@@ -87,13 +87,13 @@ watchDirs.forEach(dir => {
 server.listen(PORT, () => {
   console.log(`
 ============================================================
-  🏛️  AVADH KULKARNI — THE BIBLIOPHILE'S DESK & ALMANAC
+  🏛️  AVDHUT KULKARNI — MULTI-POTENTIALITE PORTFOLIO
 ============================================================
   Local Server:  http://localhost:${PORT}
-  Watching:      ./content/notes/*.md (Obsidian Vault)
+  Watching:      ./content/**/* (Obsidian Vault: Books, Essays, Films, Audio, Work, Archive)
   
-  Write or paste your notes into content/notes/ and they
-  will automatically appear on the floating desk!
+  Write or paste notes in Obsidian and they will
+  automatically update your live portfolio!
 ============================================================
   `);
 });

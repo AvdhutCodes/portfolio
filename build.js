@@ -1,6 +1,6 @@
 /**
- * AVADH KULKARNI — THE BIBLIOPHILE'S SSG ENGINE
- * Zero-Config Obsidian to GitHub Pages Static Site Generator
+ * AVDHUT KULKARNI — THE MULTI-POTENTIALITE SSG ENGINE
+ * Compiles Books, Essays, Films, Audio, Work, and Archive notes into static portfolio
  */
 
 const fs = require('fs');
@@ -8,7 +8,7 @@ const path = require('path');
 const matter = require('gray-matter');
 const { marked } = require('marked');
 
-const NOTES_DIR = path.join(__dirname, 'content', 'notes');
+const CONTENT_DIR = path.join(__dirname, 'content');
 const SRC_TEMPLATES = path.join(__dirname, 'src', 'templates');
 const SRC_ASSETS = path.join(__dirname, 'src', 'assets');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -16,14 +16,13 @@ const ROOT_DIR = __dirname;
 
 // Site Metadata
 const SITE_CONFIG = {
-  title: 'Avadh Kulkarni · The Bibliophile\'s Desk & Almanac',
-  author: 'Avadh Kulkarni',
-  bio: 'Bibliophile, thinker, collector of ideas. Inspired by Naval Ravikant\'s Almanac and timeless philosophy.',
-  siteUrl: 'https://avadhkulkarni.github.io/portfolio', // Can be customized by user
-  description: 'Infinite floating manuscript canvas and personal essays on leverage, specific knowledge, books, and mental models.'
+  title: 'Avdhut Kulkarni · Bibliophile · Cinephile · Audiophile',
+  author: 'Avdhut Kulkarni',
+  bio: 'Multi-potentialite: Senior Product Designer, Bibliophile, Cinephile, and Audiophile.',
+  siteUrl: 'https://avdhutkulkarni.github.io/portfolio',
+  description: 'Personal multi-potentialite portfolio of Avdhut Kulkarni: writing canvas, Letterboxd film reviews, audiophile vinyl listening logs, and product design work.'
 };
 
-// Ensure directories exist
 function ensureDirs() {
   [
     DIST_DIR,
@@ -38,7 +37,6 @@ function ensureDirs() {
   });
 }
 
-// Copy directory recursively
 function copyDirSync(src, dest) {
   if (!fs.existsSync(src)) return;
   if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
@@ -54,14 +52,14 @@ function copyDirSync(src, dest) {
   }
 }
 
-// Obsidian Markdown Custom Processor
+// Process Obsidian Markdown
 function processObsidianMarkdown(rawMd) {
   let content = rawMd;
 
-  // 1. Obsidian Highlights: ==text== -> <mark class="obsidian-highlight">text</mark>
+  // Highlights ==text==
   content = content.replace(/==(.*?)==/g, '<mark class="obsidian-highlight">$1</mark>');
 
-  // 2. Obsidian Wikilinks: [[slug|Title]] and [[slug]]
+  // Wikilinks [[slug|Label]] and [[slug]]
   content = content.replace(/\[\[(.*?)\|(.*?)\]\]/g, (match, slug, label) => {
     const cleanSlug = slug.trim().toLowerCase().replace(/\s+/g, '-');
     return `<a href="./notes/${cleanSlug}.html" class="obsidian-link" data-slug="${cleanSlug}">${label.trim()}</a>`;
@@ -72,9 +70,7 @@ function processObsidianMarkdown(rawMd) {
     return `<a href="./notes/${cleanSlug}.html" class="obsidian-link" data-slug="${cleanSlug}">${label}</a>`;
   });
 
-  // 3. Obsidian Callouts:
-  // > [!quote] Title
-  // > Quote body
+  // Callouts > [!type] Title
   const calloutRegex = />\s*\[!(quote|note|tip|warning|info|abstract)\]\s*([^\n]*)\n((?:>.*\n?)*)/gi;
   content = content.replace(calloutRegex, (match, type, title, body) => {
     const cleanBody = body.replace(/^>\s?/gm, '').trim();
@@ -99,13 +95,11 @@ function processObsidianMarkdown(rawMd) {
     </aside>\n`;
   });
 
-  // Standard markdown parsing
   return marked.parse(content);
 }
 
-// Compute organic coordinate if none supplied in frontmatter
+// Compute organic coordinate if none supplied
 function computeOrganicCoordinates(index) {
-  // Golden spiral dispersion
   const angle = index * 2.3999632;
   const radius = 240 + Math.sqrt(index) * 195;
   const x = Math.round(Math.cos(angle) * radius);
@@ -114,88 +108,130 @@ function computeOrganicCoordinates(index) {
   return { x, y, rotate };
 }
 
-// Build Static Site
+// Scan all markdown files across content directories
+function readAllContent() {
+  const subdirs = ['books', 'essays', 'films', 'audio', 'work', 'archive'];
+  const allNotes = [];
+
+  subdirs.forEach(folder => {
+    const dirPath = path.join(CONTENT_DIR, folder);
+    if (!fs.existsSync(dirPath)) return;
+
+    const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.md'));
+    files.forEach(file => {
+      const fullPath = path.join(dirPath, file);
+      const rawContent = fs.readFileSync(fullPath, 'utf8');
+      const parsed = matter(rawContent);
+      const data = parsed.data || {};
+      const slug = path.basename(file, '.md').toLowerCase();
+
+      const wordCount = parsed.content.split(/\s+/).filter(Boolean).length;
+      const readTime = Math.max(1, Math.ceil(wordCount / 185));
+
+      // Category resolution
+      let category = data.category;
+      if (!category) {
+        if (folder === 'books' || folder === 'essays') category = 'bibliophile';
+        else if (folder === 'films') category = 'cinephile';
+        else if (folder === 'audio') category = 'audiophile';
+        else if (folder === 'work') category = 'work';
+        else if (folder === 'archive') category = 'archive';
+        else category = 'bibliophile';
+      }
+
+      const htmlContent = processObsidianMarkdown(parsed.content);
+
+      allNotes.push({
+        slug,
+        folder,
+        category,
+        title: data.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        subtitle: data.subtitle || '',
+        date: data.date ? (typeof data.date === 'string' ? data.date : data.date.toISOString().split('T')[0]) : '2026-03-01',
+        tags: Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : [category]),
+        author: data.author || SITE_CONFIG.author,
+        rev: data.rev || 1,
+        stamp: data.stamp || (category.toUpperCase() + ' · NOTE'),
+        quote: data.quote || '',
+        excerpt: data.excerpt || (parsed.content.substring(0, 160).replace(/[#*`>]/g, '').trim() + '...'),
+        cardSnippet: data.cardSnippet || (parsed.content.substring(0, 120).replace(/[#*`>]/g, '').trim() + '...'),
+        illustration: data.illustration || null,
+        poster: data.poster || null,
+        director: data.director || null,
+        year: data.year || null,
+        rating: data.rating || null,
+        runtime: data.runtime || null,
+        logline: data.logline || null,
+        artist: data.artist || null,
+        cover: data.cover || null,
+        format: data.format || null,
+        spotifyUrl: data.spotifyUrl || null,
+        tracks: data.tracks || null,
+        role: data.role || null,
+        skills: data.skills || null,
+        metrics: data.metrics || null,
+        pinned: Boolean(data.pinned),
+        x: data.x,
+        y: data.y,
+        rotate: data.rotate,
+        readTime,
+        htmlContent
+      });
+    });
+  });
+
+  return allNotes;
+}
+
 function build() {
-  console.log('⚡ Starting Avadh Kulkarni Bibliophile SSG Build...');
+  console.log('⚡ Starting Avdhut Kulkarni Multi-Potentialite SSG Build...');
   ensureDirs();
 
   // Copy assets
   copyDirSync(SRC_ASSETS, path.join(DIST_DIR, 'assets'));
   copyDirSync(SRC_ASSETS, path.join(ROOT_DIR, 'assets'));
 
-  // Read templates
   const indexTemplate = fs.readFileSync(path.join(SRC_TEMPLATES, 'index.html'), 'utf8');
   const noteTemplate = fs.readFileSync(path.join(SRC_TEMPLATES, 'note.html'), 'utf8');
 
-  // Read all markdown notes
-  const noteFiles = fs.readdirSync(NOTES_DIR).filter(f => f.endsWith('.md'));
-  console.log(`📖 Found ${noteFiles.length} Obsidian notes in content/notes/`);
+  const notes = readAllContent();
+  console.log(`📖 Processed ${notes.length} total notes across books, essays, films, audio, work, and archive.`);
 
-  const notes = [];
-
-  noteFiles.forEach((file, index) => {
-    const rawContent = fs.readFileSync(path.join(NOTES_DIR, file), 'utf8');
-    const parsed = matter(rawContent);
-    const data = parsed.data || {};
-    const slug = path.basename(file, '.md').toLowerCase();
-
-    // Calculate reading time
-    const wordCount = parsed.content.split(/\s+/).filter(Boolean).length;
-    const readTime = Math.max(1, Math.ceil(wordCount / 185));
-
-    // Coordinates
-    const defaultCoords = computeOrganicCoordinates(index);
-    const x = data.x !== undefined ? data.x : defaultCoords.x;
-    const y = data.y !== undefined ? data.y : defaultCoords.y;
-    const rotate = data.rotate !== undefined ? data.rotate : defaultCoords.rotate;
-
-    // Process markdown with Obsidian features
-    const htmlContent = processObsidianMarkdown(parsed.content);
-
-    const noteObj = {
-      slug,
-      title: data.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-      subtitle: data.subtitle || '',
-      date: data.date ? (typeof data.date === 'string' ? data.date : data.date.toISOString().split('T')[0]) : '2026-03-01',
-      tags: Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : ['Note']),
-      author: data.author || SITE_CONFIG.author,
-      rev: data.rev || 1,
-      stamp: data.stamp || 'NOTE · ALMANAC',
-      quote: data.quote || '',
-      excerpt: data.excerpt || (parsed.content.substring(0, 160).replace(/[#*`>]/g, '').trim() + '...'),
-      cardSnippet: data.cardSnippet || (parsed.content.substring(0, 120).replace(/[#*`>]/g, '').trim() + '...'),
-      illustration: data.illustration || null,
-      pinned: Boolean(data.pinned),
-      x,
-      y,
-      rotate,
-      readTime,
-      htmlContent
-    };
-
-    notes.push(noteObj);
-  });
+  // 1. Separate notes by category
+  const biblioNotes = notes.filter(n => n.category === 'bibliophile');
+  const cineNotes = notes.filter(n => n.category === 'cinephile');
+  const audioNotes = notes.filter(n => n.category === 'audiophile');
+  const workNotes = notes.filter(n => n.category === 'work');
+  const archiveNotes = notes.filter(n => n.category === 'archive');
 
   // Sort notes by date descending
   notes.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Build Manuscript Cards HTML
-  const manuscriptCardsHtml = notes.map((note, idx) => {
+  // Build Manuscript Cards for Bibliophile Desk Canvas
+  const biblioCardsHtml = biblioNotes.map((note, idx) => {
     const num = String(idx + 1).padStart(2, '0');
     const tagList = note.tags.join(',');
     const isAttachLeft = idx % 2 !== 0;
     const attachmentNote = note.quote ? note.quote.split('—')[0].replace(/"/g, '').trim().substring(0, 48) + '...' : `Folio #${num}`;
     
-    // Photo / Doodle print attachment if present
+    const defaultCoords = computeOrganicCoordinates(idx);
+    const x = note.x !== undefined ? note.x : defaultCoords.x;
+    const y = note.y !== undefined ? note.y : defaultCoords.y;
+    const rotate = note.rotate !== undefined ? note.rotate : defaultCoords.rotate;
+
+    note.x = x;
+    note.y = y;
+    note.rotate = rotate;
+
     const photoAttachmentHtml = note.illustration ? `
       <div class="card-att-photo ${isAttachLeft ? 'photo-left' : ''}">
-        <img src="${note.illustration}" alt="${note.title} doodle" loading="lazy" />
+        <img src="${note.illustration}" alt="${note.title} illustration" loading="lazy" />
       </div>` : '';
 
     return `
       <a class="manuscript-card" 
          id="card-${note.slug}"
-         style="--card-x: ${note.x}; --card-y: ${note.y}; --card-r: ${note.rotate}deg;"
+         style="--card-x: ${x}; --card-y: ${y}; --card-r: ${rotate}deg;"
          data-slug="${note.slug}" 
          data-tags="${tagList}"
          href="./notes/${note.slug}.html"
@@ -206,7 +242,7 @@ function build() {
           <path d="M4 10 L4 26 A5 5 0 0 0 14 26 L14 6 A7 7 0 0 0 0 6 L0 28 A9 9 0 0 0 18 28"/>
         </svg>
 
-        <!-- Doodle Art Photo Attachment (if present) -->
+        <!-- Doodle Art Photo Attachment -->
         ${photoAttachmentHtml}
 
         <!-- Attached Slip -->
@@ -221,28 +257,119 @@ function build() {
           <span class="card-rev">Rev ${note.rev}</span>
         </div>
 
-        <!-- Title -->
         <h3 class="card-title">${note.title}</h3>
 
-        <!-- Card Snippet -->
         <div class="card-body">
           ${note.cardSnippet}
         </div>
 
-        <!-- Quote Preview -->
         ${note.quote ? `<div class="card-quote-preview">${note.quote}</div>` : ''}
 
-        <!-- Vintage Stamp -->
         <span class="card-stamp">${note.stamp}</span>
-
-        <!-- Page -->
         <p class="card-page-num">— 1 —</p>
       </a>
     `;
   }).join('\n');
 
-  // Build Archive Items HTML
-  const archiveItemsHtml = notes.map((note) => {
+  // Build Cinephile Film Cards (Letterboxd Posters with Projection Beam)
+  const filmCardsHtml = cineNotes.map((film) => {
+    return `
+      <article class="film-card" data-slug="${film.slug}">
+        <div class="film-poster-wrap">
+          <div class="film-projection-beam"></div>
+          <div class="film-grain-layer"></div>
+          <img class="film-poster-img" src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title} Poster" loading="lazy" />
+          <div class="film-rating-stars">${film.rating || '★★★★★'}</div>
+        </div>
+        <div class="film-meta">
+          <span class="film-director-year">${film.director} · ${film.year}</span>
+          <h3 class="film-title">${film.title.split('(')[0].trim()}</h3>
+          <p class="film-logline">${film.logline || film.excerpt}</p>
+          <button class="film-review-btn" data-slug="${film.slug}">Read Letterboxd Review →</button>
+        </div>
+      </article>
+    `;
+  }).join('\n');
+
+  // Build Audiophile Vinyl Cards (With Grooves, Spotify Embed link)
+  const audioCardsHtml = audioNotes.map((audio) => {
+    return `
+      <article class="audio-card" data-slug="${audio.slug}">
+        <div class="vinyl-sleeve-stage">
+          <div class="vinyl-disc">
+            <div class="vinyl-groove-lines"></div>
+            <div class="vinyl-center-sticker">
+              <span>${audio.artist}</span>
+            </div>
+          </div>
+          <img class="vinyl-cover-art" src="${audio.cover || './assets/images/album-in-rainbows.jpg'}" alt="${audio.title}" loading="lazy" />
+        </div>
+        <div class="audio-info">
+          <span class="audio-format-badge">${audio.format || 'Vinyl LP · Mastered'}</span>
+          <h3 class="audio-title">${audio.title.split('—')[0].trim()}</h3>
+          <p class="audio-artist-line">By <strong>${audio.artist}</strong> (${audio.year})</p>
+          <p class="audio-quote">${audio.quote}</p>
+          <div class="audio-btn-row">
+            ${audio.spotifyUrl ? `
+              <a href="${audio.spotifyUrl}" target="_blank" rel="noopener" class="spotify-link-btn" title="Open in Spotify">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                <span>Listen on Spotify</span>
+              </a>` : ''}
+            <button class="audio-notes-btn" data-slug="${audio.slug}">Listening Log →</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('\n');
+
+  // Build Work Section HTML
+  const workItem = workNotes.find(w => w.slug === 'overview') || workNotes[0] || {
+    title: 'Avdhut Kulkarni — Work & Craft',
+    role: 'Senior Product Designer & Systems Thinker',
+    excerpt: 'Designing software with extreme leverage and calm clarity.'
+  };
+
+  const workCaseStudies = workNotes.filter(w => w.slug !== 'overview');
+  const workSectionHtml = `
+    <div class="work-studio-container">
+      <div class="work-hero-box">
+        <span class="work-label-pill">Senior Product Designer &amp; Builder</span>
+        <h2 class="work-headline">I build calm, high-leverage software architectures that move real business metrics.</h2>
+        <p class="work-subtext">Over 6 years of end-to-end product design and design system engineering across fintech, developer tooling, and global digital products.</p>
+        <div class="work-metrics-grid">
+          <div class="metric-card">
+            <span class="metric-number">+65%</span>
+            <span class="metric-desc">Design System Velocity</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">-28%</span>
+            <span class="metric-desc">Support Query Reduction</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">30+</span>
+            <span class="metric-desc">Production Systems Shipped</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-cases-list">
+        <h3 class="work-section-subhead">Selected Case Studies &amp; Systems</h3>
+        ${workCaseStudies.map(cs => `
+          <div class="case-study-card" data-slug="${cs.slug}">
+            <div class="case-card-body">
+              <span class="case-tag">Case Study · ${cs.tags[0] || 'Design System'}</span>
+              <h4 class="case-title">${cs.title}</h4>
+              <p class="case-excerpt">${cs.excerpt}</p>
+              <button class="case-read-btn" data-slug="${cs.slug}">View Case Study →</button>
+            </div>
+          </div>
+        `).join('\n')}
+      </div>
+    </div>
+  `;
+
+  // Build Separate Archive Items HTML (From content/archive/)
+  const archiveItemsHtml = archiveNotes.map((note) => {
     return `
       <div class="archive-item" data-slug="${note.slug}" data-tags="${note.tags.join(',')}">
         <div class="archive-item-left">
@@ -250,7 +377,7 @@ function build() {
           <p class="archive-item-snippet">${note.excerpt}</p>
         </div>
         <div class="archive-item-right">
-          <span class="archive-tag">#${note.tags[0] || 'Essay'}</span>
+          <span class="archive-tag">#${note.tags[0] || 'Archive'}</span>
           <span>${note.readTime} min read</span>
           <span>${note.date}</span>
         </div>
@@ -258,17 +385,18 @@ function build() {
     `;
   }).join('\n');
 
-  // Render Index HTML
+  // Replace into template
   const finalIndexHtml = indexTemplate
-    .replace('<!-- {{MANUSCRIPT_CARDS}} -->', manuscriptCardsHtml)
+    .replace('<!-- {{BIBLIO_CARDS}} -->', biblioCardsHtml)
+    .replace('<!-- {{FILM_POSTERS}} -->', filmCardsHtml)
+    .replace('<!-- {{AUDIO_CARDS}} -->', audioCardsHtml)
+    .replace('<!-- {{WORK_SECTION}} -->', workSectionHtml)
     .replace('<!-- {{ARCHIVE_ITEMS}} -->', archiveItemsHtml)
     .replace('<!-- {{NOTES_DATA_JSON}} -->', JSON.stringify(notes));
 
-  // Write Index to both dist and root
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), finalIndexHtml, 'utf8');
   fs.writeFileSync(path.join(ROOT_DIR, 'index.html'), finalIndexHtml, 'utf8');
 
-  // Write Data JSON
   fs.writeFileSync(path.join(DIST_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
   fs.writeFileSync(path.join(ROOT_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
 
@@ -334,7 +462,7 @@ function build() {
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
   fs.writeFileSync(path.join(ROOT_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
 
-  console.log(`✅ Build completed successfully! Generated index.html, ${notes.length} standalone note pages, RSS & Sitemap.`);
+  console.log(`✅ Multi-potentialite build completed! Generated index.html, ${notes.length} standalone pages, RSS & Sitemap.`);
 }
 
 build();

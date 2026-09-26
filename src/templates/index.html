@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avadh Kulkarni · The Bibliophile's Desk & Almanac</title>
-  <meta name="description" content="Personal writing, mental models, and timeless reflections of Avadh Kulkarni. An infinite floating manuscript canvas inspired by Naval Ravikant's Almanac and Swedish minimalism.">
-  <meta property="og:title" content="Avadh Kulkarni · The Bibliophile's Desk">
-  <meta property="og:description" content="Infinite manuscript canvas, notes, and essays on leverage, specific knowledge, books, and philosophy.">
+  <title>Avdhut Kulkarni · Bibliophile · Cinephile · Audiophile</title>
+  <meta name="description" content="Personal multi-potentialite portfolio of Avdhut Kulkarni: writing canvas, Letterboxd film reviews, audiophile vinyl listening logs, and product design systems.">
+  <meta property="og:title" content="Avdhut Kulkarni · Multi-Potentialite Portfolio">
+  <meta property="og:description" content="Infinite manuscript canvas, Letterboxd film reviews with projection beam, vinyl listening logs, and product design work.">
   <meta property="og:type" content="website">
 
   <!-- Stylesheets -->
@@ -23,70 +23,188 @@
   </div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Header / Top Bar -->
+  <!-- Header / Navigation Bar -->
   <header class="site-header">
+    
+    <!-- Brand Block: Name & Subtitle Persona -->
     <div class="brand-wrap">
-      <h1 class="brand-title">
-        <span>Avadh Kulkarni</span>
-      </h1>
-      <span class="brand-tagline">Bibliophile · Essayist</span>
-    </div>
-
-    <!-- Reading Status Ticker -->
-    <div class="status-ticker">
-      <span class="status-dot"></span>
-      <span>Reading: <em>The Beginning of Infinity</em></span>
-      <span>·</span>
-      <span id="liveClock">18:30</span>
-    </div>
-
-    <!-- Header Actions -->
-    <div class="header-actions">
-      <!-- View Switcher -->
-      <div class="view-toggle">
-        <button class="view-btn active" id="viewCanvasBtn" title="Interactive Manuscript Canvas">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-          <span>Canvas</span>
-        </button>
-        <button class="view-btn" id="viewArchiveBtn" title="Chronological Archive List">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-          <span>Archive</span>
-        </button>
+      <h1 class="brand-title">Avdhut Kulkarni</h1>
+      <div class="brand-persona" id="brandPersona">
+        <span class="brand-persona-dot"></span>
+        <span id="personaLabel">Bibliophile</span>
       </div>
+    </div>
 
-      <!-- Favorite Books & Characters Carousel Toggle -->
-      <button class="view-btn" id="btnToggleBooksCarousel" title="View Favorite Books & Characters">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        <span>Favorite Books</span>
+    <!-- Center Persona Navigation (The 4 Core Realms) -->
+    <nav class="nav-personas-group" aria-label="Persona Navigation">
+      <button class="persona-nav-btn active" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span>Bibliophile</span>
       </button>
 
-      <!-- Theme Torch Toggle -->
-      <button class="icon-btn" id="btnThemeToggle" title="Toggle Night Reading Torch / Day Paper">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Posters & Reviews">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+        <span>Cinephile</span>
       </button>
 
-      <!-- RSS Feed -->
+      <button class="persona-nav-btn" data-section="audiophile" id="navBtnAudiophile" title="Audiophile: Vinyl Crates & Spotify Logs">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+        <span>Audiophile</span>
+      </button>
+
+      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Product Design & Systems Architecture">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        <span>Work</span>
+      </button>
+    </nav>
+
+    <!-- Header Actions (Archive, Favorite Books, Theme, RSS) -->
+    <div class="header-actions">
+      <!-- Archive Drawer Toggle -->
+      <button class="action-pill-btn" id="btnToggleArchive" title="Open Separate Chronological Archive">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <span>Archive</span>
+      </button>
+
+      <!-- Favorite Books Carousel Toggle -->
+      <button class="action-pill-btn" id="btnToggleBooksCarousel" title="Favorite Books & Heroes">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <span>Canon</span>
+      </button>
+
+      <!-- Theme Mode Toggle (Night Torch / Day Studio) -->
+      <button class="icon-btn" id="btnThemeToggle" title="Toggle Theme (Dark / Light)">
+        <svg id="themeIconDark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      </button>
+
+      <!-- RSS -->
       <a href="./rss.xml" class="icon-btn" title="RSS Feed" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
       </a>
     </div>
   </header>
 
   <!-- ==========================================================================
+       MAIN CONTENT VIEWPORT (4 Personas)
+       ========================================================================== -->
+  <main class="main-content-viewport" id="mainViewport">
+
+    <!-- 1. BIBLIOPHILE SECTION: Infinite Canvas Desk -->
+    <section class="persona-section-view active" id="section-bibliophile" aria-label="Bibliophile Writing Desk">
+      <div class="desk-viewport" id="deskViewport">
+        <!-- Torch Spotlight Follower -->
+        <div class="desk-torch-glow" id="deskTorchGlow"></div>
+
+        <!-- 2D Pan/Zoom Stage -->
+        <div class="desk-stage" id="deskStage">
+          <!-- Centerpiece Watermark -->
+          <div class="desk-centerpiece">
+            <div class="cp-symbol">❦</div>
+            <p class="cp-quote">“Specific knowledge cannot be taught, but it can be learned. Follow your genuine intellectual curiosity.”</p>
+            <p class="cp-author">— Naval Ravikant · The Almanac</p>
+          </div>
+
+          <!-- FLOATING MANUSCRIPT CARDS INJECTED BY SSG -->
+          <!-- {{BIBLIO_CARDS}} -->
+        </div>
+      </div>
+
+      <!-- Canvas HUD Controls -->
+      <div class="canvas-hud" id="canvasHud">
+        <button class="hud-btn" id="btnZoomIn" title="Zoom In">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+        <button class="hud-btn" id="btnZoomOut" title="Zoom Out">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+        <button class="hud-btn" id="btnResetCanvas" title="Center Desk">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </button>
+      </div>
+
+      <!-- Bottom Tag Filter Bar -->
+      <nav class="bottom-bar" id="bottomBar" aria-label="Filter essays">
+        <button class="filter-chip active" data-tag="all">All Drafts</button>
+        <button class="filter-chip" data-tag="books">#Books</button>
+        <button class="filter-chip" data-tag="leverage">#Leverage</button>
+        <button class="filter-chip" data-tag="mental models">#Mental Models</button>
+        <button class="filter-chip" data-tag="philosophy">#Philosophy</button>
+      </nav>
+    </section>
+
+    <!-- 2. CINEPHILE SECTION: Letterboxd Posters with Projection Light -->
+    <section class="persona-section-view" id="section-cinephile" aria-label="Cinephile Film Diary">
+      <div class="cinephile-container">
+        <div class="cinephile-intro">
+          <span class="cinephile-tagline">35mm Film Archive &amp; Letterboxd Diary</span>
+          <h2 class="cinephile-heading">Cinema as Time Architecture</h2>
+          <p class="cinephile-subtext">Hover to project light. Click any poster to read the Letterboxd film review in Obsidian markdown.</p>
+        </div>
+
+        <div class="film-grid" id="filmGrid">
+          <!-- {{FILM_POSTERS}} -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. AUDIOPHILE SECTION: Vinyl Crates & Spotify Listening Logs -->
+    <section class="persona-section-view" id="section-audiophile" aria-label="Audiophile Vinyl Sanctuary">
+      <div class="audiophile-container">
+        <div class="audiophile-intro">
+          <span class="audiophile-tagline">Analogue Grooves &amp; High-Fidelity Acoustics</span>
+          <h2 class="audiophile-heading">The Geometry of Sound</h2>
+          <p class="audiophile-subtext">Tape masters, church organs, and dynamic breathing room. Click to view listening logs and Spotify tracks.</p>
+        </div>
+
+        <div class="audio-grid" id="audioGrid">
+          <!-- {{AUDIO_CARDS}} -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WORK SECTION: Product Design & Systems Architecture -->
+    <section class="persona-section-view" id="section-work" aria-label="Product Design & Engineering Studio">
+      <div class="work-container">
+        <!-- {{WORK_SECTION}} -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       SEPARATE CHRONOLOGICAL ARCHIVE DRAWER
+       ========================================================================== -->
+  <aside class="archive-drawer" id="archiveDrawer" aria-label="Chronological Archive Drawer">
+    <div class="archive-container">
+      <div class="archive-intro">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <h2 class="archive-headline">Chronological Archive &amp; Logs</h2>
+          <button class="action-pill-btn" id="btnCloseArchive">Close Archive ✕</button>
+        </div>
+        <p class="archive-subhead">Uncurated journal scraps, raw thought streams, and marginalia separate from the curated desk.</p>
+      </div>
+
+      <div class="archive-list" id="archiveList">
+        <!-- {{ARCHIVE_ITEMS}} -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
        AMBIENT BOOK & CHARACTER CAROUSEL (Stormlight, Mistborn, Red Rising, LOTR)
        ========================================================================== -->
-  <aside class="ambient-carousel-wrap" id="ambientCarousel" aria-label="Favorite Books & Fictional Characters Carousel">
+  <aside class="ambient-carousel-wrap" id="ambientCarousel" aria-label="Favorite Books Carousel">
     <button class="carousel-close-btn" id="btnCloseCarousel">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      <span>Close Spotlight (Esc)</span>
+      <span>Close Canon (Esc)</span>
     </button>
 
     <div class="ambient-carousel-stage" id="carouselStage">
-      <!-- Slide 1: Stormlight Archive (Kaladin) -->
+      <!-- Slide 1: Stormlight -->
       <div class="carousel-slide active" data-index="0" data-slug="the-stormlight-archive-kaladin">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/stormlight-kaladin.jpg" alt="Kaladin Stormblessed Doodle Art" loading="lazy">
+          <img class="slide-art-img" src="./assets/images/stormlight-kaladin.jpg" alt="Kaladin Stormblessed" loading="lazy">
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">The Stormlight Archive · Brandon Sanderson</span>
@@ -94,197 +212,116 @@
           <h3 class="slide-character-name">Kaladin Stormblessed &amp; Syl</h3>
           <p class="slide-quote">“Life before death. Strength before weakness. Journey before destination.”</p>
           <p class="slide-reflection">Bridge Four transforms from a sacrificial slave crew into the vanguard of the Knights Radiant. Kaladin's burden is the eternal duty of holding the bridge when all else falls.</p>
-          <button class="slide-read-btn" data-slug="the-stormlight-archive-kaladin">Read Bibliophile Essay →</button>
+          <button class="slide-read-btn" data-slug="the-stormlight-archive-kaladin">Read Essay →</button>
         </div>
       </div>
 
-      <!-- Slide 2: Mistborn (Vin & Kelsier) -->
+      <!-- Slide 2: Mistborn -->
       <div class="carousel-slide" data-index="1" data-slug="mistborn-vin-and-kelsier">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/mistborn-vin.jpg" alt="Vin in Mistcloak Doodle Art" loading="lazy">
+          <img class="slide-art-img" src="./assets/images/mistborn-vin.jpg" alt="Vin in Mistcloak" loading="lazy">
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">Mistborn · Brandon Sanderson</span>
           <h2 class="slide-book-title">The Final Empire</h2>
           <h3 class="slide-character-name">Vin &amp; Kelsier</h3>
           <p class="slide-quote">“There’s always another secret. Smile, Vin. Laughter is the one thing the Lord Ruler cannot take from us.”</p>
-          <p class="slide-reflection">A world of ash and red skies. Kelsier weaponizes hope into an allomantic religion, while Vin learns that true invulnerability lies in daring to trust.</p>
-          <button class="slide-read-btn" data-slug="mistborn-vin-and-kelsier">Read Bibliophile Essay →</button>
+          <p class="slide-reflection">Under a thousand years of ashfall, Kelsier constructs a revolution powered not merely by steel, but by infectious hope. Vin discovers that courage is daring to trust.</p>
+          <button class="slide-read-btn" data-slug="mistborn-vin-and-kelsier">Read Essay →</button>
         </div>
       </div>
 
-      <!-- Slide 3: Red Rising (Darrow) -->
+      <!-- Slide 3: Red Rising -->
       <div class="carousel-slide" data-index="2" data-slug="red-rising-the-reaper">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/red-rising-darrow.jpg" alt="Darrow of Lykos Doodle Art" loading="lazy">
+          <img class="slide-art-img" src="./assets/images/red-rising-darrow.jpg" alt="Darrow of Lykos" loading="lazy">
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">Red Rising Saga · Pierce Brown</span>
           <h2 class="slide-book-title">Red Rising &amp; Golden Son</h2>
           <h3 class="slide-character-name">Darrow of Lykos · The Reaper</h3>
           <p class="slide-quote">“I would have lived in peace. But my enemies brought me war.”</p>
-          <p class="slide-reflection">Helldiver turned Peerless Scarred. Darrow carves himself into the apex predator of the Society, wielding the curved slingBlade to break the chains of mankind.</p>
-          <button class="slide-read-btn" data-slug="red-rising-the-reaper">Read Bibliophile Essay →</button>
+          <p class="slide-reflection">Homeric Greek tragedy cast into interplanetary space warfare. Helldiver carved into a Gold, Darrow wields the curved slingBlade to break the chains of mankind.</p>
+          <button class="slide-read-btn" data-slug="red-rising-the-reaper">Read Essay →</button>
         </div>
       </div>
 
-      <!-- Slide 4: Lord of the Rings (Gandalf) -->
+      <!-- Slide 4: LOTR -->
       <div class="carousel-slide" data-index="3" data-slug="lord-of-the-rings-gandalf">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/lotr-gandalf.jpg" alt="Gandalf the Grey Doodle Art" loading="lazy">
+          <img class="slide-art-img" src="./assets/images/lotr-gandalf.jpg" alt="Gandalf the Grey" loading="lazy">
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">The Lord of the Rings · J.R.R. Tolkien</span>
           <h2 class="slide-book-title">The Fellowship of the Ring</h2>
           <h3 class="slide-character-name">Gandalf the Grey · Mithrandir</h3>
           <p class="slide-quote">“All we have to decide is what to do with the time that is given us.”</p>
-          <p class="slide-reflection">The timeless antidote to despair. Not the might of Gondorian armies, but Bilbo's pity and Samwise's steadfast loyalty that outlasts the darkness of Mordor.</p>
-          <button class="slide-read-btn" data-slug="lord-of-the-rings-gandalf">Read Bibliophile Essay →</button>
+          <p class="slide-reflection">True victory in Middle-earth is never won by mighty armies, but preserved through Bilbo's pity, Frodo's quiet endurance, and Samwise Gamgee holding his master's hand.</p>
+          <button class="slide-read-btn" data-slug="lord-of-the-rings-gandalf">Read Essay →</button>
         </div>
       </div>
     </div>
 
     <!-- Carousel Controls -->
     <div class="carousel-controls">
-      <button class="carousel-btn" id="btnPrevSlide" title="Previous Book (←)">
+      <button class="carousel-btn" id="btnPrevSlide" title="Previous (←)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
-
       <div class="carousel-dots" id="carouselDots">
         <div class="carousel-dot active" data-index="0"></div>
         <div class="carousel-dot" data-index="1"></div>
         <div class="carousel-dot" data-index="2"></div>
         <div class="carousel-dot" data-index="3"></div>
       </div>
-
-      <button class="carousel-btn" id="btnNextSlide" title="Next Book (→)">
+      <button class="carousel-btn" id="btnNextSlide" title="Next (→)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
     </div>
   </aside>
 
   <!-- ==========================================================================
-       INFINITE DESK CANVAS
-       ========================================================================== -->
-  <main class="desk-viewport" id="deskViewport" aria-label="Infinite Writing Desk Canvas">
-    
-    <!-- Torch Spotlight Follower -->
-    <div class="desk-torch-glow" id="deskTorchGlow"></div>
-
-    <!-- Infinite Pan/Zoom Stage -->
-    <div class="desk-stage" id="deskStage">
-
-      <!-- Atmospheric Center Watermark -->
-      <div class="desk-centerpiece">
-        <div class="cp-symbol">❦</div>
-        <p class="cp-quote">“Specific knowledge cannot be taught, but it can be learned. Follow your genuine intellectual curiosity.”</p>
-        <p class="cp-author">— Naval Ravikant · The Almanac</p>
-      </div>
-
-      <!-- FLOATING MANUSCRIPT CARDS INJECTED BY SSG -->
-      <!-- {{MANUSCRIPT_CARDS}} -->
-
-    </div>
-
-  </main>
-
-  <!-- Canvas HUD Controls -->
-  <div class="canvas-hud" id="canvasHud">
-    <button class="hud-btn" id="btnZoomIn" title="Zoom In">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-    </button>
-    <button class="hud-btn" id="btnZoomOut" title="Zoom Out">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-    </button>
-    <button class="hud-btn" id="btnResetCanvas" title="Center Desk">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-    </button>
-  </div>
-
-  <!-- Canvas Help / Interaction Hint -->
-  <div class="canvas-hint" id="canvasHint">
-    <span>Drag to Pan</span>
-    <span>·</span>
-    <span>Scroll to Zoom</span>
-    <span>·</span>
-    <span>Click Note to Read</span>
-  </div>
-
-  <!-- Bottom Tag Filter Bar -->
-  <nav class="bottom-bar" id="bottomBar" aria-label="Filter essays by topic">
-    <button class="filter-chip active" data-tag="all">All Drafts</button>
-    <button class="filter-chip" data-tag="leverage">#Leverage</button>
-    <button class="filter-chip" data-tag="navalism">#Navalism</button>
-    <button class="filter-chip" data-tag="mental models">#Mental Models</button>
-    <button class="filter-chip" data-tag="books">#Books</button>
-    <button class="filter-chip" data-tag="philosophy">#Philosophy</button>
-    <button class="filter-chip" data-tag="stoicism">#Stoicism</button>
-  </nav>
-
-  <!-- ==========================================================================
-       ALMANAC ARCHIVE VIEW (Alternative Clean Swedish List)
-       ========================================================================== -->
-  <section class="archive-view" id="archiveView" aria-label="Complete Essay Archive">
-    <div class="archive-container">
-      <div class="archive-intro">
-        <h2 class="archive-headline">The Almanac & Marginalia</h2>
-        <p class="archive-subhead">A chronological catalogue of essays, book notes, and mental models written in Obsidian.</p>
-      </div>
-
-      <div class="archive-list" id="archiveList">
-        <!-- {{ARCHIVE_ITEMS}} -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       OBSIDIAN ESSAY READER MODAL / DRAWER
+       OBSIDIAN ESSAY & REVIEW READER MODAL
        ========================================================================== -->
   <aside class="reader-modal" id="readerModal" aria-modal="true" role="dialog" aria-hidden="true">
     <div class="reader-progress-bar" id="readerProgressBar"></div>
 
     <div class="reader-container" id="readerContainer">
-      <!-- Reader Top Bar -->
       <div class="reader-bar">
         <button class="reader-close-btn" id="btnReaderClose">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          <span>Back to Desk</span>
-          <kbd style="background: rgba(255,255,255,0.08); padding: 1px 4px; border-radius: 3px; font-size: 0.65rem;">ESC</kbd>
+          <span>Back to View</span>
+          <kbd style="background: var(--border-subtle); padding: 1px 5px; border-radius: 3px; font-size: 0.65rem;">ESC</kbd>
         </button>
 
         <span class="reader-meta-snippet" id="readerMetaSnippet">Reading</span>
 
         <div class="reader-nav-btns">
-          <button class="reader-nav-btn" id="btnReaderPrev" title="Previous Draft (←)">
+          <button class="reader-nav-btn" id="btnReaderPrev" title="Previous (←)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
-          <button class="reader-nav-btn" id="btnReaderNext" title="Next Draft (→)">
+          <button class="reader-nav-btn" id="btnReaderNext" title="Next (→)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
       </div>
 
-      <!-- Reader Header -->
       <header class="reader-header" id="readerHeader"></header>
-
-      <!-- Reader Article Prose -->
       <article class="reader-body" id="readerBody"></article>
 
-      <!-- Reader Footer -->
       <footer class="reader-footer">
         <div>
-          <p class="author-signature">Avadh Kulkarni</p>
-          <p>Written in Obsidian · Published with Git Engine</p>
+          <p class="author-signature">Avdhut Kulkarni</p>
+          <p>Multi-Potentialite · Bibliophile · Cinephile · Audiophile</p>
         </div>
-        <p>The Bibliophile's Desk</p>
+        <p>Written in Obsidian</p>
       </footer>
     </div>
   </aside>
 
-  <!-- Embedded Notes Data JSON for Instant Client Transitions -->
+  <!-- Embedded Notes Data JSON -->
   <script type="application/json" id="notesDataJson">
     <!-- {{NOTES_DATA_JSON}} -->
   </script>

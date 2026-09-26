@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Stormlight Archive: Kaladin and the Weight of Protection · Avadh Kulkarni</title>
+  <title>The Stormlight Archive: Kaladin and the Weight of Protection · Avdhut Kulkarni</title>
   <meta name="description" content="In Brandon Sanderson's epic, Kaladin Stormblessed begins as a broken slave carrying heavy wooden bridges across chasms. His transcendence is not through power, but through duty.">
-  <meta property="og:title" content="The Stormlight Archive: Kaladin and the Weight of Protection · Avadh Kulkarni">
+  <meta property="og:title" content="The Stormlight Archive: Kaladin and the Weight of Protection · Avdhut Kulkarni">
   <meta property="og:description" content="In Brandon Sanderson's epic, Kaladin Stormblessed begins as a broken slave carrying heavy wooden bridges across chasms. His transcendence is not through power, but through duty.">
   <meta property="og:type" content="article">
-  <meta property="article:author" content="Avadh Kulkarni">
+  <meta property="article:author" content="Avdhut Kulkarni">
   <meta property="article:published_time" content="2026-03-24">
 
   <!-- Stylesheets -->
@@ -19,7 +19,8 @@
     body {
       overflow-y: auto !important;
       user-select: text !important;
-      background: #0c0d10;
+      background: var(--bg-dark);
+      color: var(--text-primary);
     }
     .standalone-page-wrap {
       max-width: 760px;
@@ -32,7 +33,7 @@
       align-items: center;
       margin-bottom: 3.5rem;
       padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-subtle);
       font-family: var(--font-mono);
       font-size: 0.74rem;
     }
@@ -40,11 +41,11 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: #adb2bd;
+      color: var(--text-secondary);
       transition: color 0.2s;
     }
     .back-link:hover {
-      color: #fff;
+      color: var(--text-primary);
     }
   </style>
 </head>
@@ -65,10 +66,10 @@
     <nav class="standalone-nav-bar">
       <a href="../index.html" class="back-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        <span>Back to Desk Canvas</span>
+        <span>Back to Desk Sanctuary</span>
       </a>
 
-      <span style="color: #7d8492;">2 min read · 2026-03-24</span>
+      <span style="color: var(--text-muted);">2 min read · 2026-03-24</span>
     </nav>
 
     <!-- Header -->
@@ -77,7 +78,7 @@
       <h1 class="reader-title">The Stormlight Archive: Kaladin and the Weight of Protection</h1>
       <p class="reader-subtitle">Why Bridge Four's philosophy of holding the bridge echoes the highest Stoic duty</p>
       <div class="reader-details">
-        <span>By Avadh Kulkarni</span>
+        <span>By Avdhut Kulkarni</span>
         <span>·</span>
         <span>2026-03-24</span>
         <span>·</span>
@@ -117,17 +118,17 @@
     <!-- Footer -->
     <footer class="reader-footer">
       <div>
-        <p class="author-signature">Avadh Kulkarni</p>
-        <p>Written in Obsidian · Published with Git Engine</p>
+        <p class="author-signature">Avdhut Kulkarni</p>
+        <p>Bibliophile · Cinephile · Audiophile · Product Designer</p>
       </div>
-      <a href="../index.html" class="back-link">Return to Desk Canvas →</a>
+      <a href="../index.html" class="back-link">Return to Desk Sanctuary →</a>
     </footer>
 
   </main>
 
   <script src="../assets/js/cursor.js"></script>
   <script>
-    // Simple reading progress for standalone page
+    // Reading progress
     window.addEventListener('scroll', () => {
       const bar = document.getElementById('readerProgressBar');
       if (!bar) return;
