@@ -287,17 +287,36 @@ function build() {
   const audioCardsHtml = audioNotes.map((audio) => {
     return `
       <article class="audio-card" data-slug="${audio.slug}">
-        <div class="vinyl-sleeve-stage">
-          <div class="vinyl-disc">
-            <div class="vinyl-groove-lines"></div>
-            <div class="vinyl-center-sticker">
-              <span>${audio.artist}</span>
+        <div class="turntable-deck">
+          <div class="turntable-platter">
+            <div class="spinning-vinyl-disc">
+              <div class="vinyl-groove-rings"></div>
+              <div class="vinyl-center-label">
+                <span class="vinyl-label-artist">${audio.artist}</span>
+                <span class="vinyl-label-title">${audio.title.split('—')[0].trim()}</span>
+                <span class="vinyl-label-rpm">33⅓ RPM</span>
+              </div>
+              <div class="vinyl-spindle-hole"></div>
+            </div>
+            <div class="turntable-tonearm">
+              <div class="tonearm-pivot"></div>
+              <div class="tonearm-arm"></div>
+              <div class="tonearm-cartridge"></div>
             </div>
           </div>
-          <img class="vinyl-cover-art" src="${audio.cover || './assets/images/album-in-rainbows.jpg'}" alt="${audio.title}" loading="lazy" />
+          <!-- Animated Frequency Equalizer Waves -->
+          <div class="audio-equalizer-bars">
+            <span class="eq-bar bar-1"></span>
+            <span class="eq-bar bar-2"></span>
+            <span class="eq-bar bar-3"></span>
+            <span class="eq-bar bar-4"></span>
+            <span class="eq-bar bar-5"></span>
+            <span class="eq-bar bar-6"></span>
+            <span class="eq-bar bar-7"></span>
+          </div>
         </div>
         <div class="audio-info">
-          <span class="audio-format-badge">${audio.format || 'Vinyl LP · Mastered'}</span>
+          <span class="audio-format-badge">${audio.format || 'Vinyl LP · High-Fidelity Master'}</span>
           <h3 class="audio-title">${audio.title.split('—')[0].trim()}</h3>
           <p class="audio-artist-line">By <strong>${audio.artist}</strong> (${audio.year})</p>
           <p class="audio-quote">${audio.quote}</p>

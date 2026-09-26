@@ -185,17 +185,18 @@
     });
   }
 
-  // Theme Toggle with LocalStorage
+  // Theme Toggle: Defaults strictly to nocturnal dark mode
   function initThemeToggle() {
     const btnTheme = document.getElementById('btnThemeToggle');
     if (!btnTheme) return;
 
-    const savedTheme = localStorage.getItem('avdhut-theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Enforce dark mode as the default nocturnal foundation
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('avdhut-theme', 'dark');
 
     btnTheme.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('avdhut-theme', next);
       if (window.AudioFX) window.AudioFX.playClick(1050);

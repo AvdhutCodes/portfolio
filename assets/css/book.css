@@ -3,14 +3,20 @@
  * Pure CSS 3D Transforms with realistic page-turn physics and chapter navigation.
  */
 
+#section-landing {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .landing-stage-hero {
   position: relative;
-  min-height: 88vh;
+  min-height: calc(100vh - var(--header-h));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1.5rem 2rem;
+  padding: 2.5rem 1.5rem 4rem;
   z-index: 2;
 }
 
@@ -234,52 +240,58 @@
 
 .page-chapter-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #d4af37;
+  font-weight: 600;
+  display: block;
 }
 
 .page-manifesto-title {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
-  color: var(--text-primary);
-  margin-top: 0.6rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 0.5rem;
   margin-bottom: 0.8rem;
   line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
 
 .page-manifesto-body {
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #e4e4e7;
 }
 
 .page-quote-box {
   margin-top: 1rem;
-  padding: 0.8rem 1rem;
-  border-left: 2px solid #d4af37;
-  background: rgba(212, 175, 55, 0.04);
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid #d4af37;
+  background: rgba(212, 175, 55, 0.09);
+  border-radius: 0 4px 4px 0;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.8rem;
-  color: #f7eed8;
-  line-height: 1.5;
+  font-size: 0.86rem;
+  color: #fef08a;
+  line-height: 1.55;
 }
 
 .page-quote-author {
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-style: normal;
-  color: #c5a059;
+  color: #e5c07b;
+  font-weight: 500;
 }
 
 /* Right Page: Table of Chapters */
 .book-page-right {
   flex: 1;
-  background: linear-gradient(225deg, #0f0f13 0%, #08080a 100%);
+  background: linear-gradient(225deg, #13141a 0%, #09090c 100%);
   padding: 2.2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -302,47 +314,50 @@
 .chapters-list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 0.8rem;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
 }
 
 .chapter-row-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0.8rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  padding: 0.75rem 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
   text-decoration: none;
-  transition: all 0.2s ease;
-  color: var(--text-primary);
+  transition: all 0.25s ease;
+  color: #ffffff;
 }
 
 .chapter-row-link:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #d4af37;
+  transform: translateX(6px);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.15);
 }
 
 .chapter-num {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: #ab9058;
-  letter-spacing: 0.05em;
-  width: 70px;
+  font-size: 0.7rem;
+  color: #e5c07b;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  width: 75px;
 }
 
 .chapter-title {
   flex: 1;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .chapter-arrow {
-  color: var(--text-muted);
-  font-size: 0.75rem;
+  color: #e5c07b;
+  font-size: 0.85rem;
+  font-weight: bold;
   transition: transform 0.2s ease;
 }
 

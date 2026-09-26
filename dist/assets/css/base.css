@@ -57,26 +57,26 @@
   --z-cursor: 9999;
 }
 
-/* LIGHT THEME (Pristine Nordic Paper & Daylight Studio) */
+/* STUDIO ONYX THEME (Deep Charcoal Minimalist) */
 [data-theme="light"] {
-  --bg-dark: #f8f6f0;
-  --bg-surface: #efece4;
-  --bg-surface-elevated: #e6e2d8;
-  --bg-card: #ffffff;
-  --bg-card-alt: #f7f5ed;
+  --bg-dark: #070709;
+  --bg-surface: #0f1015;
+  --bg-surface-elevated: #161820;
+  --bg-card: #13141b;
+  --bg-card-alt: #0a0b0e;
 
-  --text-primary: #151619;
-  --text-secondary: #464b56;
-  --text-muted: #727885;
-  --text-faint: #b0b5be;
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-muted: #8e8e99;
+  --text-faint: #52525b;
 
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-medium: rgba(0, 0, 0, 0.16);
-  --header-bg: rgba(248, 246, 240, 0.88);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --header-bg: rgba(7, 7, 9, 0.9);
 
-  --paper-shadow: rgba(0, 0, 0, 0.14);
-  --torch-color: rgba(255, 255, 255, 0.65);
-  --torch-core: rgba(255, 255, 255, 0.3);
+  --paper-shadow: rgba(0, 0, 0, 0.9);
+  --torch-color: rgba(255, 255, 255, 0.12);
+  --torch-core: rgba(255, 255, 255, 0.04);
 }
 
 /* Reset */
