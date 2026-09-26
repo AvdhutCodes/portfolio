@@ -132,8 +132,22 @@
             <!-- Spine -->
             <div class="book-spine"></div>
 
+            <!-- Back board & page-block edges (Foundation depth stack) -->
+            <div class="book-back-cover"></div>
+            <div class="book-page-edges"></div>
+
+            <!-- Staggered flutter leaves (flip open with delays) -->
+            <div class="book-flutter-leaf f1" aria-hidden="true"></div>
+            <div class="book-flutter-leaf f2" aria-hidden="true"></div>
+            <div class="book-flutter-leaf f3" aria-hidden="true"></div>
+
             <!-- Front Cover (Leather & Gilded Deboss) -->
             <div class="book-front-cover">
+              <!-- Inside endpaper, revealed mid-flip -->
+              <div class="cover-inner-face" aria-hidden="true">
+                <span class="cover-inner-stamp">❦</span>
+                <span class="cover-inner-text">Volume I · MMXXVI</span>
+              </div>
               <div class="cover-gold-border">
                 <div class="cover-header-meta">The Personal Almanac</div>
                 
@@ -236,7 +250,7 @@
 
           <div class="now-item-group">
             <span class="now-chip-tag">Heavy Rotation</span>
-            <span style="color: #fff;">Radiohead — In Rainbows</span>
+            <span class="now-heavy-rotation">Radiohead — In Rainbows</span>
           </div>
 
           <span class="now-divider">/</span>
@@ -980,7 +994,7 @@
     </article>
   
 
-    <article class="letterboxd-film-card">
+    <article class="letterboxd-film-card collage-feature">
       <div class="lb-poster-box">
         <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/7/6/51976-war-of-the-worlds-0-600-0-900-crop.jpg?v=762a144731" alt="War of the Worlds" class="lb-poster-img" loading="lazy" />
         <div class="lb-stars-badge">★★★★</div>
@@ -1095,7 +1109,7 @@
     </article>
   
 
-    <article class="letterboxd-film-card">
+    <article class="letterboxd-film-card collage-feature">
       <div class="lb-poster-box">
         <img src="https://a.ltrbxd.com/resized/film-poster/1/2/0/5/4/9/4/1205494-the-drama-0-600-0-900-crop.jpg?v=2320acafd5" alt="The Drama" class="lb-poster-img" loading="lazy" />
         <div class="lb-stars-badge">★★★</div>
@@ -1210,7 +1224,7 @@
     </article>
   
 
-    <article class="letterboxd-film-card">
+    <article class="letterboxd-film-card collage-feature">
       <div class="lb-poster-box">
         <img src="https://a.ltrbxd.com/resized/film-poster/1/5/2/3/3/8/7/1523387-one-piece-heroines-2026-0-600-0-900-crop.jpg?v=4f4a1ffeb8" alt="One Piece Heroines" class="lb-poster-img" loading="lazy" />
         <div class="lb-stars-badge">Unrated</div>
@@ -1541,6 +1555,7 @@
       <div class="carousel-slide active" data-index="0" data-slug="the-stormlight-archive-kaladin">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
+          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780765326355-L.jpg" alt="The Way of Kings — cover art" loading="lazy" onerror="this.remove()" />
           <div class="slide-monochrome-badge">THE STORMLIGHT ARCHIVE</div>
         </div>
         <div class="slide-content">
@@ -1557,6 +1572,7 @@
       <div class="carousel-slide" data-index="1" data-slug="mistborn-vin-and-kelsier">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
+          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780765311788-L.jpg" alt="Mistborn: The Final Empire — cover art" loading="lazy" onerror="this.remove()" />
           <div class="slide-monochrome-badge">MISTBORN</div>
         </div>
         <div class="slide-content">
@@ -1573,6 +1589,7 @@
       <div class="carousel-slide" data-index="2" data-slug="red-rising-the-reaper">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
+          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780345539786-L.jpg" alt="Red Rising — cover art" loading="lazy" onerror="this.remove()" />
           <div class="slide-monochrome-badge">RED RISING</div>
         </div>
         <div class="slide-content">
@@ -1589,6 +1606,7 @@
       <div class="carousel-slide" data-index="3" data-slug="lord-of-the-rings-gandalf">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
+          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780618346257-L.jpg" alt="The Fellowship of the Ring — cover art" loading="lazy" onerror="this.remove()" />
           <div class="slide-monochrome-badge">THE LORD OF THE RINGS</div>
         </div>
         <div class="slide-content">

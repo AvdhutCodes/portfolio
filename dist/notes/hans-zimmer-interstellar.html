@@ -17,6 +17,15 @@
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/reader.css">
   <link rel="stylesheet" href="../assets/css/cursor.css">
+  <script>
+    // Apply stored theme before paint (matches index toggle, defaults to dark)
+    try {
+      var storedTheme = localStorage.getItem('avdhut-theme');
+      document.documentElement.setAttribute('data-theme', storedTheme === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
   <style>
     body {
       overflow-y: auto !important;

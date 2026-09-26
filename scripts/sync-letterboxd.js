@@ -9,11 +9,11 @@ const fs = require('fs');
 const path = require('path');
 
 const RSS_URL = 'https://letterboxd.com/avd1234/rss/';
+// Canonical JSON (read by build.js + fetched by letterboxd-live.js)
+// plus the dist/ copy shipped to GitHub Pages.
 const OUTPUT_PATHS = [
   path.join(__dirname, '..', 'data', 'letterboxd.json'),
-  path.join(__dirname, '..', 'dist', 'data', 'letterboxd.json'),
-  path.join(__dirname, '..', 'src', 'data', 'letterboxd.json'),
-  path.join(__dirname, '..', 'public', 'data', 'letterboxd.json')
+  path.join(__dirname, '..', 'dist', 'data', 'letterboxd.json')
 ];
 
 function ensureDirForFile(filePath) {

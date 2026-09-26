@@ -52,6 +52,13 @@ function copyDirSync(src, dest) {
   }
 }
 
+// Atomic file write (tmp + rename) so the dev server never serves torn files
+function writeFileAtomic(dest, content) {
+  const tmp = dest + '.tmp-' + process.pid;
+  fs.writeFileSync(tmp, content, 'utf8');
+  fs.renameSync(tmp, dest);
+}
+
 // Process Obsidian Markdown
 function processObsidianMarkdown(rawMd) {
   let content = rawMd;
@@ -422,8 +429,8 @@ function build() {
   `).join('\n');
 
   // Pre-render Recent Letterboxd Reel
-  const recentReelHtml = (letterboxdData.recentWatches || []).map(film => `
-    <article class="letterboxd-film-card">
+  const recentReelHtml = (letterboxdData.recentWatches || []).map((film, idx) => `
+    <article class="letterboxd-film-card${idx % 5 === 4 ? ' collage-feature' : ''}">
       <div class="lb-poster-box">
         <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" />
         <div class="lb-stars-badge">${film.stars}</div>
@@ -472,11 +479,11 @@ function build() {
     .replace('<!-- {{LETTERBOXD_RECENT_REEL}} -->', recentReelHtml)
     .replace('<!-- {{NOTES_DATA_JSON}} -->', JSON.stringify(notes));
 
-  fs.writeFileSync(path.join(DIST_DIR, 'index.html'), finalIndexHtml, 'utf8');
-  fs.writeFileSync(path.join(ROOT_DIR, 'index.html'), finalIndexHtml, 'utf8');
+  writeFileAtomic(path.join(DIST_DIR, 'index.html'), finalIndexHtml, 'utf8');
+  writeFileAtomic(path.join(ROOT_DIR, 'index.html'), finalIndexHtml, 'utf8');
 
-  fs.writeFileSync(path.join(DIST_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
-  fs.writeFileSync(path.join(ROOT_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
+  writeFileAtomic(path.join(DIST_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
+  writeFileAtomic(path.join(ROOT_DIR, 'data', 'notes.json'), JSON.stringify(notes, null, 2), 'utf8');
 
   // Build Individual Standalone Note Pages
   notes.forEach(note => {
@@ -494,8 +501,8 @@ function build() {
       .replace(/{{NOTE_TAGS_HTML}}/g, tagsHtml)
       .replace(/{{NOTE_BODY_HTML}}/g, note.htmlContent);
 
-    fs.writeFileSync(path.join(DIST_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');
+    writeFileAtomic(path.join(DIST_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');
+    writeFileAtomic(path.join(ROOT_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');
   });
 
   // Build RSS Feed
@@ -517,8 +524,8 @@ function build() {
 </channel>
 </rss>`;
 
-  fs.writeFileSync(path.join(DIST_DIR, 'rss.xml'), rssXml, 'utf8');
-  fs.writeFileSync(path.join(ROOT_DIR, 'rss.xml'), rssXml, 'utf8');
+  writeFileAtomic(path.join(DIST_DIR, 'rss.xml'), rssXml, 'utf8');
+  writeFileAtomic(path.join(ROOT_DIR, 'rss.xml'), rssXml, 'utf8');
 
   // Build Sitemap
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -537,8 +544,8 @@ function build() {
   </url>`).join('\n')}
 </urlset>`;
 
-  fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
-  fs.writeFileSync(path.join(ROOT_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
+  writeFileAtomic(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
+  writeFileAtomic(path.join(ROOT_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
 
   console.log(`✅ Multi-potentialite build completed! Generated index.html, ${notes.length} standalone pages, RSS & Sitemap.`);
 }

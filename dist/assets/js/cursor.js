@@ -55,9 +55,10 @@
       this.life -= this.decay;
     }
     draw() {
-      dustCtx.fillStyle = this.isGold 
-        ? `rgba(255, 215, 120, ${this.life * 0.8})` 
-        : `rgba(255, 255, 255, ${this.life * 0.75})`;
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      dustCtx.fillStyle = this.isGold
+        ? (light ? `rgba(150, 110, 45, ${this.life * 0.7})` : `rgba(255, 215, 120, ${this.life * 0.8})`)
+        : (light ? `rgba(60, 50, 35, ${this.life * 0.55})` : `rgba(255, 255, 255, ${this.life * 0.75})`);
       dustCtx.beginPath();
       dustCtx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
       dustCtx.fill();

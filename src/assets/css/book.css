@@ -91,7 +91,6 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 2.2rem 1.8rem;
-  backface-visibility: hidden;
 }
 
 /* Front Cover Opened State */
@@ -100,7 +99,7 @@
   transform: rotateY(-165deg);
 }
 
-/* Front Cover Gold Embossed Details */
+/* Front Cover Gold Embossed Details (front face: hides when flipped) */
 .cover-gold-border {
   border: 1px solid rgba(230, 195, 120, 0.35);
   height: 100%;
@@ -110,6 +109,38 @@
   justify-content: space-between;
   position: relative;
   border-radius: 2px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Inside endpaper (rear face: revealed mid-flip) */
+.cover-inner-face {
+  position: absolute;
+  inset: 2.2rem 1.8rem;
+  transform: rotateY(180deg);
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.14), transparent 60%),
+    linear-gradient(135deg, #2a1410 0%, #422016 55%, #220e0b 100%);
+  border: 1px solid rgba(230, 195, 120, 0.3);
+  border-radius: 10px 4px 4px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.cover-inner-stamp {
+  font-size: 1.6rem;
+  color: #d4af37;
+}
+
+.cover-inner-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 238, 216, 0.65);
 }
 
 .cover-gold-border::before {
@@ -389,9 +420,85 @@
   .book-pages-spread {
     display: none;
   }
+  .book-flutter-leaf {
+    display: none;
+  }
   .book-3d-tome {
     width: 260px;
     height: 360px;
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   FOUNDATION DEPTH STACK (Back Board, Page Edges & Flutter Leaves)
+   Pure CSS 3D, driven by .is-open / wrapper hover. MIT-inspired.
+   ========================================================================== */
+
+.book-back-cover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0b0b0e 0%, #14141a 60%, #0a0a0d 100%);
+  border: 1px solid rgba(230, 195, 120, 0.18);
+  border-radius: 4px 10px 10px 4px;
+  transform: translateZ(-10px);
+  box-shadow: -6px 10px 26px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+.book-page-edges {
+  position: absolute;
+  top: 1.2%;
+  right: -7px;
+  width: 14px;
+  height: 97.6%;
+  background: repeating-linear-gradient(90deg, #ece5d3 0 2px, #c6bda6 2px 4px);
+  border-radius: 0 3px 3px 0;
+  transform: translateZ(-5px);
+  box-shadow: 5px 8px 16px rgba(0, 0, 0, 0.55);
+  z-index: 2;
+}
+
+.book-flutter-leaf {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  width: 49%;
+  height: 98%;
+  transform-origin: left center;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 9px, rgba(60, 50, 30, 0.12) 9px 10px),
+    linear-gradient(105deg, #f4eedd 0%, #e0d6bd 100%);
+  border-radius: 0 3px 3px 0;
+  box-shadow: inset -8px 0 12px rgba(60, 50, 30, 0.22);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.book-flutter-leaf.f1 { transform: translateZ(3px); transition-delay: 0.2s; z-index: 7; }
+.book-flutter-leaf.f2 { transform: translateZ(2px); transition-delay: 0.11s; z-index: 6; }
+.book-flutter-leaf.f3 { transform: translateZ(1px); transition-delay: 0.02s; z-index: 5; }
+
+.book-3d-tome.is-open .book-flutter-leaf.f1,
+.landing-book-wrapper:hover .book-flutter-leaf.f1 { transform: translateZ(3px) rotateY(-154deg); }
+.book-3d-tome.is-open .book-flutter-leaf.f2,
+.landing-book-wrapper:hover .book-flutter-leaf.f2 { transform: translateZ(2px) rotateY(-147deg); }
+.book-3d-tome.is-open .book-flutter-leaf.f3,
+.landing-book-wrapper:hover .book-flutter-leaf.f3 { transform: translateZ(1px) rotateY(-140deg); }
+
+/* Pedestal breathes when the codex opens */
+.landing-book-wrapper.is-open .book-pedestal-shadow,
+.landing-book-wrapper:hover .book-pedestal-shadow {
+  transform: scaleX(1.28);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-3d-tome,
+  .book-front-cover,
+  .book-flutter-leaf,
+  .book-pages-spread,
+  .book-pedestal-shadow {
+    transition: none;
   }
 }

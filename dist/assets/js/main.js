@@ -11,6 +11,9 @@
     const desk = new window.InfiniteDesk();
     const reader = new window.EssayReader();
 
+    // Expose the live reader instance for Omnibar + Mind Graph callers
+    window.ReaderModal = reader;
+
     // 2. Initialize Persona Sections Switcher & 3D Book
     initPersonaSwitching();
     init3DBook();
@@ -97,6 +100,8 @@
       tome.addEventListener('click', (e) => {
         if (e.target.closest('.chapter-row-link')) return;
         tome.classList.toggle('is-open');
+        const wrap = tome.closest('.landing-book-wrapper');
+        if (wrap) wrap.classList.toggle('is-open', tome.classList.contains('is-open'));
         if (window.AudioFX) {
           window.AudioFX.playPageTurn();
         }
@@ -185,20 +190,31 @@
     });
   }
 
-  // Theme Toggle: Defaults strictly to nocturnal dark mode
+  // Theme Toggle: Respect stored preference, default to nocturnal dark mode
   function initThemeToggle() {
     const btnTheme = document.getElementById('btnThemeToggle');
     if (!btnTheme) return;
 
-    // Enforce dark mode as the default nocturnal foundation
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('avdhut-theme', 'dark');
+    const ICON_MOON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>';
+    const ICON_SUN = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
+
+    function paintThemeIcon(theme) {
+      btnTheme.innerHTML = theme === 'dark' ? ICON_MOON : ICON_SUN;
+      btnTheme.setAttribute('title', theme === 'dark' ? 'Switch to Light (Paper)' : 'Switch to Dark (Nocturnal)');
+    }
+
+    const stored = localStorage.getItem('avdhut-theme');
+    const initial = stored === 'light' || stored === 'dark' ? stored : 'dark';
+    document.documentElement.setAttribute('data-theme', initial);
+    localStorage.setItem('avdhut-theme', initial);
+    paintThemeIcon(initial);
 
     btnTheme.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('avdhut-theme', next);
+      paintThemeIcon(next);
       if (window.AudioFX) window.AudioFX.playClick(1050);
     });
   }

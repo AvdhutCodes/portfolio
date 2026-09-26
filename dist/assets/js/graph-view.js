@@ -19,17 +19,37 @@
   let panX = 0;
   let panY = 0;
   let zoom = 1.0;
+  let pixelRatio = 1;
+  let downWorldX = 0;
+  let downWorldY = 0;
   let isPanning = false;
   let startPanX = 0;
   let startPanY = 0;
 
-  const CATEGORY_COLORS = {
+  const CATEGORY_COLORS_DARK = {
     bibliophile: '#ffffff',
     cinephile: '#00e054', // Letterboxd Green
     audiophile: '#f59e0b', // Vinyl Amber
     work: '#3b82f6',       // Cobalt Systems
     archive: '#a855f7'     // Archive Purple
   };
+
+  const CATEGORY_COLORS_LIGHT = {
+    bibliophile: '#1d1a14',
+    cinephile: '#009444',
+    audiophile: '#b45309',
+    work: '#1d4ed8',
+    archive: '#7e22ce'
+  };
+
+  function isLightTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
+  function categoryColor(category) {
+    const palette = isLightTheme() ? CATEGORY_COLORS_LIGHT : CATEGORY_COLORS_DARK;
+    return palette[category] || palette.bibliophile;
+  }
 
   function getNotesData() {
     if (window.__ALL_NOTES__ && Array.isArray(window.__ALL_NOTES__)) {
@@ -47,8 +67,8 @@
 
   function initGraphData() {
     const rawNotes = getNotesData();
-    const w = canvasEl.width;
-    const h = canvasEl.height;
+    const w = canvasEl.clientWidth || canvasEl.width;
+    const h = canvasEl.clientHeight || canvasEl.height;
 
     nodes = rawNotes.map((n, i) => {
       const angle = (i / rawNotes.length) * Math.PI * 2;
@@ -125,8 +145,8 @@
     }
 
     // 3. Center gravity & damping
-    const cx = canvasEl.width / 2;
-    const cy = canvasEl.height / 2;
+    const cx = (canvasEl.clientWidth || canvasEl.width) / 2;
+    const cy = (canvasEl.clientHeight || canvasEl.height) / 2;
     for (const n of nodes) {
       if (n === draggedNode) continue;
       const gdx = cx - n.x;
@@ -142,7 +162,16 @@
   }
 
   function drawGraph() {
-    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    const cssW = canvasEl.clientWidth || canvasEl.width;
+    const cssH = canvasEl.clientHeight || canvasEl.height;
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    const light = isLightTheme();
+    const linkIdle = light ? 'rgba(29, 26, 20, 0.12)' : 'rgba(255, 255, 255, 0.07)';
+    const linkHi = light ? 'rgba(29, 26, 20, 0.5)' : 'rgba(255, 255, 255, 0.45)';
+    const labelIdle = light ? 'rgba(29, 26, 20, 0.75)' : 'rgba(255, 255, 255, 0.7)';
+    const labelHi = light ? '#000000' : '#ffffff';
 
     ctx.save();
     ctx.translate(panX, panY);
@@ -151,9 +180,7 @@
     // Draw links
     for (const l of links) {
       const isHighlighted = hoveredNode && (l.source === hoveredNode || l.target === hoveredNode);
-      ctx.strokeStyle = isHighlighted 
-        ? 'rgba(255, 255, 255, 0.45)' 
-        : 'rgba(255, 255, 255, 0.07)';
+      ctx.strokeStyle = isHighlighted ? linkHi : linkIdle;
       ctx.lineWidth = isHighlighted ? 1.5 : 0.8;
       ctx.beginPath();
       ctx.moveTo(l.source.x, l.source.y);
@@ -164,7 +191,7 @@
     // Draw nodes
     for (const n of nodes) {
       const isHovered = n === hoveredNode;
-      const color = CATEGORY_COLORS[n.category] || '#ffffff';
+      const color = categoryColor(n.category);
 
       // Glow ring on hover
       if (isHovered) {
@@ -183,7 +210,7 @@
 
       // Label
       if (isHovered || zoom > 0.85) {
-        ctx.fillStyle = isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.7)';
+        ctx.fillStyle = isHovered ? labelHi : labelIdle;
         ctx.font = isHovered ? 'bold 12px Inter, sans-serif' : '10px Inter, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(n.title, n.x, n.y + n.radius + 14);
@@ -207,8 +234,13 @@
 
     modalEl.classList.add('open');
     modalEl.setAttribute('aria-hidden', 'false');
-    canvasEl.width = modalEl.clientWidth;
-    canvasEl.height = modalEl.clientHeight;
+    pixelRatio = Math.min(2, window.devicePixelRatio || 1);
+    const cssW = modalEl.clientWidth;
+    const cssH = modalEl.clientHeight;
+    canvasEl.width = Math.floor(cssW * pixelRatio);
+    canvasEl.height = Math.floor(cssH * pixelRatio);
+    canvasEl.style.width = cssW + 'px';
+    canvasEl.style.height = cssH + 'px';
     ctx = canvasEl.getContext('2d');
 
     panX = 0;
@@ -263,6 +295,8 @@
       canvasEl.addEventListener('mousedown', (e) => {
         const { worldX, worldY, mouseScreenX, mouseScreenY } = getGraphMousePos(e);
         const node = findNodeAt(worldX, worldY);
+        downWorldX = worldX;
+        downWorldY = worldY;
         if (node) {
           draggedNode = node;
         } else {
@@ -292,13 +326,16 @@
 
       window.addEventListener('mouseup', (e) => {
         if (draggedNode) {
-          // If barely moved, treat as click to open note
+          // If barely moved since mousedown, treat as click to open note
           const { worldX, worldY } = getGraphMousePos(e);
-          const dist = Math.hypot(draggedNode.x - worldX, draggedNode.y - worldY);
+          const dist = Math.hypot(downWorldX - worldX, downWorldY - worldY);
           if (dist < 5) {
+            const targetId = draggedNode.id;
             closeGraphModal();
             if (window.ReaderModal) {
-              window.ReaderModal.open(draggedNode.id);
+              window.ReaderModal.open(targetId);
+            } else {
+              window.location.href = `./notes/${targetId}.html`;
             }
           }
           draggedNode = null;

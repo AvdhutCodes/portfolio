@@ -84,6 +84,16 @@ watchDirs.forEach(dir => {
   }
 });
 
+server.on('error', (err) => {
+  if (err && err.code === 'EADDRINUSE') {
+    console.error(`\n❌ Port ${PORT} is already in use — another dev server is likely running.`);
+    console.error(`   Free it:  netstat -ano | findstr :${PORT}  →  taskkill /PID <pid> /F`);
+    console.error('   Or use another port:  $env:PORT=3001; npm run dev\n');
+    process.exit(1);
+  }
+  throw err;
+});
+
 server.listen(PORT, () => {
   console.log(`
 ============================================================

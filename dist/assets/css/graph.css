@@ -11,15 +11,18 @@
   background: #000000;
   z-index: 99998;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
   display: flex;
   flex-direction: column;
 }
 
 .mind-graph-modal.open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.25s ease;
 }
 
 .mind-graph-header {
@@ -33,6 +36,10 @@
   padding: 1.25rem 2rem;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
   z-index: 10;
+  pointer-events: none;
+}
+
+.mind-graph-modal.open .mind-graph-header {
   pointer-events: auto;
 }
 
@@ -91,4 +98,20 @@
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.4);
   pointer-events: none;
+}
+
+[data-theme="light"] .mind-graph-modal {
+  background: #f4efe4;
+}
+
+[data-theme="light"] .mind-graph-header {
+  background: linear-gradient(180deg, rgba(244, 239, 228, 0.92) 0%, transparent 100%);
+}
+
+[data-theme="light"] .mind-graph-title-group h2 {
+  color: #1d1a14;
+}
+
+[data-theme="light"] .mind-graph-hint {
+  color: rgba(29, 26, 20, 0.55);
 }

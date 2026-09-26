@@ -101,6 +101,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  perspective: 1400px;
 }
 
 @media (max-width: 900px) {
@@ -128,10 +129,19 @@
   flex-direction: column;
 }
 
+/* Collage tilt: alternating cards lean into the 3D plane */
+.top-four-card:nth-child(odd) { transform: rotateY(-4deg); }
+.top-four-card:nth-child(even) { transform: rotateY(4deg); }
+
 .top-four-card:hover {
-  transform: translateY(-6px);
+  transform: rotateY(0deg) translateY(-6px) translateZ(26px);
   border-color: var(--lb-green);
-  box-shadow: 0 12px 30px rgba(0, 224, 84, 0.15);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 12px 30px rgba(0, 224, 84, 0.15);
+}
+
+[data-theme="light"] .top-four-card,
+[data-theme="light"] .letterboxd-film-card {
+  box-shadow: 0 14px 34px rgba(20, 24, 28, 0.28);
 }
 
 .top-four-badge {
@@ -216,6 +226,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.2rem;
+  grid-auto-flow: dense;
+  perspective: 1400px;
 }
 
 .letterboxd-film-card {
@@ -228,9 +240,29 @@
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
+/* Collage rhythm: gentle alternating lean, straightens on hover */
+.letterboxd-film-card:nth-child(5n) { transform: rotate(0.9deg); }
+.letterboxd-film-card:nth-child(5n+2) { transform: rotate(-0.9deg); }
+
 .letterboxd-film-card:hover {
   border-color: rgba(64, 188, 244, 0.4);
-  transform: translateY(-3px);
+  transform: rotate(0deg) translateY(-4px) scale(1.015);
+}
+
+/* Featured diary entries span two columns with a cinematic crop */
+.letterboxd-film-card.collage-feature {
+  grid-column: span 2;
+}
+
+.letterboxd-film-card.collage-feature .lb-poster-box {
+  aspect-ratio: 16 / 7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-four-card,
+  .letterboxd-film-card {
+    transition: none;
+  }
 }
 
 .lb-poster-box {

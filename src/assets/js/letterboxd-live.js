@@ -11,15 +11,19 @@
 
   async function loadLetterboxdData() {
     // 1. First, check if pre-bundled static data exists
+    // (../ fallback covers standalone /notes/*.html pages)
     let localData = null;
-    try {
-      const res = await fetch('./data/letterboxd.json');
-      if (res.ok) {
-        localData = await res.json();
-        renderLetterboxdUI(localData);
+    for (const dataUrl of ['./data/letterboxd.json', '../data/letterboxd.json']) {
+      try {
+        const res = await fetch(dataUrl);
+        if (res.ok) {
+          localData = await res.json();
+          renderLetterboxdUI(localData);
+          break;
+        }
+      } catch (e) {
+        // Try next candidate path
       }
-    } catch (e) {
-      console.log('No local letterboxd.json found, will fetch live.');
     }
 
     // 2. Fetch live data asynchronously to detect brand-new watches
@@ -29,7 +33,10 @@
       const data = await res.json();
       if (data && data.items && data.items.length > 0) {
         const liveParsed = parseRss2Json(data.items);
-        renderLetterboxdUI(liveParsed);
+        // Live feed only carries the 10 latest diary entries: refresh the
+        // reel + now-strip, but keep the SSG Top Four (curated from the
+        // full 50-entry diary at build time) so it never downgrades.
+        renderLetterboxdUI(liveParsed, { skipTopFour: true });
         updateLiveIndicator(true);
       }
     } catch (err) {
@@ -63,17 +70,17 @@
       reviews.push({
         title,
         year,
-        stars: stars || '★★★★',
+        stars: stars || 'Unrated',
         rating: calculateNumericRating(stars),
         poster,
         link: item.link || 'https://letterboxd.com/avd1234/',
         review: review.length > 250 ? review.substring(0, 247) + '...' : review,
-        watchedDate: item.pubDate ? item.pubDate.split(' ')[0] : ''
+        watchedDate: parseWatchedDate(item.pubDate)
       });
     });
 
     const fiveStars = reviews.filter(r => r.rating === 5 && r.poster);
-    const fourHalf = reviews.filter(r => r.rating >= 4.5 && r.poster);
+    const fourHalf = reviews.filter(r => r.rating === 4.5 && r.poster);
     const topFour = [...fiveStars, ...fourHalf].slice(0, 4);
 
     return {
@@ -91,6 +98,19 @@
     return full + half;
   }
 
+  // Normalize rss2json pubDate ("2026-09-26 12:00:00") to YYYY-MM-DD
+  function parseWatchedDate(pubDate) {
+    if (!pubDate) return '';
+    const iso = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
+    if (iso) return iso[1];
+    const parsed = new Date(pubDate);
+    if (isNaN(parsed.getTime())) return '';
+    // Local date parts (toISOString would shift the day near midnight UTC)
+    const m = String(parsed.getMonth() + 1).padStart(2, '0');
+    const d = String(parsed.getDate()).padStart(2, '0');
+    return `${parsed.getFullYear()}-${m}-${d}`;
+  }
+
   function updateLiveIndicator(isLive) {
     const dot = document.getElementById('letterboxdStatusDot');
     const label = document.getElementById('letterboxdStatusLabel');
@@ -102,7 +122,7 @@
     }
   }
 
-  function renderLetterboxdUI(data) {
+  function renderLetterboxdUI(data, opts = {}) {
     if (!data) return;
 
     // 1. Update "Now" signal bar on landing page
@@ -117,9 +137,9 @@
       `;
     }
 
-    // 2. Render Top Four Showcase
+    // 2. Render Top Four Showcase (skipped for thin live payloads)
     const topFourGrid = document.getElementById('letterboxdTopFourGrid');
-    if (topFourGrid && data.topFour) {
+    if (topFourGrid && data.topFour && !opts.skipTopFour) {
       topFourGrid.innerHTML = data.topFour.map((film, idx) => `
         <a href="${film.link}" target="_blank" rel="noopener" class="top-four-card" title="${film.title} (${film.year})">
           <div class="top-four-badge">#${idx + 1} FAVOURITE</div>
@@ -139,8 +159,8 @@
     // 3. Render Recent Watches Grid / Reel
     const recentReel = document.getElementById('letterboxdRecentReel');
     if (recentReel && data.recentWatches) {
-      recentReel.innerHTML = data.recentWatches.map(film => `
-        <article class="letterboxd-film-card">
+      recentReel.innerHTML = data.recentWatches.map((film, idx) => `
+        <article class="letterboxd-film-card${idx % 5 === 4 ? ' collage-feature' : ''}">
           <div class="lb-poster-box">
             <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" />
             <div class="lb-stars-badge">${film.stars}</div>
