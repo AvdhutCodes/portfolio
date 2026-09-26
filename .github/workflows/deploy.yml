@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+  schedule:
+    - cron: '0 */6 * * *' # Automatically auto-sync Letterboxd diary every 6 hours
   workflow_dispatch:
 
 permissions:
@@ -35,7 +37,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Build Static Site with Bibliophile SSG
+      - name: Auto-Sync Letterboxd Feed
+        run: node scripts/sync-letterboxd.js
+
+      - name: Build Static Site with SSG
         run: npm run build
 
       - name: Setup Pages

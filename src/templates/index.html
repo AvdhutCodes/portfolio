@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avdhut Kulkarni · Bibliophile · Cinephile · Audiophile</title>
-  <meta name="description" content="Personal multi-potentialite portfolio of Avdhut Kulkarni: writing canvas, Letterboxd film reviews, audiophile vinyl listening logs, and product design systems.">
-  <meta property="og:title" content="Avdhut Kulkarni · Multi-Potentialite Portfolio">
-  <meta property="og:description" content="Infinite manuscript canvas, Letterboxd film reviews with projection beam, vinyl listening logs, and product design work.">
+  <title>Avdhut Kulkarni · The Multipotentialite Codex · Bibliophile · Cinephile · Audiophile</title>
+  <meta name="description" content="Personal portfolio of Avdhut Kulkarni: 3D opening book codex, infinite manuscript desk, live Letterboxd cinema reviews, vinyl audiophile logs, and high-leverage product design systems.">
+  <meta property="og:title" content="Avdhut Kulkarni · The Multipotentialite Codex">
+  <meta property="og:description" content="Interactive 3D opening book, live Letterboxd reviews, infinite manuscript canvas, vinyl crates, and product design craft.">
   <meta property="og:type" content="website">
 
-  <!-- Stylesheets -->
+  <!-- Core & Extended Stylesheets -->
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/desk.css">
   <link rel="stylesheet" href="./assets/css/reader.css">
   <link rel="stylesheet" href="./assets/css/cursor.css">
+  <link rel="stylesheet" href="./assets/css/book.css">
+  <link rel="stylesheet" href="./assets/css/letterboxd.css">
+  <link rel="stylesheet" href="./assets/css/omnibar.css">
+  <link rel="stylesheet" href="./assets/css/graph.css">
+  <link rel="stylesheet" href="./assets/css/atmosphere.css">
 </head>
-<body>
+<body class="persona-landing">
 
-  <!-- Custom Magnetic Cursor -->
+  <!-- Custom Stardust Cursor Dot & Ring -->
   <div class="custom-cursor" id="customCursor">
     <div class="cursor-dot"></div>
   </div>
@@ -31,18 +36,23 @@
       <h1 class="brand-title">Avdhut Kulkarni</h1>
       <div class="brand-persona" id="brandPersona">
         <span class="brand-persona-dot"></span>
-        <span id="personaLabel">Bibliophile</span>
+        <span id="personaLabel">Codex</span>
       </div>
     </div>
 
-    <!-- Center Persona Navigation (The 4 Core Realms) -->
+    <!-- Center Persona Navigation (The 5 Realms) -->
     <nav class="nav-personas-group" aria-label="Persona Navigation">
-      <button class="persona-nav-btn active" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books">
+      <button class="persona-nav-btn active" data-section="landing" id="navBtnLanding" title="Landing: The 3D Opening Codex">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        <span>Codex</span>
+      </button>
+
+      <button class="persona-nav-btn" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
         <span>Bibliophile</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Posters & Reviews">
+      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Live Diary & Posters">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
         <span>Cinephile</span>
       </button>
@@ -52,45 +62,190 @@
         <span>Audiophile</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Product Design & Systems Architecture">
+      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Systems Architecture & Product Design">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        <span>Work</span>
+        <span>Craft</span>
       </button>
     </nav>
 
-    <!-- Header Actions (Archive, Favorite Books, Theme, RSS) -->
+    <!-- Header Actions (Omnibar, Mind Graph, Archive, Canon, Sound, Theme, RSS) -->
     <div class="header-actions">
+      <!-- Omnibar Spotlight Search Trigger (Cmd+K) -->
+      <button class="action-pill-btn" id="btnOpenOmnibar" title="Open Command Palette (Cmd+K / Ctrl+K)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>Search</span>
+        <kbd style="font-size: 0.6rem; opacity: 0.7; padding: 1px 4px; background: rgba(255,255,255,0.1); border-radius: 3px;">⌘K</kbd>
+      </button>
+
+      <!-- Mind Graph View Trigger -->
+      <button class="icon-btn" id="btnOpenMindGraph" title="Open Obsidian Mind Graph">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="8.5" y1="7.5" x2="15.5" y2="16.5"></line><line x1="8.5" y1="16.5" x2="15.5" y2="7.5"></line></svg>
+      </button>
+
       <!-- Archive Drawer Toggle -->
       <button class="action-pill-btn" id="btnToggleArchive" title="Open Separate Chronological Archive">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
         <span>Archive</span>
       </button>
 
       <!-- Favorite Books Carousel Toggle -->
       <button class="action-pill-btn" id="btnToggleBooksCarousel" title="Favorite Books & Heroes">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
         <span>Canon</span>
       </button>
 
-      <!-- Theme Mode Toggle (Night Torch / Day Studio) -->
+      <!-- Synthesized Audio FX Toggle -->
+      <button class="sound-toggle-btn" id="btnToggleSound" title="Toggle Procedural Audio Feedback">
+        <span class="sound-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        </span>
+        <span class="sound-btn-label">Audio: OFF</span>
+      </button>
+
+      <!-- Theme Mode Toggle -->
       <button class="icon-btn" id="btnThemeToggle" title="Toggle Theme (Dark / Light)">
-        <svg id="themeIconDark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        <svg id="themeIconDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
       </button>
 
       <!-- RSS -->
       <a href="./rss.xml" class="icon-btn" title="RSS Feed" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
       </a>
     </div>
   </header>
 
   <!-- ==========================================================================
-       MAIN CONTENT VIEWPORT (4 Personas)
+       MAIN CONTENT VIEWPORT
        ========================================================================== -->
   <main class="main-content-viewport" id="mainViewport">
 
-    <!-- 1. BIBLIOPHILE SECTION: Infinite Canvas Desk -->
-    <section class="persona-section-view active" id="section-bibliophile" aria-label="Bibliophile Writing Desk">
+    <!-- 0. LANDING SECTION: THE 3D OPENING CODEX & LIVE STATUS LEDGER -->
+    <section class="persona-section-view active" id="section-landing" aria-label="Landing Tome & Overview">
+      <div class="landing-stage-hero">
+        
+        <!-- 3D Tactile Tome -->
+        <div class="landing-book-wrapper">
+          <div class="book-pedestal-shadow"></div>
+          
+          <div class="book-3d-tome" id="main3DTome">
+            <!-- Spine -->
+            <div class="book-spine"></div>
+
+            <!-- Front Cover (Leather & Gilded Deboss) -->
+            <div class="book-front-cover">
+              <div class="cover-gold-border">
+                <div class="cover-header-meta">The Personal Almanac</div>
+                
+                <div class="cover-main-title">
+                  <h2 class="cover-name">Avdhut Kulkarni</h2>
+                  <p class="cover-subtitle">The Multipotentialite Codex</p>
+                </div>
+
+                <div class="cover-bottom-stamp">
+                  <span class="cover-stamp-icon">❦</span>
+                  <span class="cover-stamp-text">Volume I · Published MMXXVI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pages Spread (Left: Manifesto | Right: Table of Chapters) -->
+            <div class="book-pages-spread">
+              
+              <!-- Left Page: The Preface / Manifesto -->
+              <div class="book-page-left">
+                <div>
+                  <span class="page-chapter-label">The Preface</span>
+                  <h3 class="page-manifesto-title">Curiosity Without Permission</h3>
+                  <p class="page-manifesto-body">
+                    I believe in intellectual broadness over hyper-specialization. I write essays on leverage and philosophy, dissect cinema as time architecture, collect analogue vinyl frequencies, and architect high-scale software systems.
+                  </p>
+                </div>
+
+                <div class="page-quote-box">
+                  “A calm mind, a fit body, a house full of love. These things cannot be bought — they must be earned.”
+                  <span class="page-quote-author">— Naval Ravikant · The Almanac</span>
+                </div>
+              </div>
+
+              <!-- Right Page: Table of Chapters -->
+              <div class="book-page-right">
+                <div>
+                  <span class="page-chapter-label">Table of Chapters</span>
+                  
+                  <nav class="chapters-list">
+                    <a href="#bibliophile" class="chapter-row-link" data-target="bibliophile">
+                      <span class="chapter-num">Chapter I</span>
+                      <span class="chapter-title">The Bibliophile's Desk</span>
+                      <span class="chapter-arrow">→</span>
+                    </a>
+
+                    <a href="#cinephile" class="chapter-row-link" data-target="cinephile">
+                      <span class="chapter-num">Chapter II</span>
+                      <span class="chapter-title">The Cinephile (Letterboxd Live)</span>
+                      <span class="chapter-arrow">→</span>
+                    </a>
+
+                    <a href="#audiophile" class="chapter-row-link" data-target="audiophile">
+                      <span class="chapter-num">Chapter III</span>
+                      <span class="chapter-title">The Audiophile Sanctuary</span>
+                      <span class="chapter-arrow">→</span>
+                    </a>
+
+                    <a href="#work" class="chapter-row-link" data-target="work">
+                      <span class="chapter-num">Chapter IV</span>
+                      <span class="chapter-title">The Engineering Craft</span>
+                      <span class="chapter-arrow">→</span>
+                    </a>
+
+                    <a href="#archive" class="chapter-row-link" data-drawer="archive">
+                      <span class="chapter-num">Appendix</span>
+                      <span class="chapter-title">Chronological Archive</span>
+                      <span class="chapter-arrow">→</span>
+                    </a>
+                  </nav>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted);">Avdhut Kulkarni</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: #ab9058;">Page 1</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <p class="book-interaction-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-6-6l-6 6m6-6V3"></path></svg>
+          Hover or click the book to unfold the codex
+        </p>
+
+        <!-- Live "Now" Signal Ledger Strip -->
+        <div class="now-signal-strip" id="nowSignalStrip">
+          <div class="now-item-group" id="nowWatchingFilm">
+            <!-- {{NOW_WATCHING_FILM}} -->
+          </div>
+
+          <span class="now-divider">/</span>
+
+          <div class="now-item-group">
+            <span class="now-chip-tag">Heavy Rotation</span>
+            <span style="color: #fff;">Radiohead — In Rainbows</span>
+          </div>
+
+          <span class="now-divider">/</span>
+
+          <div class="now-time-ticker">
+            <span class="time-pulse-dot"></span>
+            <span id="liveLocalTime">--:-- IST</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1. BIBLIOPHILE SECTION: Strictly Black & White Infinite Desk Canvas -->
+    <section class="persona-section-view" id="section-bibliophile" aria-label="Bibliophile Writing Desk">
       <div class="desk-viewport" id="deskViewport">
         <!-- Torch Spotlight Follower -->
         <div class="desk-torch-glow" id="deskTorchGlow"></div>
@@ -132,18 +287,64 @@
       </nav>
     </section>
 
-    <!-- 2. CINEPHILE SECTION: Letterboxd Posters with Projection Light -->
+    <!-- 2. CINEPHILE SECTION: Letterboxd Live Diary, Top Four & Review Reel -->
     <section class="persona-section-view" id="section-cinephile" aria-label="Cinephile Film Diary">
       <div class="cinephile-container">
-        <div class="cinephile-intro">
-          <span class="cinephile-tagline">35mm Film Archive &amp; Letterboxd Diary</span>
-          <h2 class="cinephile-heading">Cinema as Time Architecture</h2>
-          <p class="cinephile-subtext">Hover to project light. Click any poster to read the Letterboxd film review in Obsidian markdown.</p>
+        
+        <!-- Header Bar with Live Sync Status -->
+        <div class="cinephile-header-bar">
+          <div>
+            <span class="section-label-glow">
+              <span class="status-dot live-pulse" id="letterboxdStatusDot"></span>
+              <span id="letterboxdStatusLabel">Live Sync Active</span>
+            </span>
+            <h2 class="cinephile-heading" style="margin-top: 0.3rem;">Cinema as Time Architecture</h2>
+            <p class="cinephile-subtext">Automated Letterboxd synchronization for @avd1234 with diary reviews, star ratings, and four favourites.</p>
+          </div>
+
+          <a href="https://letterboxd.com/avd1234/" target="_blank" rel="noopener" class="cinephile-brand-badge" title="Open Avdhut Kulkarni's Letterboxd Profile">
+            <span class="lb-dots-logo">
+              <span class="lb-dot-orange"></span>
+              <span class="lb-dot-green"></span>
+              <span class="lb-dot-cyan"></span>
+            </span>
+            <span>letterboxd.com/avd1234</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
 
+        <!-- TOP FOUR SHOWCASE -->
+        <div class="top-four-container">
+          <div class="section-headline-row">
+            <span class="section-label-glow">★ Four Favourites &amp; Masterpieces</span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Curated from 5★ Ratings</span>
+          </div>
+
+          <div class="top-four-grid" id="letterboxdTopFourGrid">
+            <!-- {{LETTERBOXD_TOP_FOUR}} -->
+          </div>
+        </div>
+
+        <!-- RECENT WATCHES & REVIEWS REEL -->
+        <div class="recent-watches-container">
+          <div class="section-headline-row">
+            <span class="section-label-glow">🍿 Recent Letterboxd Diary Logs</span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Auto-updating from RSS</span>
+          </div>
+
+          <div class="letterboxd-reel-grid" id="letterboxdRecentReel">
+            <!-- {{LETTERBOXD_RECENT_REEL}} -->
+          </div>
+        </div>
+
+        <!-- FULL OBSIDIAN CINEMA ESSAYS -->
+        <div class="section-headline-row" style="margin-top: 2rem;">
+          <span class="section-label-glow">✒ Deep Cinema Essays &amp; Deconstructions</span>
+        </div>
         <div class="film-grid" id="filmGrid">
           <!-- {{FILM_POSTERS}} -->
         </div>
+
       </div>
     </section>
 
@@ -204,7 +405,7 @@
       <div class="carousel-slide active" data-index="0" data-slug="the-stormlight-archive-kaladin">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/stormlight-kaladin.jpg" alt="Kaladin Stormblessed" loading="lazy">
+          <div class="slide-monochrome-badge">THE STORMLIGHT ARCHIVE</div>
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">The Stormlight Archive · Brandon Sanderson</span>
@@ -220,7 +421,7 @@
       <div class="carousel-slide" data-index="1" data-slug="mistborn-vin-and-kelsier">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/mistborn-vin.jpg" alt="Vin in Mistcloak" loading="lazy">
+          <div class="slide-monochrome-badge">MISTBORN</div>
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">Mistborn · Brandon Sanderson</span>
@@ -236,7 +437,7 @@
       <div class="carousel-slide" data-index="2" data-slug="red-rising-the-reaper">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/red-rising-darrow.jpg" alt="Darrow of Lykos" loading="lazy">
+          <div class="slide-monochrome-badge">RED RISING</div>
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">Red Rising Saga · Pierce Brown</span>
@@ -252,7 +453,7 @@
       <div class="carousel-slide" data-index="3" data-slug="lord-of-the-rings-gandalf">
         <div class="slide-art-box">
           <div class="slide-tape-clip"></div>
-          <img class="slide-art-img" src="./assets/images/lotr-gandalf.jpg" alt="Gandalf the Grey" loading="lazy">
+          <div class="slide-monochrome-badge">THE LORD OF THE RINGS</div>
         </div>
         <div class="slide-content">
           <span class="slide-series-tag">The Lord of the Rings · J.R.R. Tolkien</span>
@@ -321,15 +522,62 @@
     </div>
   </aside>
 
+  <!-- ==========================================================================
+       GLOBAL OMNIBAR / COMMAND PALETTE MODAL (CMD+K / CTRL+K)
+       ========================================================================== -->
+  <div class="omnibar-modal" id="omnibarModal" aria-hidden="true" role="dialog">
+    <div class="omnibar-dialog">
+      <div class="omnibar-search-box">
+        <svg class="omnibar-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" class="omnibar-input" id="omnibarInput" placeholder="Type a note title, topic, or command..." autocomplete="off" spellcheck="false" />
+        <span class="omnibar-kbd-hint">ESC to exit</span>
+      </div>
+      <div class="omnibar-results" id="omnibarResults"></div>
+      <div class="omnibar-footer">
+        <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to select</span>
+        <span>Open: <kbd>↵</kbd> Enter</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OBSIDIAN MIND GRAPH VIEW MODAL
+       ========================================================================== -->
+  <div class="mind-graph-modal" id="mindGraphModal" aria-hidden="true" role="dialog">
+    <div class="mind-graph-header">
+      <div class="mind-graph-title-group">
+        <h2>Obsidian Mind Graph</h2>
+        <p>Interactive 2D physics network of thoughts, books, films &amp; leverage</p>
+      </div>
+
+      <div class="mind-graph-legend">
+        <div class="legend-item"><span class="legend-dot biblio"></span><span>Bibliophile</span></div>
+        <div class="legend-item"><span class="legend-dot cine"></span><span>Cinephile</span></div>
+        <div class="legend-item"><span class="legend-dot audio"></span><span>Audiophile</span></div>
+        <div class="legend-item"><span class="legend-dot work"></span><span>Craft</span></div>
+        <div class="legend-item"><span class="legend-dot archive"></span><span>Archive</span></div>
+        <button class="action-pill-btn" id="btnCloseMindGraph" style="margin-left: 1rem;">Close Graph ✕</button>
+      </div>
+    </div>
+
+    <canvas class="mind-graph-canvas" id="mindGraphCanvas"></canvas>
+    <div class="mind-graph-hint">Drag nodes to explore · Scroll wheel to zoom · Click node to read</div>
+  </div>
+
   <!-- Embedded Notes Data JSON -->
   <script type="application/json" id="notesDataJson">
     <!-- {{NOTES_DATA_JSON}} -->
   </script>
 
-  <!-- Scripts -->
+  <!-- Modular Scripts Pipeline -->
+  <script src="./assets/js/audio-fx.js"></script>
+  <script src="./assets/js/atmosphere.js"></script>
+  <script src="./assets/js/cursor.js"></script>
   <script src="./assets/js/canvas.js"></script>
   <script src="./assets/js/reader.js"></script>
-  <script src="./assets/js/cursor.js"></script>
+  <script src="./assets/js/omnibar.js"></script>
+  <script src="./assets/js/graph-view.js"></script>
+  <script src="./assets/js/letterboxd-live.js"></script>
   <script src="./assets/js/main.js"></script>
 
 </body>

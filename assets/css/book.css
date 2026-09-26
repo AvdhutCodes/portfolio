@@ -1,0 +1,382 @@
+/**
+ * TACTILE 3D OPENING BOOK (THE MULTIPOTENTIALITE CODEX)
+ * Pure CSS 3D Transforms with realistic page-turn physics and chapter navigation.
+ */
+
+.landing-stage-hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem 2rem;
+  z-index: 2;
+}
+
+.landing-book-wrapper {
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+  margin: 1.5rem auto 2.5rem;
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pedestal reflection & ambient light */
+.book-pedestal-shadow {
+  position: absolute;
+  bottom: -24px;
+  width: 82%;
+  height: 38px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 25, 0.4) 50%, transparent 80%);
+  filter: blur(12px);
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+}
+
+/* 3D Tome Container */
+.book-3d-tome {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  transform: rotateY(-18deg) rotateX(10deg);
+}
+
+/* When opened, spread flat */
+.book-3d-tome.is-open,
+.landing-book-wrapper:hover .book-3d-tome {
+  transform: rotateY(0deg) rotateX(0deg) translateX(140px);
+}
+
+@media (max-width: 768px) {
+  .landing-book-wrapper:hover .book-3d-tome,
+  .book-3d-tome.is-open {
+    transform: rotateY(0deg) rotateX(0deg) translateX(0);
+  }
+}
+
+/* Front Cover */
+.book-front-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0e0e12 0%, #15151c 50%, #0a0a0d 100%);
+  border: 1px solid rgba(255, 215, 120, 0.25);
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 
+    -10px 12px 30px rgba(0, 0, 0, 0.9),
+    inset 4px 0 10px rgba(255, 255, 255, 0.05),
+    inset -4px 0 10px rgba(0, 0, 0, 0.7);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.2rem 1.8rem;
+  backface-visibility: hidden;
+}
+
+/* Front Cover Opened State */
+.book-3d-tome.is-open .book-front-cover,
+.landing-book-wrapper:hover .book-3d-tome .book-front-cover {
+  transform: rotateY(-165deg);
+}
+
+/* Front Cover Gold Embossed Details */
+.cover-gold-border {
+  border: 1px solid rgba(230, 195, 120, 0.35);
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 2px;
+}
+
+.cover-gold-border::before {
+  content: '❦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111116;
+  padding: 0 8px;
+  color: #d4af37;
+  font-size: 0.9rem;
+}
+
+.cover-header-meta {
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c5a059;
+  font-family: var(--font-mono);
+}
+
+.cover-main-title {
+  text-align: center;
+}
+
+.cover-name {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f7eed8;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.cover-subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ab9058;
+  font-family: var(--font-mono);
+}
+
+.cover-bottom-stamp {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cover-stamp-icon {
+  font-size: 1.1rem;
+  color: #d4af37;
+}
+
+.cover-stamp-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247, 238, 216, 0.5);
+  font-family: var(--font-mono);
+}
+
+/* Spine Effect */
+.book-spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 100%;
+  background: linear-gradient(90deg, #09090b, #18181f 50%, #09090b);
+  transform-origin: left center;
+  transform: rotateY(-90deg) translateX(-24px);
+  border-left: 1px solid rgba(255, 215, 120, 0.2);
+}
+
+/* Pages Layer Behind Cover (Left & Right Spreads) */
+.book-pages-spread {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 420px;
+  background: #0a0a0d;
+  border-radius: 4px;
+  display: flex;
+  transform: translateX(-280px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease 0.2s;
+  z-index: 5;
+}
+
+.book-3d-tome.is-open .book-pages-spread,
+.landing-book-wrapper:hover .book-pages-spread {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Left Page: Preface Manifesto */
+.book-page-left {
+  flex: 1;
+  background: linear-gradient(135deg, #0f0f13 0%, #08080a 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px 0 0 4px;
+  position: relative;
+}
+
+.book-page-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+}
+
+.page-chapter-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.page-manifesto-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-top: 0.6rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+
+.page-manifesto-body {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.page-quote-box {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-left: 2px solid #d4af37;
+  background: rgba(212, 175, 55, 0.04);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #f7eed8;
+  line-height: 1.5;
+}
+
+.page-quote-author {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-style: normal;
+  color: #c5a059;
+}
+
+/* Right Page: Table of Chapters */
+.book-page-right {
+  flex: 1;
+  background: linear-gradient(225deg, #0f0f13 0%, #08080a 100%);
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+}
+
+.book-page-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent);
+  pointer-events: none;
+}
+
+.chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.chapter-row-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+}
+
+.chapter-row-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.chapter-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #ab9058;
+  letter-spacing: 0.05em;
+  width: 70px;
+}
+
+.chapter-title {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.chapter-arrow {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.chapter-row-link:hover .chapter-arrow {
+  transform: translateX(3px);
+  color: #d4af37;
+}
+
+/* Hint under the book */
+.book-interaction-hint {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  animation: pulseHint 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.9; }
+}
+
+@media (max-width: 768px) {
+  .book-pages-spread {
+    display: none;
+  }
+  .book-3d-tome {
+    width: 260px;
+    height: 360px;
+    transform: none;
+  }
+}

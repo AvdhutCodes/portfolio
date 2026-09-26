@@ -1,6 +1,6 @@
 /**
  * AVDHUT KULKARNI — THE MULTI-POTENTIALITE PORTFOLIO
- * Main Controller: 4 Personas, Theme Shifts, Archive Drawer, Projection Beam
+ * Main Controller: 3D Book Codex, 4 Personas, Theme Shifts, Archive Drawer, Audio & Live Signals
  */
 
 (function (window, document) {
@@ -10,10 +10,10 @@
     // 1. Initialize components
     const desk = new window.InfiniteDesk();
     const reader = new window.EssayReader();
-    const cursor = new window.CustomCursor();
 
-    // 2. Initialize Persona Sections Switcher
+    // 2. Initialize Persona Sections Switcher & 3D Book
     initPersonaSwitching();
+    init3DBook();
 
     // 3. Initialize Archive Drawer
     initArchiveDrawer();
@@ -29,46 +29,93 @@
 
     // 7. Initialize Direct Click Handlers for Films, Audio, and Work
     initCardReaders(reader);
+
+    // 8. Start Local Time Ticker
+    startTimeTicker();
   });
 
-  // Persona Switching (Bibliophile, Cinephile, Audiophile, Work)
+  // Persona Switching (Landing Codex, Bibliophile, Cinephile, Audiophile, Work)
   function initPersonaSwitching() {
     const personaButtons = document.querySelectorAll('.persona-nav-btn');
     const sectionViews = document.querySelectorAll('.persona-section-view');
     const personaLabel = document.getElementById('personaLabel');
 
     const personaLabelsMap = {
+      'landing': 'Codex',
       'bibliophile': 'Bibliophile',
       'cinephile': 'Cinephile',
       'audiophile': 'Audiophile',
-      'work': 'Product Designer'
+      'work': 'Software Craftsman'
+    };
+
+    window.switchPersonaSection = function (targetSection) {
+      // Update nav buttons
+      personaButtons.forEach(b => {
+        if (b.dataset.section === targetSection) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      // Update active section
+      sectionViews.forEach(view => {
+        if (view.id === `section-${targetSection}`) {
+          view.classList.add('active');
+        } else {
+          view.classList.remove('active');
+        }
+      });
+
+      // Update persona label under Avdhut Kulkarni
+      if (personaLabel && personaLabelsMap[targetSection]) {
+        personaLabel.textContent = personaLabelsMap[targetSection];
+      }
+
+      // Apply theme mood to body
+      document.body.classList.remove('persona-landing', 'persona-bibliophile', 'persona-cinephile', 'persona-audiophile', 'persona-work');
+      document.body.classList.add(`persona-${targetSection}`);
+
+      if (window.AudioFX) {
+        window.AudioFX.playClick(850);
+      }
     };
 
     personaButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const targetSection = btn.dataset.section;
+        window.switchPersonaSection(btn.dataset.section);
+      });
+    });
+  }
 
-        // Update nav buttons
-        personaButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+  // Interactive 3D Opening Book
+  function init3DBook() {
+    const tome = document.getElementById('main3DTome');
+    const chapterLinks = document.querySelectorAll('.chapter-row-link');
 
-        // Update active section
-        sectionViews.forEach(view => {
-          if (view.id === `section-${targetSection}`) {
-            view.classList.add('active');
-          } else {
-            view.classList.remove('active');
-          }
-        });
-
-        // Update persona label under Avdhut Kulkarni
-        if (personaLabel && personaLabelsMap[targetSection]) {
-          personaLabel.textContent = personaLabelsMap[targetSection];
+    if (tome) {
+      tome.addEventListener('click', (e) => {
+        if (e.target.closest('.chapter-row-link')) return;
+        tome.classList.toggle('is-open');
+        if (window.AudioFX) {
+          window.AudioFX.playPageTurn();
         }
+      });
+    }
 
-        // Apply theme mood to body
-        document.body.classList.remove('persona-bibliophile', 'persona-cinephile', 'persona-audiophile', 'persona-work');
-        document.body.classList.add(`persona-${targetSection}`);
+    chapterLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.dataset.target;
+        if (window.AudioFX) {
+          window.AudioFX.playPageTurn();
+        }
+        if (target && window.switchPersonaSection) {
+          window.switchPersonaSection(target);
+        } else if (link.dataset.drawer === 'archive') {
+          const btn = document.getElementById('btnToggleArchive');
+          if (btn) btn.click();
+        }
       });
     });
   }
@@ -90,12 +137,14 @@
         drawer.classList.add('active');
         btnToggle.classList.add('active');
       }
+      if (window.AudioFX) window.AudioFX.playClick(900);
     });
 
     if (btnClose) {
       btnClose.addEventListener('click', () => {
         drawer.classList.remove('active');
         btnToggle.classList.remove('active');
+        if (window.AudioFX) window.AudioFX.playClick(750);
       });
     }
 
@@ -131,16 +180,16 @@
         if (deskInstance) {
           deskInstance.updateCardLighting();
         }
+        if (window.AudioFX) window.AudioFX.playClick(950);
       });
     });
   }
 
-  // Theme Toggle with LocalStorage & Correct Contrast
+  // Theme Toggle with LocalStorage
   function initThemeToggle() {
     const btnTheme = document.getElementById('btnThemeToggle');
     if (!btnTheme) return;
 
-    // Load saved theme
     const savedTheme = localStorage.getItem('avdhut-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
@@ -149,6 +198,7 @@
       const next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('avdhut-theme', next);
+      if (window.AudioFX) window.AudioFX.playClick(1050);
     });
   }
 
@@ -156,7 +206,6 @@
   function initCardReaders(readerInstance) {
     if (!readerInstance) return;
 
-    // Cinephile film reviews
     document.addEventListener('click', (e) => {
       const filmBtn = e.target.closest('.film-review-btn');
       const filmCard = e.target.closest('.film-card');
@@ -168,14 +217,13 @@
         readerInstance.open(filmCard.dataset.slug);
       }
 
-      // Audiophile listening logs
       const audioBtn = e.target.closest('.audio-notes-btn');
       if (audioBtn && audioBtn.dataset.slug) {
         e.preventDefault();
+        if (window.AudioFX) window.AudioFX.playVinylNeedle();
         readerInstance.open(audioBtn.dataset.slug);
       }
 
-      // Work case studies
       const caseBtn = e.target.closest('.case-read-btn');
       const caseCard = e.target.closest('.case-study-card');
       if (caseBtn && caseBtn.dataset.slug) {
@@ -215,6 +263,8 @@
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
       });
+
+      if (window.AudioFX) window.AudioFX.playPageTurn();
     }
 
     function nextSlide() {
@@ -223,22 +273,6 @@
 
     function prevSlide() {
       showSlide(currentIndex - 1);
-    }
-
-    function startAutoTimer() {
-      stopAutoTimer();
-      autoTimer = setInterval(() => {
-        if (!wrap.classList.contains('is-spotlight')) {
-          nextSlide();
-        }
-      }, 7500);
-    }
-
-    function stopAutoTimer() {
-      if (autoTimer) {
-        clearInterval(autoTimer);
-        autoTimer = null;
-      }
     }
 
     if (btnToggle) {
@@ -251,6 +285,7 @@
           wrap.classList.add('is-spotlight');
           btnToggle.classList.add('active');
         }
+        if (window.AudioFX) window.AudioFX.playPageTurn();
       });
     }
 
@@ -258,6 +293,7 @@
       btnClose.addEventListener('click', () => {
         wrap.classList.remove('is-spotlight');
         if (btnToggle) btnToggle.classList.remove('active');
+        if (window.AudioFX) window.AudioFX.playClick(750);
       });
     }
 
@@ -285,8 +321,29 @@
         }
       });
     });
+  }
 
-    startAutoTimer();
+  // Local Time Ticker
+  function startTimeTicker() {
+    const timeEl = document.getElementById('liveLocalTime');
+    if (!timeEl) return;
+
+    function updateTime() {
+      try {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        });
+        timeEl.textContent = `${timeStr} IST`;
+      } catch (e) {
+        timeEl.textContent = 'Active';
+      }
+    }
+    updateTime();
+    setInterval(updateTime, 10000);
   }
 
 })(window, document);

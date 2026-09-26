@@ -4,7 +4,8 @@
   "description": "Avadh Kulkarni · The Bibliophile's Desk & Almanac (Infinite Floating Canvas Portfolio & Obsidian SSG)",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
+    "sync:letterboxd": "node scripts/sync-letterboxd.js",
+    "build": "node scripts/sync-letterboxd.js && node build.js",
     "dev": "node dev-server.js",
     "start": "node dev-server.js",
     "test": "node build.js"
@@ -12,17 +13,24 @@
   "keywords": [
     "portfolio",
     "bibliophile",
+    "cinephile",
+    "audiophile",
+    "letterboxd",
     "almanac",
     "obsidian",
     "ssg",
     "infinite-canvas",
-    "naval-ravikant",
-    "minimalism"
+    "naval-ravikant"
   ],
-  "author": "Avadh Kulkarni",
+  "author": "Avdhut Kulkarni",
   "license": "MIT",
   "dependencies": {
     "gray-matter": "^4.0.3",
     "marked": "^18.0.14"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.3.5",
+    "tailwindcss": "^3.4.19"
   }
 }

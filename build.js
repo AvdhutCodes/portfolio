@@ -223,11 +223,6 @@ function build() {
     note.y = y;
     note.rotate = rotate;
 
-    const photoAttachmentHtml = note.illustration ? `
-      <div class="card-att-photo ${isAttachLeft ? 'photo-left' : ''}">
-        <img src="${note.illustration}" alt="${note.title} illustration" loading="lazy" />
-      </div>` : '';
-
     return `
       <a class="manuscript-card" 
          id="card-${note.slug}"
@@ -241,9 +236,6 @@ function build() {
         <svg class="paper-clip" viewBox="0 0 14 36" aria-hidden="true">
           <path d="M4 10 L4 26 A5 5 0 0 0 14 26 L14 6 A7 7 0 0 0 0 6 L0 28 A9 9 0 0 0 18 28"/>
         </svg>
-
-        <!-- Doodle Art Photo Attachment -->
-        ${photoAttachmentHtml}
 
         <!-- Attached Slip -->
         <div class="card-attachment ${isAttachLeft ? 'attach-left' : ''}">
@@ -385,6 +377,70 @@ function build() {
     `;
   }).join('\n');
 
+  // Load Letterboxd Data
+  let letterboxdData = { topFour: [], recentWatches: [] };
+  const lbJsonPath = path.join(__dirname, 'data', 'letterboxd.json');
+  if (fs.existsSync(lbJsonPath)) {
+    try {
+      letterboxdData = JSON.parse(fs.readFileSync(lbJsonPath, 'utf8'));
+    } catch (e) {}
+  }
+
+  // Pre-render Top Four Showcase
+  const topFourHtml = (letterboxdData.topFour || []).map((film, idx) => `
+    <a href="${film.link}" target="_blank" rel="noopener" class="top-four-card" title="${film.title} (${film.year})">
+      <div class="top-four-badge">#${idx + 1} FAVOURITE</div>
+      <div class="top-four-poster-wrap">
+        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="top-four-img" loading="lazy" />
+        <div class="top-four-stars">${film.stars}</div>
+      </div>
+      <div class="top-four-info">
+        <h4 class="top-four-title">${film.title}</h4>
+        <span class="top-four-year">${film.year}</span>
+        ${film.review ? `<p class="top-four-review">“${film.review}”</p>` : ''}
+      </div>
+    </a>
+  `).join('\n');
+
+  // Pre-render Recent Letterboxd Reel
+  const recentReelHtml = (letterboxdData.recentWatches || []).map(film => `
+    <article class="letterboxd-film-card">
+      <div class="lb-poster-box">
+        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" />
+        <div class="lb-stars-badge">${film.stars}</div>
+        ${film.rewatch ? `<span class="lb-rewatch-icon" title="Rewatch">↺</span>` : ''}
+      </div>
+      <div class="lb-film-body">
+        <div class="lb-head-row">
+          <span class="lb-year">${film.year}</span>
+          <span class="lb-date">${film.watchedDate || 'Recently'}</span>
+        </div>
+        <h4 class="lb-title"><a href="${film.link}" target="_blank" rel="noopener">${film.title}</a></h4>
+        ${film.review ? `<p class="lb-review-text">${film.review}</p>` : ''}
+        <div class="lb-footer-row">
+          <a href="${film.link}" target="_blank" rel="noopener" class="lb-open-btn">
+            <span>Letterboxd Review</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  `).join('\n');
+
+  // Pre-render Latest Watch for Now Strip
+  const latestWatch = (letterboxdData.recentWatches || [])[0];
+  const nowWatchingHtml = latestWatch ? `
+    <span class="now-chip-tag">Recently Logged</span>
+    <a href="${latestWatch.link}" target="_blank" rel="noopener" class="now-film-link">
+      <strong>${latestWatch.title}</strong> (${latestWatch.year}) · <span class="letterboxd-stars">${latestWatch.stars}</span>
+    </a>
+  ` : `
+    <span class="now-chip-tag">Recently Logged</span>
+    <a href="https://letterboxd.com/avd1234/" target="_blank" rel="noopener" class="now-film-link">
+      <strong>Chungking Express</strong> (1994) · <span class="letterboxd-stars">★★★★★</span>
+    </a>
+  `;
+
   // Replace into template
   const finalIndexHtml = indexTemplate
     .replace('<!-- {{BIBLIO_CARDS}} -->', biblioCardsHtml)
@@ -392,6 +448,9 @@ function build() {
     .replace('<!-- {{AUDIO_CARDS}} -->', audioCardsHtml)
     .replace('<!-- {{WORK_SECTION}} -->', workSectionHtml)
     .replace('<!-- {{ARCHIVE_ITEMS}} -->', archiveItemsHtml)
+    .replace('<!-- {{NOW_WATCHING_FILM}} -->', nowWatchingHtml)
+    .replace('<!-- {{LETTERBOXD_TOP_FOUR}} -->', topFourHtml)
+    .replace('<!-- {{LETTERBOXD_RECENT_REEL}} -->', recentReelHtml)
     .replace('<!-- {{NOTES_DATA_JSON}} -->', JSON.stringify(notes));
 
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), finalIndexHtml, 'utf8');

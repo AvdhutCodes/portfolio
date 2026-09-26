@@ -6,33 +6,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap');
 
 :root {
-  /* DARK THEME (Default Nocturnal Study) */
-  --bg-dark: #0b0c0e;
-  --bg-surface: #14161a;
-  --bg-surface-elevated: #1a1d24;
-  --bg-card: #fbf8f2;
-  --bg-card-alt: #f3ede2;
+  /* DARK THEME (Pure Pitch Black Nocturnal Study) */
+  --bg-dark: #000000;
+  --bg-surface: #070709;
+  --bg-surface-elevated: #0f0f13;
+  --bg-card: #0d0d10;
+  --bg-card-alt: #08080a;
   
-  --text-primary: #f0f2f5;
-  --text-secondary: #9da3af;
-  --text-muted: #6b7280;
-  --text-faint: #434752;
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-faint: #3f3f46;
   
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.16);
-  --header-bg: rgba(11, 12, 14, 0.85);
+  --header-bg: rgba(0, 0, 0, 0.88);
 
-  --paper-cream: #FAF7F2;
-  --paper-border: #E5DFD3;
-  --paper-shadow: rgba(0, 0, 0, 0.55);
+  --paper-cream: #0c0c0e;
+  --paper-border: rgba(255, 255, 255, 0.15);
+  --paper-shadow: rgba(0, 0, 0, 0.85);
   
-  --torch-color: rgba(255, 228, 178, 0.22);
-  --torch-core: rgba(255, 235, 195, 0.08);
+  --torch-color: rgba(255, 255, 255, 0.09);
+  --torch-core: rgba(255, 255, 255, 0.03);
 
-  --accent-stamp: #b2352b;      /* Distressed vintage ink */
-  --accent-blue: #234c8a;       /* Letterboxd blue */
-  --accent-forest: #224838;     /* Monastic green */
-  --accent-gold: #c8963e;       /* Bookbinder gold */
+  --accent-stamp: #ffffff;      /* Pure monochrome ink */
+  --accent-blue: #00e054;       /* Letterboxd green */
+  --accent-forest: #10b981;     /* Monastic green */
+  --accent-gold: #e5c07b;       /* Bookbinder gold */
 
   /* Typography */
   --font-serif: 'Newsreader', Georgia, serif;
