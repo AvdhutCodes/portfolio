@@ -23,6 +23,9 @@
 
     // Theme Toggle
     initThemeToggle();
+
+    // Ambient Book & Character Carousel
+    initBookCarousel(reader);
   });
 
   function initClock() {
@@ -121,4 +124,111 @@
     });
   }
 
+  function initBookCarousel(readerInstance) {
+    const wrap = document.getElementById('ambientCarousel');
+    const btnToggle = document.getElementById('btnToggleBooksCarousel');
+    const btnClose = document.getElementById('btnCloseCarousel');
+    const btnPrev = document.getElementById('btnPrevSlide');
+    const btnNext = document.getElementById('btnNextSlide');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+
+    if (!wrap || !slides.length) return;
+
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    function showSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      currentIndex = index;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentIndex);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function startAutoTimer() {
+      stopAutoTimer();
+      autoTimer = setInterval(() => {
+        if (!wrap.classList.contains('is-spotlight')) {
+          nextSlide();
+        }
+      }, 7500);
+    }
+
+    function stopAutoTimer() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    // Toggle spotlight
+    if (btnToggle) {
+      btnToggle.addEventListener('click', () => {
+        const isOpen = wrap.classList.contains('is-spotlight');
+        if (isOpen) {
+          wrap.classList.remove('is-spotlight');
+          btnToggle.classList.remove('active');
+        } else {
+          wrap.classList.add('is-spotlight');
+          btnToggle.classList.add('active');
+        }
+      });
+    }
+
+    // Close button
+    if (btnClose) {
+      btnClose.addEventListener('click', () => {
+        wrap.classList.remove('is-spotlight');
+        if (btnToggle) btnToggle.classList.remove('active');
+      });
+    }
+
+    // Prev / Next buttons
+    if (btnPrev) btnPrev.addEventListener('click', prevSlide);
+    if (btnNext) btnNext.addEventListener('click', nextSlide);
+
+    // Dots
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => showSlide(idx));
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('is-spotlight')) {
+        wrap.classList.remove('is-spotlight');
+        if (btnToggle) btnToggle.classList.remove('active');
+      }
+    });
+
+    // Read essay button inside slide
+    document.querySelectorAll('.slide-read-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const slug = btn.dataset.slug;
+        wrap.classList.remove('is-spotlight');
+        if (btnToggle) btnToggle.classList.remove('active');
+        if (readerInstance && slug) {
+          readerInstance.open(slug);
+        }
+      });
+    });
+
+    startAutoTimer();
+  }
+
 })(window, document);
+

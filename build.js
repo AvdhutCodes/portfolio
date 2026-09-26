@@ -164,6 +164,7 @@ function build() {
       quote: data.quote || '',
       excerpt: data.excerpt || (parsed.content.substring(0, 160).replace(/[#*`>]/g, '').trim() + '...'),
       cardSnippet: data.cardSnippet || (parsed.content.substring(0, 120).replace(/[#*`>]/g, '').trim() + '...'),
+      illustration: data.illustration || null,
       pinned: Boolean(data.pinned),
       x,
       y,
@@ -184,6 +185,12 @@ function build() {
     const tagList = note.tags.join(',');
     const isAttachLeft = idx % 2 !== 0;
     const attachmentNote = note.quote ? note.quote.split('—')[0].replace(/"/g, '').trim().substring(0, 48) + '...' : `Folio #${num}`;
+    
+    // Photo / Doodle print attachment if present
+    const photoAttachmentHtml = note.illustration ? `
+      <div class="card-att-photo ${isAttachLeft ? 'photo-left' : ''}">
+        <img src="${note.illustration}" alt="${note.title} doodle" loading="lazy" />
+      </div>` : '';
 
     return `
       <a class="manuscript-card" 
@@ -198,6 +205,9 @@ function build() {
         <svg class="paper-clip" viewBox="0 0 14 36" aria-hidden="true">
           <path d="M4 10 L4 26 A5 5 0 0 0 14 26 L14 6 A7 7 0 0 0 0 6 L0 28 A9 9 0 0 0 18 28"/>
         </svg>
+
+        <!-- Doodle Art Photo Attachment (if present) -->
+        ${photoAttachmentHtml}
 
         <!-- Attached Slip -->
         <div class="card-attachment ${isAttachLeft ? 'attach-left' : ''}">

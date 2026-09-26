@@ -54,6 +54,12 @@
         </button>
       </div>
 
+      <!-- Favorite Books & Characters Carousel Toggle -->
+      <button class="view-btn" id="btnToggleBooksCarousel" title="View Favorite Books & Characters">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span>Favorite Books</span>
+      </button>
+
       <!-- Theme Torch Toggle -->
       <button class="icon-btn" id="btnThemeToggle" title="Toggle Night Reading Torch / Day Paper">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
@@ -65,6 +71,100 @@
       </a>
     </div>
   </header>
+
+  <!-- ==========================================================================
+       AMBIENT BOOK & CHARACTER CAROUSEL (Stormlight, Mistborn, Red Rising, LOTR)
+       ========================================================================== -->
+  <aside class="ambient-carousel-wrap" id="ambientCarousel" aria-label="Favorite Books & Fictional Characters Carousel">
+    <button class="carousel-close-btn" id="btnCloseCarousel">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <span>Close Spotlight (Esc)</span>
+    </button>
+
+    <div class="ambient-carousel-stage" id="carouselStage">
+      <!-- Slide 1: Stormlight Archive (Kaladin) -->
+      <div class="carousel-slide active" data-index="0" data-slug="the-stormlight-archive-kaladin">
+        <div class="slide-art-box">
+          <div class="slide-tape-clip"></div>
+          <img class="slide-art-img" src="./assets/images/stormlight-kaladin.jpg" alt="Kaladin Stormblessed Doodle Art" loading="lazy">
+        </div>
+        <div class="slide-content">
+          <span class="slide-series-tag">The Stormlight Archive · Brandon Sanderson</span>
+          <h2 class="slide-book-title">The Way of Kings</h2>
+          <h3 class="slide-character-name">Kaladin Stormblessed &amp; Syl</h3>
+          <p class="slide-quote">“Life before death. Strength before weakness. Journey before destination.”</p>
+          <p class="slide-reflection">Bridge Four transforms from a sacrificial slave crew into the vanguard of the Knights Radiant. Kaladin's burden is the eternal duty of holding the bridge when all else falls.</p>
+          <button class="slide-read-btn" data-slug="the-stormlight-archive-kaladin">Read Bibliophile Essay →</button>
+        </div>
+      </div>
+
+      <!-- Slide 2: Mistborn (Vin & Kelsier) -->
+      <div class="carousel-slide" data-index="1" data-slug="mistborn-vin-and-kelsier">
+        <div class="slide-art-box">
+          <div class="slide-tape-clip"></div>
+          <img class="slide-art-img" src="./assets/images/mistborn-vin.jpg" alt="Vin in Mistcloak Doodle Art" loading="lazy">
+        </div>
+        <div class="slide-content">
+          <span class="slide-series-tag">Mistborn · Brandon Sanderson</span>
+          <h2 class="slide-book-title">The Final Empire</h2>
+          <h3 class="slide-character-name">Vin &amp; Kelsier</h3>
+          <p class="slide-quote">“There’s always another secret. Smile, Vin. Laughter is the one thing the Lord Ruler cannot take from us.”</p>
+          <p class="slide-reflection">A world of ash and red skies. Kelsier weaponizes hope into an allomantic religion, while Vin learns that true invulnerability lies in daring to trust.</p>
+          <button class="slide-read-btn" data-slug="mistborn-vin-and-kelsier">Read Bibliophile Essay →</button>
+        </div>
+      </div>
+
+      <!-- Slide 3: Red Rising (Darrow) -->
+      <div class="carousel-slide" data-index="2" data-slug="red-rising-the-reaper">
+        <div class="slide-art-box">
+          <div class="slide-tape-clip"></div>
+          <img class="slide-art-img" src="./assets/images/red-rising-darrow.jpg" alt="Darrow of Lykos Doodle Art" loading="lazy">
+        </div>
+        <div class="slide-content">
+          <span class="slide-series-tag">Red Rising Saga · Pierce Brown</span>
+          <h2 class="slide-book-title">Red Rising &amp; Golden Son</h2>
+          <h3 class="slide-character-name">Darrow of Lykos · The Reaper</h3>
+          <p class="slide-quote">“I would have lived in peace. But my enemies brought me war.”</p>
+          <p class="slide-reflection">Helldiver turned Peerless Scarred. Darrow carves himself into the apex predator of the Society, wielding the curved slingBlade to break the chains of mankind.</p>
+          <button class="slide-read-btn" data-slug="red-rising-the-reaper">Read Bibliophile Essay →</button>
+        </div>
+      </div>
+
+      <!-- Slide 4: Lord of the Rings (Gandalf) -->
+      <div class="carousel-slide" data-index="3" data-slug="lord-of-the-rings-gandalf">
+        <div class="slide-art-box">
+          <div class="slide-tape-clip"></div>
+          <img class="slide-art-img" src="./assets/images/lotr-gandalf.jpg" alt="Gandalf the Grey Doodle Art" loading="lazy">
+        </div>
+        <div class="slide-content">
+          <span class="slide-series-tag">The Lord of the Rings · J.R.R. Tolkien</span>
+          <h2 class="slide-book-title">The Fellowship of the Ring</h2>
+          <h3 class="slide-character-name">Gandalf the Grey · Mithrandir</h3>
+          <p class="slide-quote">“All we have to decide is what to do with the time that is given us.”</p>
+          <p class="slide-reflection">The timeless antidote to despair. Not the might of Gondorian armies, but Bilbo's pity and Samwise's steadfast loyalty that outlasts the darkness of Mordor.</p>
+          <button class="slide-read-btn" data-slug="lord-of-the-rings-gandalf">Read Bibliophile Essay →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="btnPrevSlide" title="Previous Book (←)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <div class="carousel-dots" id="carouselDots">
+        <div class="carousel-dot active" data-index="0"></div>
+        <div class="carousel-dot" data-index="1"></div>
+        <div class="carousel-dot" data-index="2"></div>
+        <div class="carousel-dot" data-index="3"></div>
+      </div>
+
+      <button class="carousel-btn" id="btnNextSlide" title="Next Book (→)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+  </aside>
 
   <!-- ==========================================================================
        INFINITE DESK CANVAS
