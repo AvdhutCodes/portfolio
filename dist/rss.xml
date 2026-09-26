@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Avadh Kulkarni · The Bibliophile's Desk & Almanac</title>
+  <link>https://avadhkulkarni.github.io/portfolio</link>
+  <description>Infinite floating manuscript canvas and personal essays on leverage, specific knowledge, books, and mental models.</description>
+  <language>en-us</language>
+  
+  <item>
+    <title><![CDATA[The Architecture of Specific Knowledge]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/specific-knowledge.html</link>
+    <description><![CDATA[Specific knowledge is found much more by pursuing your innate curiosity than by chasing whatever is trending.]]></description>
+    <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/specific-knowledge.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[The Bibliophile's Guide to Reading and Forgetting]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/reading-and-retention.html</link>
+    <description><![CDATA[Reading is not a competitive race to count volumes on Goodreads. It is conversation across centuries with departed minds.]]></description>
+    <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/reading-and-retention.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[The Judgment Trade]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/the-judgment-trade.html</link>
+    <description><![CDATA[A runner who sprints frantically in the wrong direction loses to someone who strolls deliberately toward the summit.]]></description>
+    <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/the-judgment-trade.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Permissionless Leverage: Code, Media, & The Gutenberg Engine]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/permissionless-leverage.html</link>
+    <description><![CDATA[Humans spent millennia needing someone else's approval to build an empire. Today, a text editor and a keyboard is all that stands between you and infinite reproduction.]]></description>
+    <pubDate>Wed, 04 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/permissionless-leverage.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Marginalia on Borges and the Infinite Library]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</link>
+    <description><![CDATA[In The Library of Babel, every permutation of letters exists somewhere. The problem is not lack of truth; it is drowning in infinite noise.]]></description>
+    <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/marginalia-on-borges.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Via Negativa: The Subtraction Heuristic]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</link>
+    <description><![CDATA[We are addicted to additive solutions: more apps, more books, more meetings. Yet the greatest leaps come from elimination.]]></description>
+    <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/the-subtraction-heuristic.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Stoic Equations of Peace: Aurelius at Midnight]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</link>
+    <description><![CDATA[When Marcus Aurelius wrote his private notebook at the edge of the Danubian frontier, he was not writing for the Roman senate. He was talking himself down from rage.]]></description>
+    <pubDate>Sun, 28 Dec 2025 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/stoic-equations-of-peace.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[The Ten Books That Rewired My Mental Software]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</link>
+    <description><![CDATA[If you read the same books everyone else is reading, you will think the same thoughts everyone else is thinking. Here is my foundational shelf.]]></description>
+    <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/books-that-shaped-my-mind.html</guid>
+  </item>
+
+  <item>
+    <title><![CDATA[Calm Mind, Clear Thinking: The Engine of Pure Signal]]></title>
+    <link>https://avadhkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</link>
+    <description><![CDATA[In a hyper-connected society where everyone is outraged and reactive, the person who can sit quietly in a room for two hours thinking clearly is unstoppable.]]></description>
+    <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
+    <guid>https://avadhkulkarni.github.io/portfolio/notes/calm-mind-clear-thinking.html</guid>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,377 @@
+/* ==========================================================================
+   OBSIDIAN ESSAY READER & TYPOGRAPHY
+   Book-Grade Reading Sanctuary for the Bibliophile
+   ========================================================================== */
+
+.reader-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-reader);
+  background: rgba(8, 9, 11, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-smooth);
+}
+
+.reader-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Reading Progress Bar */
+.reader-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #c8963e, #e2b05b);
+  z-index: calc(var(--z-reader) + 10);
+  transition: width 0.1s linear;
+}
+
+/* Reader Container */
+.reader-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 3.5rem auto 6rem;
+  padding: 0 1.5rem;
+  color: #d8dadf;
+  transform: translateY(20px);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.reader-modal.is-open .reader-container {
+  transform: translateY(0);
+}
+
+/* Reader Top Action Bar */
+.reader-bar {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 20, 25, 0.82);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 3.5rem;
+  z-index: 20;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.reader-close-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #adb2bd;
+  transition: color var(--duration-quick);
+}
+
+.reader-close-btn:hover {
+  color: #fff;
+}
+
+.reader-meta-snippet {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+}
+
+.reader-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.reader-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  color: #b0b6c2;
+  font-size: 0.75rem;
+  transition: all var(--duration-quick);
+}
+
+.reader-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* Essay Header */
+.reader-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 2.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.reader-stamp-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-stamp);
+  border: 1px solid rgba(156, 46, 38, 0.4);
+  background: rgba(156, 46, 38, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+}
+
+.reader-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.reader-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  line-height: 1.55;
+  color: #a2a8b5;
+  font-style: italic;
+  margin-bottom: 1.6rem;
+}
+
+.reader-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #7d8492;
+}
+
+.reader-tags {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.reader-tag {
+  color: #9299a7;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   ESSAY PROSE & OBSIDIAN RENDERING
+   ========================================================================== */
+
+.reader-body {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: #dedbd4;
+  letter-spacing: 0.005em;
+  user-select: text;
+}
+
+.reader-body p {
+  margin-bottom: 1.6rem;
+}
+
+/* First paragraph drop cap */
+.reader-body > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.8rem;
+  float: left;
+  line-height: 0.85;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  color: #f7f4ed;
+}
+
+.reader-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-top: 2.8rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.reader-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #f0eee8;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.reader-body strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.reader-body em {
+  font-style: italic;
+  color: #e5e2da;
+}
+
+.reader-body ul, .reader-body ol {
+  margin-bottom: 1.8rem;
+  padding-left: 1.5rem;
+}
+
+.reader-body li {
+  margin-bottom: 0.6rem;
+}
+
+/* Blockquotes (Naval Aphorism Style) */
+.reader-body blockquote:not(.obsidian-callout) {
+  border-left: 2px solid var(--accent-gold);
+  padding-left: 1.4rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #f3efe6;
+}
+
+/* Obsidian Callouts */
+.obsidian-callout {
+  margin: 2rem 0;
+  padding: 1.2rem 1.4rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-left-width: 4px;
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.callout-quote {
+  border-left-color: var(--accent-gold);
+  background: rgba(200, 150, 62, 0.06);
+}
+.callout-quote .callout-title {
+  color: var(--accent-gold);
+}
+
+.callout-note {
+  border-left-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.06);
+}
+.callout-note .callout-title {
+  color: #93c5fd;
+}
+
+.callout-tip {
+  border-left-color: #34d399;
+  background: rgba(52, 211, 153, 0.06);
+}
+.callout-tip .callout-title {
+  color: #6ee7b7;
+}
+
+.callout-warning {
+  border-left-color: #f87171;
+  background: rgba(248, 113, 113, 0.06);
+}
+.callout-warning .callout-title {
+  color: #fca5a5;
+}
+
+/* Obsidian Wikilinks [[note-title]] */
+.obsidian-link {
+  color: #e2b05b;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 4px;
+  transition: all var(--duration-quick);
+  cursor: pointer;
+}
+
+.obsidian-link:hover {
+  color: #fff;
+  text-decoration-style: solid;
+  text-decoration-color: #fff;
+}
+
+/* Obsidian Highlight ==text== */
+.obsidian-highlight {
+  background: rgba(200, 150, 62, 0.25);
+  color: #fff;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+/* Code & Pre */
+.reader-body pre {
+  background: #14161b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #c8ceda;
+  margin: 1.8rem 0;
+}
+
+.reader-body code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: #e2e5eb;
+}
+
+/* Reader Footer & Author Badge */
+.reader-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #7b8290;
+}
+
+.author-signature {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #f0ece3;
+}

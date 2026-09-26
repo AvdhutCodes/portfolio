@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avadh Kulkarni · The Bibliophile's Desk & Almanac</title>
+  <meta name="description" content="Personal writing, mental models, and timeless reflections of Avadh Kulkarni. An infinite floating manuscript canvas inspired by Naval Ravikant's Almanac and Swedish minimalism.">
+  <meta property="og:title" content="Avadh Kulkarni · The Bibliophile's Desk">
+  <meta property="og:description" content="Infinite manuscript canvas, notes, and essays on leverage, specific knowledge, books, and philosophy.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/desk.css">
+  <link rel="stylesheet" href="./assets/css/reader.css">
+  <link rel="stylesheet" href="./assets/css/cursor.css">
+</head>
+<body>
+
+  <!-- Custom Magnetic Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-dot"></div>
+  </div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Header / Top Bar -->
+  <header class="site-header">
+    <div class="brand-wrap">
+      <h1 class="brand-title">
+        <span>Avadh Kulkarni</span>
+      </h1>
+      <span class="brand-tagline">Bibliophile · Essayist</span>
+    </div>
+
+    <!-- Reading Status Ticker -->
+    <div class="status-ticker">
+      <span class="status-dot"></span>
+      <span>Reading: <em>The Beginning of Infinity</em></span>
+      <span>·</span>
+      <span id="liveClock">18:30</span>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- View Switcher -->
+      <div class="view-toggle">
+        <button class="view-btn active" id="viewCanvasBtn" title="Interactive Manuscript Canvas">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Canvas</span>
+        </button>
+        <button class="view-btn" id="viewArchiveBtn" title="Chronological Archive List">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>Archive</span>
+        </button>
+      </div>
+
+      <!-- Theme Torch Toggle -->
+      <button class="icon-btn" id="btnThemeToggle" title="Toggle Night Reading Torch / Day Paper">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      </button>
+
+      <!-- RSS Feed -->
+      <a href="./rss.xml" class="icon-btn" title="RSS Feed" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       INFINITE DESK CANVAS
+       ========================================================================== -->
+  <main class="desk-viewport" id="deskViewport" aria-label="Infinite Writing Desk Canvas">
+    
+    <!-- Torch Spotlight Follower -->
+    <div class="desk-torch-glow" id="deskTorchGlow"></div>
+
+    <!-- Infinite Pan/Zoom Stage -->
+    <div class="desk-stage" id="deskStage">
+
+      <!-- Atmospheric Center Watermark -->
+      <div class="desk-centerpiece">
+        <div class="cp-symbol">❦</div>
+        <p class="cp-quote">“Specific knowledge cannot be taught, but it can be learned. Follow your genuine intellectual curiosity.”</p>
+        <p class="cp-author">— Naval Ravikant · The Almanac</p>
+      </div>
+
+      <!-- FLOATING MANUSCRIPT CARDS INJECTED BY SSG -->
+      <!-- {{MANUSCRIPT_CARDS}} -->
+
+    </div>
+
+  </main>
+
+  <!-- Canvas HUD Controls -->
+  <div class="canvas-hud" id="canvasHud">
+    <button class="hud-btn" id="btnZoomIn" title="Zoom In">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </button>
+    <button class="hud-btn" id="btnZoomOut" title="Zoom Out">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </button>
+    <button class="hud-btn" id="btnResetCanvas" title="Center Desk">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+    </button>
+  </div>
+
+  <!-- Canvas Help / Interaction Hint -->
+  <div class="canvas-hint" id="canvasHint">
+    <span>Drag to Pan</span>
+    <span>·</span>
+    <span>Scroll to Zoom</span>
+    <span>·</span>
+    <span>Click Note to Read</span>
+  </div>
+
+  <!-- Bottom Tag Filter Bar -->
+  <nav class="bottom-bar" id="bottomBar" aria-label="Filter essays by topic">
+    <button class="filter-chip active" data-tag="all">All Drafts</button>
+    <button class="filter-chip" data-tag="leverage">#Leverage</button>
+    <button class="filter-chip" data-tag="navalism">#Navalism</button>
+    <button class="filter-chip" data-tag="mental models">#Mental Models</button>
+    <button class="filter-chip" data-tag="books">#Books</button>
+    <button class="filter-chip" data-tag="philosophy">#Philosophy</button>
+    <button class="filter-chip" data-tag="stoicism">#Stoicism</button>
+  </nav>
+
+  <!-- ==========================================================================
+       ALMANAC ARCHIVE VIEW (Alternative Clean Swedish List)
+       ========================================================================== -->
+  <section class="archive-view" id="archiveView" aria-label="Complete Essay Archive">
+    <div class="archive-container">
+      <div class="archive-intro">
+        <h2 class="archive-headline">The Almanac & Marginalia</h2>
+        <p class="archive-subhead">A chronological catalogue of essays, book notes, and mental models written in Obsidian.</p>
+      </div>
+
+      <div class="archive-list" id="archiveList">
+        <!-- {{ARCHIVE_ITEMS}} -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       OBSIDIAN ESSAY READER MODAL / DRAWER
+       ========================================================================== -->
+  <aside class="reader-modal" id="readerModal" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="reader-progress-bar" id="readerProgressBar"></div>
+
+    <div class="reader-container" id="readerContainer">
+      <!-- Reader Top Bar -->
+      <div class="reader-bar">
+        <button class="reader-close-btn" id="btnReaderClose">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Back to Desk</span>
+          <kbd style="background: rgba(255,255,255,0.08); padding: 1px 4px; border-radius: 3px; font-size: 0.65rem;">ESC</kbd>
+        </button>
+
+        <span class="reader-meta-snippet" id="readerMetaSnippet">Reading</span>
+
+        <div class="reader-nav-btns">
+          <button class="reader-nav-btn" id="btnReaderPrev" title="Previous Draft (←)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="reader-nav-btn" id="btnReaderNext" title="Next Draft (→)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reader Header -->
+      <header class="reader-header" id="readerHeader"></header>
+
+      <!-- Reader Article Prose -->
+      <article class="reader-body" id="readerBody"></article>
+
+      <!-- Reader Footer -->
+      <footer class="reader-footer">
+        <div>
+          <p class="author-signature">Avadh Kulkarni</p>
+          <p>Written in Obsidian · Published with Git Engine</p>
+        </div>
+        <p>The Bibliophile's Desk</p>
+      </footer>
+    </div>
+  </aside>
+
+  <!-- Embedded Notes Data JSON for Instant Client Transitions -->
+  <script type="application/json" id="notesDataJson">
+    <!-- {{NOTES_DATA_JSON}} -->
+  </script>
+
+  <!-- Scripts -->
+  <script src="./assets/js/canvas.js"></script>
+  <script src="./assets/js/reader.js"></script>
+  <script src="./assets/js/cursor.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+</body>
+</html>

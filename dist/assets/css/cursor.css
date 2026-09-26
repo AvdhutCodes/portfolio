@@ -1,0 +1,84 @@
+/* ==========================================================================
+   CUSTOM CURSOR & TACTILE TORCH SYSTEM
+   Minimalist Scandinavian Reading Loupe
+   ========================================================================== */
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.custom-cursor.is-active {
+  opacity: 1;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) - 1);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+}
+
+/* Card Hover State */
+body.is-hovering-card .cursor-ring {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(200, 150, 62, 0.65);
+  background: rgba(200, 150, 62, 0.08);
+}
+
+body.is-hovering-card .cursor-dot {
+  transform: scale(1.6);
+  background-color: #e2b05b;
+}
+
+/* Dragging Canvas State */
+body.is-dragging-canvas .cursor-ring {
+  transform: translate(-50%, -50%) scale(0.8);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Hide native cursor on desktop fine pointer */
+@media (pointer: fine) {
+  body:not(.use-native-cursor) {
+    cursor: default;
+  }
+  .desk-viewport {
+    cursor: grab;
+  }
+  .desk-viewport.is-dragging {
+    cursor: grabbing;
+  }
+}
+
+/* Disable custom cursor on touch screens */
+@media (pointer: coarse), (hover: none) {
+  .custom-cursor, .cursor-ring {
+    display: none !important;
+  }
+}
