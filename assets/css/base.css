@@ -104,7 +104,6 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  user-select: none;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -314,11 +313,79 @@ button {
 }
 
 @media (max-width: 760px) {
-  .nav-personas-group {
-    overflow-x: auto;
-    max-width: 55vw;
+  :root {
+    --header-h: 110px;
   }
-  .action-pill-btn span {
+
+  .nav-personas-group {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
+    overflow: visible;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 48px 46px;
+    align-content: center;
+    gap: 2px 6px;
+    padding: 4px 12px;
+  }
+  .brand-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+  .brand-title {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    gap: 0.3rem;
+  }
+  .header-actions #btnToggleSound,
+  .header-actions > a {
+    display: none;
+  }
+  .header-actions .action-pill-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+  }
+  .header-actions .action-pill-btn > span,
+  .header-actions .action-pill-btn > kbd {
+    display: none;
+  }
+  .header-actions .icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+  .persona-nav-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    min-width: 0;
+    min-height: 36px;
+    flex-direction: column;
+    gap: 0.08rem;
+    padding: 0.15rem 0.2rem;
+    font-size: 0.64rem;
+    line-height: 1;
+  }
+  .persona-nav-btn span {
+    display: block;
+    font-size: 0.48rem;
+    letter-spacing: 0.01em;
+  }
+}
+
+@media (max-width: 380px) {
+  .header-actions #btnOpenMindGraph {
     display: none;
   }
 }

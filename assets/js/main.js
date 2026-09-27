@@ -266,7 +266,6 @@
     if (!wrap || !slides.length) return;
 
     let currentIndex = 0;
-    let autoTimer = null;
 
     function showSlide(index) {
       if (index < 0) index = slides.length - 1;
@@ -279,6 +278,7 @@
 
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
+        dot.setAttribute('aria-pressed', String(i === currentIndex));
       });
 
       if (window.AudioFX) window.AudioFX.playPageTurn();
@@ -297,9 +297,11 @@
         const isOpen = wrap.classList.contains('is-spotlight');
         if (isOpen) {
           wrap.classList.remove('is-spotlight');
+          wrap.setAttribute('aria-hidden', 'true');
           btnToggle.classList.remove('active');
         } else {
           wrap.classList.add('is-spotlight');
+          wrap.setAttribute('aria-hidden', 'false');
           btnToggle.classList.add('active');
         }
         if (window.AudioFX) window.AudioFX.playPageTurn();
@@ -309,6 +311,7 @@
     if (btnClose) {
       btnClose.addEventListener('click', () => {
         wrap.classList.remove('is-spotlight');
+        wrap.setAttribute('aria-hidden', 'true');
         if (btnToggle) btnToggle.classList.remove('active');
         if (window.AudioFX) window.AudioFX.playClick(750);
       });
@@ -324,6 +327,7 @@
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && wrap.classList.contains('is-spotlight')) {
         wrap.classList.remove('is-spotlight');
+        wrap.setAttribute('aria-hidden', 'true');
         if (btnToggle) btnToggle.classList.remove('active');
       }
     });
@@ -332,6 +336,7 @@
       btn.addEventListener('click', () => {
         const slug = btn.dataset.slug;
         wrap.classList.remove('is-spotlight');
+        wrap.setAttribute('aria-hidden', 'true');
         if (btnToggle) btnToggle.classList.remove('active');
         if (readerInstance && slug) {
           readerInstance.open(slug);

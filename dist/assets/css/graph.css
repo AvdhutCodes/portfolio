@@ -65,6 +65,12 @@
   color: var(--text-muted);
 }
 
+.mind-graph-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .legend-item {
   display: flex;
   align-items: center;
@@ -87,6 +93,7 @@
   width: 100%;
   height: 100%;
   display: block;
+  touch-action: none;
 }
 
 .mind-graph-hint {
@@ -114,4 +121,43 @@
 
 [data-theme="light"] .mind-graph-hint {
   color: rgba(29, 26, 20, 0.55);
+}
+
+@media (max-width: 600px) {
+  .mind-graph-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.75rem;
+  }
+  .mind-graph-title-group h2 {
+    font-size: 1rem;
+  }
+  .mind-graph-title-group p {
+    max-width: 100%;
+    font-size: 0.58rem;
+  }
+  .mind-graph-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .mind-graph-legend {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.65rem;
+    max-width: 100%;
+    font-size: 0.58rem;
+  }
+  .mind-graph-actions > .action-pill-btn {
+    padding: 0.25rem 0.55rem;
+  }
+  .mind-graph-hint {
+    font-size: 0.55rem;
+    line-height: 1.5;
+  }
+  .mind-graph-hint {
+    bottom: 0.75rem;
+    width: calc(100% - 1.5rem);
+    text-align: center;
+  }
 }

@@ -108,6 +108,11 @@
   overflow: hidden;
 }
 
+.omnibar-item-left > div {
+  min-width: 0;
+  flex: 1;
+}
+
 .omnibar-item-badge {
   font-family: var(--font-mono);
   font-size: 0.6rem;
@@ -140,6 +145,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 440px;
+}
+
+@media (max-width: 600px) {
+  .omnibar-item-desc {
+    max-width: none;
+  }
+
+  .omnibar-input {
+    min-width: 0;
+    font-size: 0.95rem;
+  }
+
+  .omnibar-kbd-hint {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .omnibar-results {
+    max-height: min(380px, 55vh);
+  }
 }
 
 .omnibar-item-enter {

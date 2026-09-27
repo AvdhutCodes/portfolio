@@ -63,6 +63,10 @@ function writeFileAtomic(dest, content) {
 function processObsidianMarkdown(rawMd) {
   let content = rawMd;
 
+  // The homepage reader is rooted at /index.html, so normalize note image
+  // paths to the same ./assets path used by its generated markup.
+  content = content.replace(/\.\.\/assets\//g, './assets/');
+
   // Highlights ==text==
   content = content.replace(/==(.*?)==/g, '<mark class="obsidian-highlight">$1</mark>');
 
@@ -417,7 +421,8 @@ function build() {
     <a href="${film.link}" target="_blank" rel="noopener" class="top-four-card" title="${film.title} (${film.year})">
       <div class="top-four-badge">#${idx + 1} FAVOURITE</div>
       <div class="top-four-poster-wrap">
-        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="top-four-img" loading="lazy" />
+        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="top-four-img" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('poster-unavailable');this.nextElementSibling.hidden=false" />
+        <span class="poster-unavailable-label" aria-hidden="true" hidden>Poster unavailable</span>
         <div class="top-four-stars">${film.stars}</div>
       </div>
       <div class="top-four-info">
@@ -432,7 +437,8 @@ function build() {
   const recentReelHtml = (letterboxdData.recentWatches || []).map((film, idx) => `
     <article class="letterboxd-film-card${idx % 5 === 4 ? ' collage-feature' : ''}">
       <div class="lb-poster-box">
-        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" />
+        <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('poster-unavailable');this.nextElementSibling.hidden=false" />
+        <span class="poster-unavailable-label" aria-hidden="true" hidden>Poster unavailable</span>
         <div class="lb-stars-badge">${film.stars}</div>
         ${film.rewatch ? `<span class="lb-rewatch-icon" title="Rewatch">↺</span>` : ''}
       </div>
@@ -461,9 +467,9 @@ function build() {
       <strong>${latestWatch.title}</strong> (${latestWatch.year}) · <span class="letterboxd-stars">${latestWatch.stars}</span>
     </a>
   ` : `
-    <span class="now-chip-tag">Recently Logged</span>
+    <span class="now-chip-tag">Letterboxd</span>
     <a href="https://letterboxd.com/avd1234/" target="_blank" rel="noopener" class="now-film-link">
-      <strong>Chungking Express</strong> (1994) · <span class="letterboxd-stars">★★★★★</span>
+      <strong>Open profile for recent watches</strong>
     </a>
   `;
 
@@ -490,6 +496,9 @@ function build() {
     const stampHtml = note.stamp ? `<span class="reader-stamp-tag">${note.stamp}</span>` : '';
     const subtitleHtml = note.subtitle ? `<p class="reader-subtitle">${note.subtitle}</p>` : '';
     const tagsHtml = note.tags.map(t => `<span class="reader-tag">#${t}</span>`).join('');
+    const standaloneBodyHtml = note.htmlContent
+      .replace(/href="\.\/notes\//g, 'href="../notes/')
+      .replace(/src="\.\/assets\//g, 'src="../assets/');
 
     const pageHtml = noteTemplate
       .replace(/{{NOTE_TITLE}}/g, note.title)
@@ -499,7 +508,7 @@ function build() {
       .replace(/{{NOTE_STAMP_HTML}}/g, stampHtml)
       .replace(/{{NOTE_SUBTITLE_HTML}}/g, subtitleHtml)
       .replace(/{{NOTE_TAGS_HTML}}/g, tagsHtml)
-      .replace(/{{NOTE_BODY_HTML}}/g, note.htmlContent);
+      .replace(/{{NOTE_BODY_HTML}}/g, standaloneBodyHtml);
 
     writeFileAtomic(path.join(DIST_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');
     writeFileAtomic(path.join(ROOT_DIR, 'notes', `${note.slug}.html`), pageHtml, 'utf8');

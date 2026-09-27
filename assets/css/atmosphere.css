@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   background: radial-gradient(
     circle 650px at var(--spot-x, 50vw) var(--spot-y, 50vh),
     rgba(255, 255, 255, 0.042) 0%,
@@ -38,7 +38,7 @@
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 
 .stardust-canvas {
@@ -141,6 +141,30 @@
 @keyframes pulseDot {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; transform: scale(1.3); }
+}
+
+@media (max-width: 600px) {
+  .now-signal-strip {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: stretch;
+    gap: 0.65rem;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    font-size: 0.66rem;
+  }
+  .now-divider {
+    display: none;
+  }
+  .now-item-group {
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+  .now-film-link {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
 }
 
 /* 5. Audio FX Switch Button in Header */

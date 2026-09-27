@@ -6,6 +6,7 @@
 /* Main Viewport Container */
 .main-content-viewport {
   position: absolute;
+  z-index: var(--z-canvas);
   top: var(--header-h);
   left: 0;
   right: 0;
@@ -611,6 +612,12 @@
 }
 
 .audio-card {
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --accent-gold: #e5c07b;
   background: #0b0c10;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
@@ -1157,4 +1164,34 @@
   background: var(--border-subtle);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .cinephile-container,
+  .audiophile-container,
+  .work-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .audio-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .audio-card {
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  .audio-btn-row {
+    flex-wrap: wrap;
+  }
+
+  #btnCloseArchive {
+    flex-shrink: 0;
+    padding: 0.32rem 0.45rem;
+    font-size: 0.58rem;
+    white-space: nowrap;
+  }
 }

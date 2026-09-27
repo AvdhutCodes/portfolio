@@ -43,27 +43,27 @@
 
     <!-- Center Persona Navigation (The 5 Realms) -->
     <nav class="nav-personas-group" aria-label="Persona Navigation">
-      <button class="persona-nav-btn active" data-section="landing" id="navBtnLanding" title="Landing: The 3D Opening Codex">
+      <button class="persona-nav-btn active" data-section="landing" id="navBtnLanding" title="Landing: The 3D Opening Codex" aria-label="Codex">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
         <span>Codex</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books">
+      <button class="persona-nav-btn" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books" aria-label="Bibliophile">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
         <span>Bibliophile</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Live Diary & Posters">
+      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Live Diary & Posters" aria-label="Cinephile">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
         <span>Cinephile</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="audiophile" id="navBtnAudiophile" title="Audiophile: Vinyl Crates & Spotify Logs">
+      <button class="persona-nav-btn" data-section="audiophile" id="navBtnAudiophile" title="Audiophile: Vinyl Crates & Spotify Logs" aria-label="Audiophile">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
         <span>Audiophile</span>
       </button>
 
-      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Systems Architecture & Product Design">
+      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Systems Architecture & Product Design" aria-label="Craft">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
         <span>Craft</span>
       </button>
@@ -232,8 +232,19 @@
 
         <p class="book-interaction-hint">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-6-6l-6 6m6-6V3"></path></svg>
-          Hover or click the book to unfold the codex
+          <span class="book-hint-desktop">Hover or click the book to unfold the codex</span>
+          <span class="book-hint-mobile">Tap the book to open its chapters</span>
         </p>
+
+        <nav class="mobile-chapters-list" aria-label="Codex chapters">
+          <div class="chapters-list">
+            <a href="#bibliophile" class="chapter-row-link" data-target="bibliophile"><span class="chapter-num">Chapter I</span><span class="chapter-title">The Bibliophile's Desk</span><span class="chapter-arrow">→</span></a>
+            <a href="#cinephile" class="chapter-row-link" data-target="cinephile"><span class="chapter-num">Chapter II</span><span class="chapter-title">The Cinephile</span><span class="chapter-arrow">→</span></a>
+            <a href="#audiophile" class="chapter-row-link" data-target="audiophile"><span class="chapter-num">Chapter III</span><span class="chapter-title">The Audiophile Sanctuary</span><span class="chapter-arrow">→</span></a>
+            <a href="#work" class="chapter-row-link" data-target="work"><span class="chapter-num">Chapter IV</span><span class="chapter-title">The Engineering Craft</span><span class="chapter-arrow">→</span></a>
+            <a href="#archive" class="chapter-row-link" data-drawer="archive"><span class="chapter-num">Appendix</span><span class="chapter-title">Chronological Archive</span><span class="chapter-arrow">→</span></a>
+          </div>
+        </nav>
 
         <!-- Live "Now" Signal Ledger Strip -->
         <div class="now-signal-strip" id="nowSignalStrip">
@@ -310,8 +321,8 @@
         <div class="cinephile-header-bar">
           <div>
             <span class="section-label-glow">
-              <span class="status-dot live-pulse" id="letterboxdStatusDot"></span>
-              <span id="letterboxdStatusLabel">Live Sync Active</span>
+              <span class="status-dot" id="letterboxdStatusDot"></span>
+              <span id="letterboxdStatusLabel">Loading Letterboxd data…</span>
             </span>
             <h2 class="cinephile-heading" style="margin-top: 0.3rem;">Cinema as Time Architecture</h2>
             <p class="cinephile-subtext">Automated Letterboxd synchronization for @avd1234 with diary reviews, star ratings, and four favourites.</p>
@@ -409,7 +420,7 @@
   <!-- ==========================================================================
        AMBIENT BOOK & CHARACTER CAROUSEL (Stormlight, Mistborn, Red Rising, LOTR)
        ========================================================================== -->
-  <aside class="ambient-carousel-wrap" id="ambientCarousel" aria-label="Favorite Books Carousel">
+  <aside class="ambient-carousel-wrap" id="ambientCarousel" role="dialog" aria-modal="true" aria-label="Favorite books carousel" aria-hidden="true">
     <button class="carousel-close-btn" id="btnCloseCarousel">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       <span>Close Canon (Esc)</span>
@@ -490,11 +501,11 @@
       <button class="carousel-btn" id="btnPrevSlide" title="Previous (←)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
-      <div class="carousel-dots" id="carouselDots">
-        <div class="carousel-dot active" data-index="0"></div>
-        <div class="carousel-dot" data-index="1"></div>
-        <div class="carousel-dot" data-index="2"></div>
-        <div class="carousel-dot" data-index="3"></div>
+      <div class="carousel-dots" id="carouselDots" aria-label="Choose a book">
+        <button type="button" class="carousel-dot active" data-index="0" aria-label="Show book 1" aria-pressed="true"></button>
+        <button type="button" class="carousel-dot" data-index="1" aria-label="Show book 2" aria-pressed="false"></button>
+        <button type="button" class="carousel-dot" data-index="2" aria-label="Show book 3" aria-pressed="false"></button>
+        <button type="button" class="carousel-dot" data-index="3" aria-label="Show book 4" aria-pressed="false"></button>
       </div>
       <button class="carousel-btn" id="btnNextSlide" title="Next (→)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -505,7 +516,7 @@
   <!-- ==========================================================================
        OBSIDIAN ESSAY & REVIEW READER MODAL
        ========================================================================== -->
-  <aside class="reader-modal" id="readerModal" aria-modal="true" role="dialog" aria-hidden="true">
+  <aside class="reader-modal" id="readerModal" aria-modal="true" role="dialog" aria-label="Note reader" aria-hidden="true">
     <div class="reader-progress-bar" id="readerProgressBar"></div>
 
     <div class="reader-container" id="readerContainer">
@@ -544,7 +555,7 @@
   <!-- ==========================================================================
        GLOBAL OMNIBAR / COMMAND PALETTE MODAL (CMD+K / CTRL+K)
        ========================================================================== -->
-  <div class="omnibar-modal" id="omnibarModal" aria-hidden="true" role="dialog">
+  <div class="omnibar-modal" id="omnibarModal" aria-modal="true" aria-label="Search notes and actions" aria-hidden="true" role="dialog">
     <div class="omnibar-dialog">
       <div class="omnibar-search-box">
         <svg class="omnibar-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -562,20 +573,22 @@
   <!-- ==========================================================================
        OBSIDIAN MIND GRAPH VIEW MODAL
        ========================================================================== -->
-  <div class="mind-graph-modal" id="mindGraphModal" aria-hidden="true" role="dialog">
+  <div class="mind-graph-modal" id="mindGraphModal" aria-modal="true" aria-label="Mind graph" aria-hidden="true" role="dialog">
     <div class="mind-graph-header">
       <div class="mind-graph-title-group">
         <h2>Obsidian Mind Graph</h2>
         <p>Interactive 2D physics network of thoughts, books, films &amp; leverage</p>
       </div>
 
-      <div class="mind-graph-legend">
-        <div class="legend-item"><span class="legend-dot biblio"></span><span>Bibliophile</span></div>
-        <div class="legend-item"><span class="legend-dot cine"></span><span>Cinephile</span></div>
-        <div class="legend-item"><span class="legend-dot audio"></span><span>Audiophile</span></div>
-        <div class="legend-item"><span class="legend-dot work"></span><span>Craft</span></div>
-        <div class="legend-item"><span class="legend-dot archive"></span><span>Archive</span></div>
-        <button class="action-pill-btn" id="btnCloseMindGraph" style="margin-left: 1rem;">Close Graph ✕</button>
+      <div class="mind-graph-actions">
+        <div class="mind-graph-legend">
+          <div class="legend-item"><span class="legend-dot biblio"></span><span>Bibliophile</span></div>
+          <div class="legend-item"><span class="legend-dot cine"></span><span>Cinephile</span></div>
+          <div class="legend-item"><span class="legend-dot audio"></span><span>Audiophile</span></div>
+          <div class="legend-item"><span class="legend-dot work"></span><span>Craft</span></div>
+          <div class="legend-item"><span class="legend-dot archive"></span><span>Archive</span></div>
+        </div>
+        <button class="action-pill-btn" id="btnCloseMindGraph">Close Graph ✕</button>
       </div>
     </div>
 
