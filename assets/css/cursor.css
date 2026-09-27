@@ -82,3 +82,12 @@ body.is-dragging-canvas .cursor-ring {
     display: none !important;
   }
 }
+
+/* Light paper: bistre cursor instead of white */
+[data-theme="light"] .cursor-dot {
+  background-color: #1a1614;
+}
+
+[data-theme="light"] .cursor-ring {
+  border-color: rgba(26, 22, 20, 0.4);
+}

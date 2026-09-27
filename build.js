@@ -1,6 +1,6 @@
 /**
  * AVDHUT KULKARNI — THE MULTI-POTENTIALITE SSG ENGINE
- * Compiles Books, Essays, Films, Audio, Work, and Archive notes into static portfolio
+ * Compiles Books, Essays, Films, Audio, and Work notes into static portfolio
  */
 
 const fs = require('fs');
@@ -121,7 +121,7 @@ function computeOrganicCoordinates(index) {
 
 // Scan all markdown files across content directories
 function readAllContent() {
-  const subdirs = ['books', 'essays', 'films', 'audio', 'work', 'archive'];
+  const subdirs = ['books', 'essays', 'films', 'audio', 'work'];
   const allNotes = [];
 
   subdirs.forEach(folder => {
@@ -146,7 +146,6 @@ function readAllContent() {
         else if (folder === 'films') category = 'cinephile';
         else if (folder === 'audio') category = 'audiophile';
         else if (folder === 'work') category = 'work';
-        else if (folder === 'archive') category = 'archive';
         else category = 'bibliophile';
       }
 
@@ -206,14 +205,13 @@ function build() {
   const noteTemplate = fs.readFileSync(path.join(SRC_TEMPLATES, 'note.html'), 'utf8');
 
   const notes = readAllContent();
-  console.log(`📖 Processed ${notes.length} total notes across books, essays, films, audio, work, and archive.`);
+  console.log(`📖 Processed ${notes.length} total notes across books, essays, films, audio, and work.`);
 
   // 1. Separate notes by category
   const biblioNotes = notes.filter(n => n.category === 'bibliophile');
   const cineNotes = notes.filter(n => n.category === 'cinephile');
   const audioNotes = notes.filter(n => n.category === 'audiophile');
   const workNotes = notes.filter(n => n.category === 'work');
-  const archiveNotes = notes.filter(n => n.category === 'archive');
 
   // Sort notes by date descending
   notes.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -390,23 +388,6 @@ function build() {
     </div>
   `;
 
-  // Build Separate Archive Items HTML (From content/archive/)
-  const archiveItemsHtml = archiveNotes.map((note) => {
-    return `
-      <div class="archive-item" data-slug="${note.slug}" data-tags="${note.tags.join(',')}">
-        <div class="archive-item-left">
-          <span class="archive-item-title">${note.title}</span>
-          <p class="archive-item-snippet">${note.excerpt}</p>
-        </div>
-        <div class="archive-item-right">
-          <span class="archive-tag">#${note.tags[0] || 'Archive'}</span>
-          <span>${note.readTime} min read</span>
-          <span>${note.date}</span>
-        </div>
-      </div>
-    `;
-  }).join('\n');
-
   // Load Letterboxd Data
   let letterboxdData = { topFour: [], recentWatches: [] };
   const lbJsonPath = path.join(__dirname, 'data', 'letterboxd.json');
@@ -479,7 +460,6 @@ function build() {
     .replace('<!-- {{FILM_POSTERS}} -->', filmCardsHtml)
     .replace('<!-- {{AUDIO_CARDS}} -->', audioCardsHtml)
     .replace('<!-- {{WORK_SECTION}} -->', workSectionHtml)
-    .replace('<!-- {{ARCHIVE_ITEMS}} -->', archiveItemsHtml)
     .replace('<!-- {{NOW_WATCHING_FILM}} -->', nowWatchingHtml)
     .replace('<!-- {{LETTERBOXD_TOP_FOUR}} -->', topFourHtml)
     .replace('<!-- {{LETTERBOXD_RECENT_REEL}} -->', recentReelHtml)

@@ -30,16 +30,14 @@
     bibliophile: '#ffffff',
     cinephile: '#00e054', // Letterboxd Green
     audiophile: '#f59e0b', // Vinyl Amber
-    work: '#3b82f6',       // Cobalt Systems
-    archive: '#a855f7'     // Archive Purple
+    work: '#3b82f6'       // Cobalt Systems
   };
 
   const CATEGORY_COLORS_LIGHT = {
-    bibliophile: '#1d1a14',
+    bibliophile: '#1a1614',
     cinephile: '#009444',
     audiophile: '#b45309',
-    work: '#1d4ed8',
-    archive: '#7e22ce'
+    work: '#1d4ed8'
   };
 
   function isLightTheme() {

@@ -54,7 +54,7 @@
 
       // Card clicks on desk
       document.addEventListener('click', (e) => {
-        const card = e.target.closest('.manuscript-card, .archive-item, .obsidian-link');
+        const card = e.target.closest('.manuscript-card, .obsidian-link');
         if (card && card.dataset.slug) {
           e.preventDefault();
           this.open(card.dataset.slug);

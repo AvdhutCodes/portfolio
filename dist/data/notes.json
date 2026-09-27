@@ -1,23 +1,23 @@
 [
   {
     "slug": "2026-spring-reading-journal",
-    "folder": "archive",
-    "category": "archive",
+    "folder": "essays",
+    "category": "bibliophile",
     "title": "Spring Reading & Thought Journal: Fragments from the Margins",
     "subtitle": "Uncurated notebook scraps on silence, notebooks, and solitary walks",
     "date": "2026-03-26",
     "tags": [
-      "Archive",
       "Journal",
       "Margins",
-      "Uncurated"
+      "Reading",
+      "Reflection"
     ],
     "author": "Avdhut Kulkarni",
     "rev": 1,
-    "stamp": "ARCHIVE · FOLIO 01",
+    "stamp": "ESSAY · JOURNAL 01",
     "quote": "The mind is not a vessel to be filled, but a fire to be kindled. — Plutarch",
     "excerpt": "Raw notebook entries from early morning reading sessions. Thoughts before they turn into polished essays.",
-    "cardSnippet": "[!note] Raw Archive Entry · March 2026\n \"Woke at 5:30 AM. Read twenty pages of Seneca's Epistles with black coffee....",
+    "cardSnippet": "[!note] Journal Entry · March 2026\n \"Woke at 5:30 AM. Read twenty pages of Seneca's Epistles with black coffee. Noti...",
     "illustration": null,
     "poster": null,
     "director": null,
@@ -34,8 +34,11 @@
     "skills": null,
     "metrics": null,
     "pinned": false,
+    "x": 570,
+    "y": -363,
+    "rotate": "3.9",
     "readTime": 1,
-    "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Raw Archive Entry · March 2026</span></div>\n      <div class=\"callout-content\"><p>&quot;Woke at 5:30 AM. Read twenty pages of Seneca&#39;s Epistles with black coffee. Noticing how much modern productivity advice is just repackaged Stoicism with a subscription fee.&quot;</p>\n</div>\n    </aside><h2>Fragments &amp; Marginalia</h2>\n<ul>\n<li><strong>On Reading Velocity</strong>: The greatest delusion is that skimming fifty summaries equals understanding one difficult paragraph. If your eyes aren&#39;t stopping, your brain isn&#39;t wrestling.</li>\n<li><strong>On Cinema &amp; Sound</strong>: Watched <em>Stalker</em> by Tarkovsky again. The sound of train wheels clacking in the rain communicates more metaphysical weight than two hours of CGI explosions.</li>\n<li><strong>The Three Pillars</strong>: Reading feeds the imagination; cinema tests empathy; sound tunes the nervous system. The work is simply the synthesis of all three.</li>\n</ul>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Journal Entry · March 2026</span></div>\n      <div class=\"callout-content\"><p>&quot;Woke at 5:30 AM. Read twenty pages of Seneca&#39;s Epistles with black coffee. Noticing how much modern productivity advice is just repackaged Stoicism with a subscription fee.&quot;</p>\n</div>\n    </aside><h2>Fragments &amp; Marginalia</h2>\n<ul>\n<li><strong>On Reading Velocity</strong>: The greatest delusion is that skimming fifty summaries equals understanding one difficult paragraph. If your eyes aren&#39;t stopping, your brain isn&#39;t wrestling.</li>\n<li><strong>On Cinema &amp; Sound</strong>: Watched <em>Stalker</em> by Tarkovsky again. The sound of train wheels clacking in the rain communicates more metaphysical weight than two hours of CGI explosions.</li>\n<li><strong>The Three Pillars</strong>: Reading feeds the imagination; cinema tests empathy; sound tunes the nervous system. The work is simply the synthesis of all three.</li>\n</ul>\n"
   },
   {
     "slug": "overview",
@@ -473,20 +476,20 @@
   },
   {
     "slug": "stream-of-consciousness-midnight",
-    "folder": "archive",
-    "category": "archive",
+    "folder": "essays",
+    "category": "bibliophile",
     "title": "Midnight Marginalia: The Paradox of the Creative Night",
     "subtitle": "Why the quietest hours between 1 AM and 4 AM belong entirely to the maker",
     "date": "2026-03-01",
     "tags": [
-      "Archive",
       "Night",
       "Reflection",
-      "Solitude"
+      "Solitude",
+      "Journal"
     ],
     "author": "Avdhut Kulkarni",
     "rev": 1,
-    "stamp": "ARCHIVE · FOLIO 02",
+    "stamp": "ESSAY · JOURNAL 02",
     "quote": "In the night all cats are grey, but all ideas are luminous.",
     "excerpt": "The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes.",
     "cardSnippet": "[!note] Midnight Log\n \"The world is asleep. There are no notifications to respond to, no peer expectations, no meeti...",
@@ -506,6 +509,9 @@
     "skills": null,
     "metrics": null,
     "pinned": false,
+    "x": -792,
+    "y": -459,
+    "rotate": "-3.3",
     "readTime": 1,
     "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Midnight Log</span></div>\n      <div class=\"callout-content\"><p>&quot;The world is asleep. There are no notifications to respond to, no peer expectations, no meetings. In this brief pocket of time, you are entirely free.&quot;</p>\n</div>\n    </aside><h2>The Solitude Dividend</h2>\n<p>Why do bibliophiles and makers love late hours? It is not about sleep deprivation; it is about <strong>psychological insulation</strong>.\nWhen society powers down, the atmospheric pressure of other people&#39;s anxieties lifts. You can sit with a book, a sketch, or a musical passage and exist purely in the moment.</p>\n"
   },

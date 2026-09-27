@@ -60,6 +60,10 @@
   const STAR_COUNT = Math.min(85, Math.floor((width * height) / 14000));
   let stars = [];
 
+  function isLightTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
   class Star {
     constructor() {
       this.reset();
@@ -89,7 +93,10 @@
       if (this.alpha > 0.85) this.alpha = 0.85;
     }
     draw() {
-      ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+      const light = isLightTheme();
+      ctx.fillStyle = light
+        ? `rgba(26, 22, 20, ${this.alpha * 0.7})`
+        : `rgba(255, 255, 255, ${this.alpha})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -122,7 +129,10 @@
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.rotation);
-      ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha * 0.35})`;
+      const light = isLightTheme();
+      ctx.strokeStyle = light
+        ? `rgba(26, 22, 20, ${this.alpha * 0.4})`
+        : `rgba(255, 255, 255, ${this.alpha * 0.35})`;
       ctx.lineWidth = 0.75;
 
       // Draw delicate rosette / geometric flower
@@ -171,6 +181,7 @@
     });
 
     // 3. Draw constellation connections between nearby stars
+    const light = isLightTheme();
     const maxDist = 95;
     for (let i = 0; i < stars.length; i++) {
       for (let j = i + 1; j < stars.length; j++) {
@@ -178,8 +189,8 @@
         const dy = stars[i].y - stars[j].y;
         const dist = Math.hypot(dx, dy);
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.12;
-          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+          const alpha = (1 - dist / maxDist) * (light ? 0.16 : 0.12);
+          ctx.strokeStyle = light ? `rgba(26, 22, 20, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.moveTo(stars[i].x, stars[i].y);
@@ -193,8 +204,8 @@
       const mdy = stars[i].y - curY;
       const mdist = Math.hypot(mdx, mdy);
       if (mdist < 140) {
-        const mAlpha = (1 - mdist / 140) * 0.28;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${mAlpha})`;
+        const mAlpha = (1 - mdist / 140) * (light ? 0.32 : 0.28);
+        ctx.strokeStyle = light ? `rgba(26, 22, 20, ${mAlpha})` : `rgba(255, 255, 255, ${mAlpha})`;
         ctx.lineWidth = 0.65;
         ctx.beginPath();
         ctx.moveTo(stars[i].x, stars[i].y);

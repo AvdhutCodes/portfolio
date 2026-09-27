@@ -19,7 +19,15 @@
   <link rel="stylesheet" href="./assets/css/omnibar.css">
   <link rel="stylesheet" href="./assets/css/graph.css">
   <link rel="stylesheet" href="./assets/css/atmosphere.css">
-  <link rel="stylesheet" href="./assets/css/carousel.css">
+  <script>
+    // Apply stored theme before paint to avoid FOUC (defaults to dark)
+    try {
+      var storedTheme = localStorage.getItem('avdhut-theme');
+      document.documentElement.setAttribute('data-theme', storedTheme === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
 </head>
 <body class="persona-landing">
 
@@ -69,7 +77,7 @@
       </button>
     </nav>
 
-    <!-- Header Actions (Omnibar, Mind Graph, Archive, Canon, Sound, Theme, RSS) -->
+    <!-- Header Actions (Omnibar, Mind Graph, Sound, Theme, RSS) -->
     <div class="header-actions">
       <!-- Omnibar Spotlight Search Trigger (Cmd+K) -->
       <button class="action-pill-btn" id="btnOpenOmnibar" title="Open Command Palette (Cmd+K / Ctrl+K)">
@@ -81,18 +89,6 @@
       <!-- Mind Graph View Trigger -->
       <button class="icon-btn" id="btnOpenMindGraph" title="Open Obsidian Mind Graph">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="8.5" y1="7.5" x2="15.5" y2="16.5"></line><line x1="8.5" y1="16.5" x2="15.5" y2="7.5"></line></svg>
-      </button>
-
-      <!-- Archive Drawer Toggle -->
-      <button class="action-pill-btn" id="btnToggleArchive" title="Open Separate Chronological Archive">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-        <span>Archive</span>
-      </button>
-
-      <!-- Favorite Books Carousel Toggle -->
-      <button class="action-pill-btn" id="btnToggleBooksCarousel" title="Favorite Books & Heroes">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        <span>Canon</span>
       </button>
 
       <!-- Synthesized Audio FX Toggle -->
@@ -211,12 +207,6 @@
                       <span class="chapter-title">The Engineering Craft</span>
                       <span class="chapter-arrow">→</span>
                     </a>
-
-                    <a href="#archive" class="chapter-row-link" data-drawer="archive">
-                      <span class="chapter-num">Appendix</span>
-                      <span class="chapter-title">Chronological Archive</span>
-                      <span class="chapter-arrow">→</span>
-                    </a>
                   </nav>
                 </div>
 
@@ -242,7 +232,6 @@
             <a href="#cinephile" class="chapter-row-link" data-target="cinephile"><span class="chapter-num">Chapter II</span><span class="chapter-title">The Cinephile</span><span class="chapter-arrow">→</span></a>
             <a href="#audiophile" class="chapter-row-link" data-target="audiophile"><span class="chapter-num">Chapter III</span><span class="chapter-title">The Audiophile Sanctuary</span><span class="chapter-arrow">→</span></a>
             <a href="#work" class="chapter-row-link" data-target="work"><span class="chapter-num">Chapter IV</span><span class="chapter-title">The Engineering Craft</span><span class="chapter-arrow">→</span></a>
-            <a href="#archive" class="chapter-row-link" data-drawer="archive"><span class="chapter-num">Appendix</span><span class="chapter-title">Chronological Archive</span><span class="chapter-arrow">→</span></a>
           </div>
         </nav>
 
@@ -399,121 +388,6 @@
   </main>
 
   <!-- ==========================================================================
-       SEPARATE CHRONOLOGICAL ARCHIVE DRAWER
-       ========================================================================== -->
-  <aside class="archive-drawer" id="archiveDrawer" aria-label="Chronological Archive Drawer">
-    <div class="archive-container">
-      <div class="archive-intro">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-          <h2 class="archive-headline">Chronological Archive &amp; Logs</h2>
-          <button class="action-pill-btn" id="btnCloseArchive">Close Archive ✕</button>
-        </div>
-        <p class="archive-subhead">Uncurated journal scraps, raw thought streams, and marginalia separate from the curated desk.</p>
-      </div>
-
-      <div class="archive-list" id="archiveList">
-        <!-- {{ARCHIVE_ITEMS}} -->
-      </div>
-    </div>
-  </aside>
-
-  <!-- ==========================================================================
-       AMBIENT BOOK & CHARACTER CAROUSEL (Stormlight, Mistborn, Red Rising, LOTR)
-       ========================================================================== -->
-  <aside class="ambient-carousel-wrap" id="ambientCarousel" role="dialog" aria-modal="true" aria-label="Favorite books carousel" aria-hidden="true">
-    <button class="carousel-close-btn" id="btnCloseCarousel">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      <span>Close Canon (Esc)</span>
-    </button>
-
-    <div class="ambient-carousel-stage" id="carouselStage">
-      <!-- Slide 1: Stormlight -->
-      <div class="carousel-slide active" data-index="0" data-slug="the-stormlight-archive-kaladin">
-        <div class="slide-art-box">
-          <div class="slide-tape-clip"></div>
-          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780765326355-L.jpg" alt="The Way of Kings — cover art" loading="lazy" onerror="this.remove()" />
-          <div class="slide-monochrome-badge">THE STORMLIGHT ARCHIVE</div>
-        </div>
-        <div class="slide-content">
-          <span class="slide-series-tag">The Stormlight Archive · Brandon Sanderson</span>
-          <h2 class="slide-book-title">The Way of Kings</h2>
-          <h3 class="slide-character-name">Kaladin Stormblessed &amp; Syl</h3>
-          <p class="slide-quote">“Life before death. Strength before weakness. Journey before destination.”</p>
-          <p class="slide-reflection">Bridge Four transforms from a sacrificial slave crew into the vanguard of the Knights Radiant. Kaladin's burden is the eternal duty of holding the bridge when all else falls.</p>
-          <button class="slide-read-btn" data-slug="the-stormlight-archive-kaladin">Read Essay →</button>
-        </div>
-      </div>
-
-      <!-- Slide 2: Mistborn -->
-      <div class="carousel-slide" data-index="1" data-slug="mistborn-vin-and-kelsier">
-        <div class="slide-art-box">
-          <div class="slide-tape-clip"></div>
-          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780765311788-L.jpg" alt="Mistborn: The Final Empire — cover art" loading="lazy" onerror="this.remove()" />
-          <div class="slide-monochrome-badge">MISTBORN</div>
-        </div>
-        <div class="slide-content">
-          <span class="slide-series-tag">Mistborn · Brandon Sanderson</span>
-          <h2 class="slide-book-title">The Final Empire</h2>
-          <h3 class="slide-character-name">Vin &amp; Kelsier</h3>
-          <p class="slide-quote">“There’s always another secret. Smile, Vin. Laughter is the one thing the Lord Ruler cannot take from us.”</p>
-          <p class="slide-reflection">Under a thousand years of ashfall, Kelsier constructs a revolution powered not merely by steel, but by infectious hope. Vin discovers that courage is daring to trust.</p>
-          <button class="slide-read-btn" data-slug="mistborn-vin-and-kelsier">Read Essay →</button>
-        </div>
-      </div>
-
-      <!-- Slide 3: Red Rising -->
-      <div class="carousel-slide" data-index="2" data-slug="red-rising-the-reaper">
-        <div class="slide-art-box">
-          <div class="slide-tape-clip"></div>
-          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780345539786-L.jpg" alt="Red Rising — cover art" loading="lazy" onerror="this.remove()" />
-          <div class="slide-monochrome-badge">RED RISING</div>
-        </div>
-        <div class="slide-content">
-          <span class="slide-series-tag">Red Rising Saga · Pierce Brown</span>
-          <h2 class="slide-book-title">Red Rising &amp; Golden Son</h2>
-          <h3 class="slide-character-name">Darrow of Lykos · The Reaper</h3>
-          <p class="slide-quote">“I would have lived in peace. But my enemies brought me war.”</p>
-          <p class="slide-reflection">Homeric Greek tragedy cast into interplanetary space warfare. Helldiver carved into a Gold, Darrow wields the curved slingBlade to break the chains of mankind.</p>
-          <button class="slide-read-btn" data-slug="red-rising-the-reaper">Read Essay →</button>
-        </div>
-      </div>
-
-      <!-- Slide 4: LOTR -->
-      <div class="carousel-slide" data-index="3" data-slug="lord-of-the-rings-gandalf">
-        <div class="slide-art-box">
-          <div class="slide-tape-clip"></div>
-          <img class="slide-cover-img" src="https://covers.openlibrary.org/b/isbn/9780618346257-L.jpg" alt="The Fellowship of the Ring — cover art" loading="lazy" onerror="this.remove()" />
-          <div class="slide-monochrome-badge">THE LORD OF THE RINGS</div>
-        </div>
-        <div class="slide-content">
-          <span class="slide-series-tag">The Lord of the Rings · J.R.R. Tolkien</span>
-          <h2 class="slide-book-title">The Fellowship of the Ring</h2>
-          <h3 class="slide-character-name">Gandalf the Grey · Mithrandir</h3>
-          <p class="slide-quote">“All we have to decide is what to do with the time that is given us.”</p>
-          <p class="slide-reflection">True victory in Middle-earth is never won by mighty armies, but preserved through Bilbo's pity, Frodo's quiet endurance, and Samwise Gamgee holding his master's hand.</p>
-          <button class="slide-read-btn" data-slug="lord-of-the-rings-gandalf">Read Essay →</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Carousel Controls -->
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="btnPrevSlide" title="Previous (←)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <div class="carousel-dots" id="carouselDots" aria-label="Choose a book">
-        <button type="button" class="carousel-dot active" data-index="0" aria-label="Show book 1" aria-pressed="true"></button>
-        <button type="button" class="carousel-dot" data-index="1" aria-label="Show book 2" aria-pressed="false"></button>
-        <button type="button" class="carousel-dot" data-index="2" aria-label="Show book 3" aria-pressed="false"></button>
-        <button type="button" class="carousel-dot" data-index="3" aria-label="Show book 4" aria-pressed="false"></button>
-      </div>
-      <button class="carousel-btn" id="btnNextSlide" title="Next (→)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-    </div>
-  </aside>
-
-  <!-- ==========================================================================
        OBSIDIAN ESSAY & REVIEW READER MODAL
        ========================================================================== -->
   <aside class="reader-modal" id="readerModal" aria-modal="true" role="dialog" aria-label="Note reader" aria-hidden="true">
@@ -586,7 +460,6 @@
           <div class="legend-item"><span class="legend-dot cine"></span><span>Cinephile</span></div>
           <div class="legend-item"><span class="legend-dot audio"></span><span>Audiophile</span></div>
           <div class="legend-item"><span class="legend-dot work"></span><span>Craft</span></div>
-          <div class="legend-item"><span class="legend-dot archive"></span><span>Archive</span></div>
         </div>
         <button class="action-pill-btn" id="btnCloseMindGraph">Close Graph ✕</button>
       </div>
@@ -595,6 +468,30 @@
     <canvas class="mind-graph-canvas" id="mindGraphCanvas"></canvas>
     <div class="mind-graph-hint">Drag nodes to explore · Scroll wheel to zoom · Click node to read</div>
   </div>
+
+  <!-- ==========================================================================
+       SITE FOOTER (Antimetal research-log row)
+       ========================================================================== -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-brand">
+        <span class="site-footer-dot" aria-hidden="true"></span>
+        <span class="site-footer-name">Avdhut Kulkarni</span>
+        <span class="site-footer-meta">01 · CODEX · MMXXVI</span>
+      </div>
+      <nav class="site-footer-nav" aria-label="Footer sections">
+        <button type="button" data-section="landing">Codex</button>
+        <button type="button" data-section="bibliophile">Bibliophile</button>
+        <button type="button" data-section="cinephile">Cinephile</button>
+        <button type="button" data-section="audiophile">Audiophile</button>
+        <button type="button" data-section="work">Craft</button>
+      </nav>
+      <div class="site-footer-right">
+        <span class="site-footer-note">Written in Obsidian</span>
+        <a href="./rss.xml" target="_blank" rel="noopener">RSS</a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Embedded Notes Data JSON -->
   <script type="application/json" id="notesDataJson">

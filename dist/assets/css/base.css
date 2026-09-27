@@ -49,41 +49,46 @@
 
   /* Z-Index Hierarchy */
   --header-h: 68px;
+  --footer-h: 52px;
   --z-canvas: 1;
   --z-desk-cards: 10;
   --z-torch: 5;
   --z-header: 100;
+  --z-footer: 90;
   --z-controls: 150;
   --z-reader: 1000;
   --z-cursor: 9999;
+
+  /* Antimetal accent (sole chromatic mark, both themes) */
+  --accent-chartreuse: #e2e67d;
 }
 
-/* PAPER DAYLIGHT THEME (Warm Archival Paper & Ink) */
+/* PAPER DAYLIGHT THEME (Antimetal editorial paper — full paper, no dark islands) */
 [data-theme="light"] {
-  --bg-dark: #f4efe4;
-  --bg-surface: #fffdf7;
-  --bg-surface-elevated: #ffffff;
-  --bg-card: #fffdf7;
-  --bg-card-alt: #ece5d3;
+  --bg-dark: #d7d7d0;
+  --bg-surface: #f7f6f3;
+  --bg-surface-elevated: #fdfcfa;
+  --bg-card: #f7f6f3;
+  --bg-card-alt: #e3e3de;
 
-  --text-primary: #1d1a14;
-  --text-secondary: #57534a;
-  --text-muted: #8a8371;
-  --text-faint: #b9b09a;
+  --text-primary: #1a1614;
+  --text-secondary: #53504c;
+  --text-muted: #66635f;
+  --text-faint: #a8a7a1;
 
-  --border-subtle: rgba(29, 26, 20, 0.12);
-  --border-medium: rgba(29, 26, 20, 0.24);
-  --border-strong: rgba(29, 26, 20, 0.38);
-  --header-bg: rgba(244, 239, 228, 0.9);
+  --border-subtle: rgba(26, 22, 20, 0.10);
+  --border-medium: rgba(26, 22, 20, 0.24);
+  --border-strong: rgba(26, 22, 20, 0.38);
+  --header-bg: rgba(215, 215, 208, 0.9);
 
-  --paper-cream: #fffdf7;
-  --paper-border: rgba(29, 26, 20, 0.2);
-  --paper-shadow: rgba(74, 60, 32, 0.28);
+  --paper-cream: #f7f6f3;
+  --paper-border: rgba(26, 22, 20, 0.2);
+  --paper-shadow: rgba(26, 22, 20, 0.14);
 
-  --torch-color: rgba(133, 100, 44, 0.1);
-  --torch-core: rgba(133, 100, 44, 0.04);
+  --torch-color: rgba(26, 22, 20, 0.06);
+  --torch-core: rgba(26, 22, 20, 0.02);
 
-  --accent-stamp: #1d1a14;
+  --accent-stamp: #1a1614;
   --accent-gold: #8a6d2f;
 }
 
@@ -388,4 +393,200 @@ button {
   .header-actions #btnOpenMindGraph {
     display: none;
   }
+}
+
+/* Mid-width header: prevent theme/sound clipping (screenshots showed cut-off) */
+@media (max-width: 1280px) {
+  .site-header {
+    padding: 0 1rem;
+    gap: 0.6rem;
+  }
+  .header-actions {
+    gap: 0.45rem;
+    min-width: 0;
+  }
+  .persona-nav-btn {
+    padding: 0.32rem 0.6rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+  .action-pill-btn kbd,
+  .sound-toggle-btn .sound-btn-label {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1100px) {
+  .action-pill-btn kbd {
+    display: none;
+  }
+  .sound-toggle-btn {
+    padding: 0.35rem 0.55rem;
+  }
+  .sound-toggle-btn .sound-btn-label {
+    display: none;
+  }
+  .nav-personas-group {
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-personas-group::-webkit-scrollbar {
+    display: none;
+  }
+  .brand-title {
+    white-space: nowrap;
+  }
+  .header-actions {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   SITE FOOTER (Antimetal research-log row — the missing global footer)
+   Fixed bar; main viewport sits above it (see desk.css).
+   ========================================================================== */
+
+.site-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--footer-h);
+  z-index: var(--z-footer);
+  display: flex;
+  align-items: center;
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px dashed var(--border-medium);
+}
+
+.site-footer-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.site-footer-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-chartreuse);
+  flex-shrink: 0;
+}
+
+.site-footer-name {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-primary);
+}
+
+.site-footer-meta {
+  opacity: 0.8;
+}
+
+.site-footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-footer-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.site-footer-nav button {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.site-footer-nav button:hover {
+  color: var(--text-primary);
+  background: var(--border-subtle);
+}
+
+.site-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.site-footer-right a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid var(--border-subtle);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-footer-right a:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --footer-h: 88px;
+  }
+  .site-footer {
+    align-items: stretch;
+    padding: 0.4rem 0;
+  }
+  .site-footer-inner {
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    padding: 0 1rem;
+  }
+  .site-footer-meta,
+  .site-footer-note {
+    display: none;
+  }
+}
+
+/* Antimetal light: serif does the work at weight 400, never bold */
+[data-theme="light"] .brand-title,
+[data-theme="light"] .cover-name,
+[data-theme="light"] .page-manifesto-title,
+[data-theme="light"] .cinephile-heading,
+[data-theme="light"] .audiophile-heading,
+[data-theme="light"] .work-headline,
+[data-theme="light"] .reader-title {
+  font-weight: 400;
 }

@@ -1,6 +1,6 @@
 /**
  * AVDHUT KULKARNI — THE MULTI-POTENTIALITE PORTFOLIO
- * Main Controller: 3D Book Codex, 4 Personas, Theme Shifts, Archive Drawer, Audio & Live Signals
+ * Main Controller: 3D Book Codex, 4 Personas, Theme Shifts, Audio & Live Signals
  */
 
 (function (window, document) {
@@ -17,20 +17,15 @@
     // 2. Initialize Persona Sections Switcher & 3D Book
     initPersonaSwitching();
     init3DBook();
+    initSiteFooter();
 
-    // 3. Initialize Archive Drawer
-    initArchiveDrawer();
-
-    // 4. Initialize Tag Filtering on Bibliophile Desk
+    // 3. Initialize Tag Filtering on Bibliophile Desk
     initTagFiltering(desk);
 
-    // 5. Initialize Theme Toggle (Dark / Light)
+    // 4. Initialize Theme Toggle (Dark / Light)
     initThemeToggle();
 
-    // 6. Initialize Ambient Book & Character Carousel
-    initBookCarousel(reader);
-
-    // 7. Initialize Direct Click Handlers for Films, Audio, and Work
+    // 5. Initialize Direct Click Handlers for Films, Audio, and Work
     initCardReaders(reader);
 
     // 8. Start Local Time Ticker
@@ -117,47 +112,15 @@
         }
         if (target && window.switchPersonaSection) {
           window.switchPersonaSection(target);
-        } else if (link.dataset.drawer === 'archive') {
-          const btn = document.getElementById('btnToggleArchive');
-          if (btn) btn.click();
         }
       });
     });
-  }
 
-  // Separate Archive Drawer
-  function initArchiveDrawer() {
-    const drawer = document.getElementById('archiveDrawer');
-    const btnToggle = document.getElementById('btnToggleArchive');
-    const btnClose = document.getElementById('btnCloseArchive');
-
-    if (!drawer || !btnToggle) return;
-
-    btnToggle.addEventListener('click', () => {
-      const isOpen = drawer.classList.contains('active');
-      if (isOpen) {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
-      } else {
-        drawer.classList.add('active');
-        btnToggle.classList.add('active');
-      }
-      if (window.AudioFX) window.AudioFX.playClick(900);
-    });
-
-    if (btnClose) {
-      btnClose.addEventListener('click', () => {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
-        if (window.AudioFX) window.AudioFX.playClick(750);
+  function initSiteFooter() {
+    document.querySelectorAll('.site-footer-nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.switchPersonaSection) window.switchPersonaSection(btn.dataset.section);
       });
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('active')) {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
-      }
     });
   }
 
@@ -204,7 +167,8 @@
     }
 
     const stored = localStorage.getItem('avdhut-theme');
-    const initial = stored === 'light' || stored === 'dark' ? stored : 'dark';
+    const attrTheme = document.documentElement.getAttribute('data-theme');
+    const initial = stored === 'light' || stored === 'dark' ? stored : (attrTheme === 'light' ? 'light' : 'dark');
     document.documentElement.setAttribute('data-theme', initial);
     localStorage.setItem('avdhut-theme', initial);
     paintThemeIcon(initial);
@@ -250,98 +214,6 @@
         e.preventDefault();
         readerInstance.open(caseCard.dataset.slug);
       }
-    });
-  }
-
-  // Ambient Favorite Books & Heroes Carousel
-  function initBookCarousel(readerInstance) {
-    const wrap = document.getElementById('ambientCarousel');
-    const btnToggle = document.getElementById('btnToggleBooksCarousel');
-    const btnClose = document.getElementById('btnCloseCarousel');
-    const btnPrev = document.getElementById('btnPrevSlide');
-    const btnNext = document.getElementById('btnNextSlide');
-    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
-
-    if (!wrap || !slides.length) return;
-
-    let currentIndex = 0;
-
-    function showSlide(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
-      currentIndex = index;
-
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentIndex);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-        dot.setAttribute('aria-pressed', String(i === currentIndex));
-      });
-
-      if (window.AudioFX) window.AudioFX.playPageTurn();
-    }
-
-    function nextSlide() {
-      showSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentIndex - 1);
-    }
-
-    if (btnToggle) {
-      btnToggle.addEventListener('click', () => {
-        const isOpen = wrap.classList.contains('is-spotlight');
-        if (isOpen) {
-          wrap.classList.remove('is-spotlight');
-          wrap.setAttribute('aria-hidden', 'true');
-          btnToggle.classList.remove('active');
-        } else {
-          wrap.classList.add('is-spotlight');
-          wrap.setAttribute('aria-hidden', 'false');
-          btnToggle.classList.add('active');
-        }
-        if (window.AudioFX) window.AudioFX.playPageTurn();
-      });
-    }
-
-    if (btnClose) {
-      btnClose.addEventListener('click', () => {
-        wrap.classList.remove('is-spotlight');
-        wrap.setAttribute('aria-hidden', 'true');
-        if (btnToggle) btnToggle.classList.remove('active');
-        if (window.AudioFX) window.AudioFX.playClick(750);
-      });
-    }
-
-    if (btnPrev) btnPrev.addEventListener('click', prevSlide);
-    if (btnNext) btnNext.addEventListener('click', nextSlide);
-
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => showSlide(idx));
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && wrap.classList.contains('is-spotlight')) {
-        wrap.classList.remove('is-spotlight');
-        wrap.setAttribute('aria-hidden', 'true');
-        if (btnToggle) btnToggle.classList.remove('active');
-      }
-    });
-
-    document.querySelectorAll('.slide-read-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const slug = btn.dataset.slug;
-        wrap.classList.remove('is-spotlight');
-        wrap.setAttribute('aria-hidden', 'true');
-        if (btnToggle) btnToggle.classList.remove('active');
-        if (readerInstance && slug) {
-          readerInstance.open(slug);
-        }
-      });
     });
   }
 

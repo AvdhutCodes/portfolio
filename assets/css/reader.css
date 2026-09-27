@@ -14,17 +14,20 @@
   justify-content: center;
   overflow-y: auto;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s var(--ease-smooth);
+  transition: opacity 0.35s var(--ease-smooth), visibility 0s linear 0.35s;
 }
 
 [data-theme="light"] .reader-modal {
-  background: rgba(244, 239, 228, 0.96);
+  background: rgba(215, 215, 208, 0.96);
 }
 
 .reader-modal.is-open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.35s var(--ease-smooth);
 }
 
 /* Reading Progress Bar */
@@ -349,10 +352,12 @@
 .reader-footer {
   margin-top: 4rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px dashed var(--border-medium);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-muted);

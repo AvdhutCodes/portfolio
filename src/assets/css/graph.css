@@ -87,7 +87,6 @@
 .legend-dot.cine   { background: #00e054; }
 .legend-dot.audio  { background: #f59e0b; }
 .legend-dot.work   { background: #3b82f6; }
-.legend-dot.archive{ background: #a855f7; }
 
 .mind-graph-canvas {
   width: 100%;
@@ -108,19 +107,20 @@
 }
 
 [data-theme="light"] .mind-graph-modal {
-  background: #f4efe4;
+  background: #d7d7d0;
 }
 
 [data-theme="light"] .mind-graph-header {
-  background: linear-gradient(180deg, rgba(244, 239, 228, 0.92) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(215, 215, 208, 0.92) 0%, transparent 100%);
 }
 
 [data-theme="light"] .mind-graph-title-group h2 {
-  color: #1d1a14;
+  color: #1a1614;
+  font-weight: 400;
 }
 
 [data-theme="light"] .mind-graph-hint {
-  color: rgba(29, 26, 20, 0.55);
+  color: rgba(26, 22, 20, 0.6);
 }
 
 @media (max-width: 600px) {

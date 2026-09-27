@@ -100,7 +100,7 @@ server.listen(PORT, () => {
   🏛️  AVDHUT KULKARNI — MULTI-POTENTIALITE PORTFOLIO
 ============================================================
   Local Server:  http://localhost:${PORT}
-  Watching:      ./content/**/* (Obsidian Vault: Books, Essays, Films, Audio, Work, Archive)
+  Watching:      ./content/**/* (Obsidian Vault: Books, Essays, Films, Audio, Work)
   
   Write or paste notes in Obsidian and they will
   automatically update your live portfolio!

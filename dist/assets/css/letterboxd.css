@@ -153,7 +153,17 @@
 
 [data-theme="light"] .top-four-card,
 [data-theme="light"] .letterboxd-film-card {
-  box-shadow: 0 14px 34px rgba(20, 24, 28, 0.28);
+  box-shadow: 0 14px 34px rgba(26, 22, 20, 0.20);
+}
+
+[data-theme="light"] .cinephile-header-bar {
+  border-bottom: 1px dashed rgba(26, 22, 20, 0.24);
+}
+
+[data-theme="light"] .cinephile-brand-badge {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
+  color: #1a1614;
 }
 
 .top-four-badge {
@@ -413,4 +423,41 @@
 .lb-open-btn:hover {
   gap: 0.6rem;
   color: #fff;
+}
+
+/* Full Antimetal paper in light mode (no dark islands) */
+[data-theme="light"] .top-four-card {
+  background: #f7f6f3;
+  border: 1px solid rgba(26, 22, 20, 0.16);
+  color: #1a1614;
+}
+
+[data-theme="light"] .top-four-title {
+  color: #1a1614;
+  font-weight: 400;
+}
+
+[data-theme="light"] .top-four-review {
+  color: #53504c;
+}
+
+[data-theme="light"] .letterboxd-film-card {
+  background: #f7f6f3;
+  border: 1px solid rgba(26, 22, 20, 0.16);
+}
+
+[data-theme="light"] .lb-title a {
+  color: #1a1614;
+}
+
+[data-theme="light"] .lb-review-text {
+  color: #53504c;
+}
+
+[data-theme="light"] .lb-footer-row {
+  border-top: 1px dashed rgba(26, 22, 20, 0.2);
+}
+
+[data-theme="light"] .lb-open-btn:hover {
+  color: #1a1614;
 }
