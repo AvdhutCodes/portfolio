@@ -84,7 +84,7 @@
   text-align: center;
   pointer-events: none;
   z-index: 0;
-  width: 480px;
+  width: min(480px, 80vw);
   opacity: 0.22;
   color: var(--text-primary);
   transition: opacity 0.5s ease;
@@ -169,34 +169,6 @@
     0 0 0 1px rgba(26, 22, 20, 0.4);
 }
 
-.card-att-photo {
-  position: absolute;
-  top: -28px;
-  right: -22px;
-  width: 98px;
-  transform: rotate(6.5deg);
-  z-index: 4;
-  pointer-events: none;
-  transition: transform 0.3s ease;
-}
-
-.card-att-photo.photo-left {
-  right: auto;
-  left: -22px;
-  transform: rotate(-7deg);
-}
-
-.card-att-photo img {
-  width: 100%;
-  height: 82px;
-  object-fit: cover;
-  display: block;
-  border: 4px solid #fff;
-  border-bottom-width: 12px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-}
-
 .card-meta-head {
   display: flex;
   justify-content: space-between;
@@ -243,6 +215,10 @@
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
   text-decoration-color: #ffffff;
+}
+
+[data-theme="light"] .manuscript-card:hover .card-title {
+  text-decoration-color: #8a6d2f;
 }
 
 .card-body {
@@ -312,6 +288,10 @@
   letter-spacing: 0.1em;
 }
 
+[data-theme="light"] .card-page-num {
+  color: #66635f;
+}
+
 .card-attachment {
   position: absolute;
   top: -22px;
@@ -348,6 +328,10 @@
   margin-bottom: 2px;
 }
 
+[data-theme="light"] .attach-tag {
+  color: #66635f;
+}
+
 .attach-text {
   font-family: var(--font-serif);
   font-size: 0.65rem;
@@ -381,6 +365,88 @@
 }
 
 /* ==========================================================================
+   1a. BIBLIOPHILE DESK CONTROLS (Zoom HUD + Tag Filter Bar)
+   ========================================================================== */
+
+.canvas-hud {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 20;
+}
+
+.hud-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--duration-quick);
+}
+
+.hud-btn:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.45rem 0.7rem;
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  z-index: 20;
+}
+
+.filter-chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all var(--duration-quick);
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  color: var(--text-primary);
+  background: var(--border-subtle);
+}
+
+.filter-chip.active {
+  background: var(--text-primary);
+  color: var(--bg-dark);
+  font-weight: 600;
+}
+
+.manuscript-card.is-filtered-out {
+  opacity: 0.12;
+  filter: grayscale(0.9);
+  pointer-events: none;
+}
+
+/* ==========================================================================
    2. CINEPHILE SECTION (Letterboxd Posters with Projection Light)
    ========================================================================== */
 
@@ -392,22 +458,6 @@
   padding: 3rem 2rem 6rem;
 }
 
-.cinephile-intro {
-  margin-bottom: 3rem;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 1.8rem;
-}
-
-.cinephile-tagline {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
 .cinephile-heading {
   font-family: var(--font-display);
   font-size: 2.2rem;
@@ -415,6 +465,10 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+}
+
+.cinephile-heading-flush {
+  margin-top: 0.3rem;
 }
 
 .cinephile-subtext {
@@ -445,6 +499,10 @@
   transform: translateY(-6px);
   border-color: var(--border-medium);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .film-card:hover {
+  box-shadow: 0 20px 44px rgba(26, 22, 20, 0.22);
 }
 
 .film-poster-wrap {
@@ -588,7 +646,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #10b981;
+  color: var(--accent-forest);
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -638,6 +696,10 @@
   background: #f7f6f3;
   border-color: rgba(26, 22, 20, 0.2);
   box-shadow: 0 14px 34px rgba(26, 22, 20, 0.16);
+}
+
+[data-theme="light"] .audio-card:hover {
+  box-shadow: 0 16px 36px rgba(26, 22, 20, 0.24), 0 0 30px rgba(138, 109, 47, 0.12);
 }
 
 [data-theme="light"] .turntable-deck {
@@ -866,7 +928,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #10b981;
+  color: var(--accent-forest);
   font-weight: 600;
 }
 
@@ -909,16 +971,16 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--accent-forest);
+  background: var(--accent-forest-dim);
+  border: 1px solid var(--accent-forest-line);
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   transition: all 0.2s;
 }
 
 .spotify-link-btn:hover {
-  background: #10b981;
+  background: var(--accent-forest);
   color: #fff;
 }
 

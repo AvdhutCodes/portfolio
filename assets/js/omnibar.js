@@ -39,8 +39,7 @@
 
   function switchSection(sectionId) {
     closeOmnibar();
-    const btn = document.querySelector(`.persona-nav-btn[data-section="${sectionId}"]`);
-    if (btn) btn.click();
+    if (window.switchPersonaSection) window.switchPersonaSection(sectionId);
   }
 
   function openGraphView() {

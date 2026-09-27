@@ -1,6 +1,6 @@
 # 📓 The Multi-Potentialite's Guide: Writing in Obsidian & Auto-Publishing
 
-Welcome, **Avdhut Kulkarni**! This guide details how your Obsidian notes in each category (**Bibliophile**, **Cinephile**, **Audiophile**, **Work**, and **Archive**) translate seamlessly into floating manuscript cards, Letterboxd poster cards with projection lighting, vinyl listening logs, and case studies, and automatically deploy to **GitHub Pages**.
+Welcome, **Avdhut Kulkarni**! This guide details how your Obsidian notes in each category (**Bibliophile**, **Cinephile**, **Audiophile**, and **Work**) translate seamlessly into floating manuscript cards, Letterboxd poster cards with projection lighting, vinyl listening logs, and case studies, and automatically deploy to **GitHub Pages**.
 
 ---
 
@@ -9,7 +9,7 @@ Welcome, **Avdhut Kulkarni**! This guide details how your Obsidian notes in each
 Open your Obsidian vault at:
 `c:\Users\kulka\OneDrive\Documents\avdhut portfolio\content`
 
-Your vault is organized into 6 dedicated realms:
+Your vault is organized into 5 dedicated realms:
 
 ```
 content/
@@ -18,7 +18,6 @@ content/
 ├── films/       # 🎬 Cinephile Letterboxd movie reviews with 35mm projection beam
 ├── audio/       # 🎧 Audiophile vinyl listening logs with Spotify links
 ├── work/        # 💼 Product design case studies & systems engineering
-└── archive/     # 📦 Raw chronological stream-of-consciousness & notebook scraps
 ```
 
 ---

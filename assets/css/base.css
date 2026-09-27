@@ -32,7 +32,9 @@
 
   --accent-stamp: #ffffff;      /* Pure monochrome ink */
   --accent-blue: #00e054;       /* Letterboxd green */
-  --accent-forest: #10b981;     /* Monastic green */
+  --accent-forest: #10b981;     /* Monastic green (AA on dark, tokenized) */
+  --accent-forest-dim: rgba(16, 185, 129, 0.08);
+  --accent-forest-line: rgba(16, 185, 129, 0.25);
   --accent-gold: #e5c07b;       /* Bookbinder gold */
 
   /* Typography */
@@ -58,6 +60,8 @@
   --z-controls: 150;
   --z-reader: 1000;
   --z-cursor: 9999;
+  --z-graph: 99998;
+  --z-omnibar: 99999;
 
   /* Antimetal accent (sole chromatic mark, both themes) */
   --accent-chartreuse: #e2e67d;
@@ -89,6 +93,9 @@
   --torch-core: rgba(26, 22, 20, 0.02);
 
   --accent-stamp: #1a1614;
+  --accent-forest: #047857;     /* Darker emerald for AA contrast on paper */
+  --accent-forest-dim: rgba(4, 120, 87, 0.1);
+  --accent-forest-line: rgba(4, 120, 87, 0.35);
   --accent-gold: #8a6d2f;
 }
 
@@ -165,6 +172,13 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  cursor: pointer;
+}
+
+.brand-wrap:focus-visible {
+  outline: 1px dashed var(--border-strong);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .brand-title {
@@ -195,46 +209,12 @@ button {
   background: var(--accent-gold);
 }
 
-/* Persona Section Navigation Pills */
-.nav-personas-group {
-  display: flex;
-  background: var(--border-subtle);
-  padding: 4px;
-  border-radius: 999px;
-  border: 1px solid var(--border-subtle);
-  gap: 2px;
-}
-
-.persona-nav-btn {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  color: var(--text-muted);
-  transition: all var(--duration-quick);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.persona-nav-btn:hover {
-  color: var(--text-primary);
-  background: var(--border-subtle);
-}
-
-.persona-nav-btn.active {
-  background: var(--text-primary);
-  color: var(--bg-dark);
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Header Right Actions */
+/* Header utility actions (search, graph, sound, theme, rss) */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  margin-left: auto;
 }
 
 .action-pill-btn {
@@ -282,78 +262,42 @@ button {
   color: var(--text-primary);
 }
 
-/* Status Ticker */
-.status-ticker {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+.kbd-hint {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.6rem;
+  padding: 1px 5px;
+  border-radius: 3px;
   background: var(--border-subtle);
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-subtle);
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 6px #10b981;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
 @media (max-width: 960px) {
   .site-header {
     padding: 0 1rem;
   }
-  .status-ticker {
-    display: none;
-  }
-  .persona-nav-btn span {
-    font-size: 0.68rem;
-    padding: 0.2rem 0.4rem;
-  }
 }
 
 @media (max-width: 760px) {
-  :root {
-    --header-h: 110px;
-  }
-
-  .nav-personas-group {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 100%;
-    max-width: none;
-    overflow: visible;
-    justify-content: space-between;
-    gap: 0;
-  }
   .site-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: 48px 46px;
-    align-content: center;
-    gap: 2px 6px;
-    padding: 4px 12px;
-  }
-  .brand-wrap {
-    grid-column: 1;
-    grid-row: 1;
-    min-width: 0;
+    padding: 0 0.75rem;
   }
   .brand-title {
     font-size: 1rem;
     white-space: nowrap;
   }
+  .brand-persona {
+    display: none;
+  }
   .header-actions {
-    grid-column: 2;
-    grid-row: 1;
     gap: 0.3rem;
   }
-  .header-actions #btnToggleSound,
+  .header-actions #btnToggleSound {
+    padding: 0.35rem 0.55rem;
+  }
+  .header-actions #btnToggleSound .sound-btn-label {
+    display: none;
+  }
   .header-actions > a {
     display: none;
   }
@@ -371,22 +315,6 @@ button {
     width: 34px;
     height: 34px;
   }
-  .persona-nav-btn {
-    flex: 1 1 0;
-    justify-content: center;
-    min-width: 0;
-    min-height: 36px;
-    flex-direction: column;
-    gap: 0.08rem;
-    padding: 0.15rem 0.2rem;
-    font-size: 0.64rem;
-    line-height: 1;
-  }
-  .persona-nav-btn span {
-    display: block;
-    font-size: 0.48rem;
-    letter-spacing: 0.01em;
-  }
 }
 
 @media (max-width: 380px) {
@@ -395,7 +323,7 @@ button {
   }
 }
 
-/* Mid-width header: prevent theme/sound clipping (screenshots showed cut-off) */
+/* Mid-width header: prevent utility-button clipping */
 @media (max-width: 1280px) {
   .site-header {
     padding: 0 1rem;
@@ -404,11 +332,6 @@ button {
   .header-actions {
     gap: 0.45rem;
     min-width: 0;
-  }
-  .persona-nav-btn {
-    padding: 0.32rem 0.6rem;
-    font-size: 0.68rem;
-    white-space: nowrap;
   }
   .action-pill-btn kbd,
   .sound-toggle-btn .sound-btn-label {
@@ -424,14 +347,6 @@ button {
     padding: 0.35rem 0.55rem;
   }
   .sound-toggle-btn .sound-btn-label {
-    display: none;
-  }
-  .nav-personas-group {
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .nav-personas-group::-webkit-scrollbar {
     display: none;
   }
   .brand-title {
@@ -537,6 +452,12 @@ button {
   background: var(--border-subtle);
 }
 
+.site-footer-nav button.active {
+  background: var(--text-primary);
+  color: var(--bg-dark);
+  font-weight: 600;
+}
+
 .site-footer-right {
   display: flex;
   align-items: center;
@@ -577,6 +498,25 @@ button {
   .site-footer-meta,
   .site-footer-note {
     display: none;
+  }
+}
+
+/* Narrow phones: shrink footer nav so all 5 sections fit without scroll */
+@media (max-width: 480px) {
+  .site-footer-inner {
+    padding: 0 0.6rem;
+    gap: 0.25rem 0.5rem;
+  }
+  .site-footer-nav button {
+    font-size: 0.58rem;
+    padding: 0.28rem 0.42rem;
+  }
+  .site-footer-brand {
+    font-size: 0.58rem;
+  }
+  .site-footer-right {
+    gap: 0.5rem;
+    font-size: 0.58rem;
   }
 }
 

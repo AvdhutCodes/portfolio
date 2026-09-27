@@ -94,6 +94,16 @@
   margin-bottom: 1.2rem;
 }
 
+.section-headline-row.gap-top {
+  margin-top: 2rem;
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
 .section-label-glow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -327,10 +337,6 @@
   background: #000;
 }
 
-.lb-poster-box.poster-unavailable {
-  min-height: 0;
-}
-
 .lb-poster-img {
   width: 100%;
   height: 100%;
@@ -458,6 +464,42 @@
   border-top: 1px dashed rgba(26, 22, 20, 0.2);
 }
 
+[data-theme="light"] .lb-open-btn {
+  color: #0e7490;
+}
+
 [data-theme="light"] .lb-open-btn:hover {
   color: #1a1614;
+}
+
+/* Full paper chips (no dark islands on paper cards) */
+[data-theme="light"] .top-four-badge {
+  background: #fdfcfa;
+  color: #1a1614;
+  border-color: rgba(26, 22, 20, 0.4);
+}
+
+[data-theme="light"] .poster-unavailable {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(226, 230, 125, 0.4), transparent 60%),
+    linear-gradient(155deg, #fdfcfa, #f7f6f3 62%, #e3e3de);
+}
+
+[data-theme="light"] .poster-unavailable-label {
+  color: rgba(26, 22, 20, 0.72);
+}
+
+[data-theme="light"] .poster-unavailable-label::before {
+  border-color: rgba(26, 22, 20, 0.5);
+  background: linear-gradient(145deg, rgba(26, 22, 20, 0.08), transparent 55%);
+}
+
+[data-theme="light"] .lb-stars-badge {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
+}
+
+[data-theme="light"] .lb-rewatch-icon {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
 }

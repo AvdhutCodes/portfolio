@@ -70,7 +70,9 @@
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    cursor.classList.add('is-active');
+    ring.classList.add('is-active');
+    cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
 
     // Spawn trailing stardust if moved sufficiently
     const now = performance.now();
@@ -97,6 +99,17 @@
     ring.classList.remove('cursor-clicked');
   });
 
+  // Hide the custom cursor when the pointer leaves the window or tab hides,
+  // so it never parks as a stray circle on screen.
+  function parkCursor() {
+    cursor.classList.remove('is-active');
+    ring.classList.remove('is-active');
+  }
+  document.documentElement.addEventListener('mouseleave', parkCursor);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) parkCursor();
+  });
+
   // Track hoverables for magnetic cursor
   const hoverables = 'a, button, input, [role="button"], .manuscript-card, .film-card, .audio-card, .book-3d-tome, .interactive';
   document.addEventListener('mouseover', (e) => {
@@ -114,7 +127,7 @@
   function loop() {
     ringX += (mouseX - ringX) * 0.16;
     ringY += (mouseY - ringY) * 0.16;
-    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
 
     // Render particles
     dustCtx.clearRect(0, 0, dustCanvas.width, dustCanvas.height);

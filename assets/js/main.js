@@ -18,6 +18,7 @@
     initPersonaSwitching();
     init3DBook();
     initSiteFooter();
+    initBrandReset();
 
     // 3. Initialize Tag Filtering on Bibliophile Desk
     initTagFiltering(desk);
@@ -33,8 +34,8 @@
   });
 
   // Persona Switching (Landing Codex, Bibliophile, Cinephile, Audiophile, Work)
+  // Single-site navigation: footer buttons are the only section nav.
   function initPersonaSwitching() {
-    const personaButtons = document.querySelectorAll('.persona-nav-btn');
     const sectionViews = document.querySelectorAll('.persona-section-view');
     const personaLabel = document.getElementById('personaLabel');
 
@@ -47,22 +48,14 @@
     };
 
     window.switchPersonaSection = function (targetSection) {
-      // Update nav buttons
-      personaButtons.forEach(b => {
-        if (b.dataset.section === targetSection) {
-          b.classList.add('active');
-        } else {
-          b.classList.remove('active');
-        }
+      // Update footer nav buttons
+      document.querySelectorAll('.site-footer-nav button').forEach(b => {
+        b.classList.toggle('active', b.dataset.section === targetSection);
       });
 
       // Update active section
       sectionViews.forEach(view => {
-        if (view.id === `section-${targetSection}`) {
-          view.classList.add('active');
-        } else {
-          view.classList.remove('active');
-        }
+        view.classList.toggle('active', view.id === `section-${targetSection}`);
       });
 
       // Update persona label under Avdhut Kulkarni
@@ -78,12 +71,6 @@
         window.AudioFX.playClick(850);
       }
     };
-
-    personaButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        window.switchPersonaSection(btn.dataset.section);
-      });
-    });
   }
 
   // Interactive 3D Opening Book
@@ -95,8 +82,12 @@
       tome.addEventListener('click', (e) => {
         if (e.target.closest('.chapter-row-link')) return;
         tome.classList.toggle('is-open');
+        const isOpen = tome.classList.contains('is-open');
         const wrap = tome.closest('.landing-book-wrapper');
-        if (wrap) wrap.classList.toggle('is-open', tome.classList.contains('is-open'));
+        if (wrap) wrap.classList.toggle('is-open', isOpen);
+        // Swap the hint so it never reads stale ("open" while already open)
+        const hint = document.querySelector('.book-hint-desktop');
+        if (hint) hint.textContent = isOpen ? 'Click the book to close the codex' : 'Click the book to open the codex';
         if (window.AudioFX) {
           window.AudioFX.playPageTurn();
         }
@@ -115,12 +106,47 @@
         }
       });
     });
+  }
 
   function initSiteFooter() {
     document.querySelectorAll('.site-footer-nav button').forEach(btn => {
       btn.addEventListener('click', () => {
         if (window.switchPersonaSection) window.switchPersonaSection(btn.dataset.section);
       });
+    });
+  }
+
+  // Brand corner resets the whole site: landing section, closed book,
+  // closed modals, top of page. Keyboard accessible.
+  function initBrandReset() {
+    const brand = document.querySelector('.brand-wrap');
+    if (!brand) return;
+    brand.setAttribute('role', 'button');
+    brand.setAttribute('tabindex', '0');
+    brand.setAttribute('title', 'Back to Codex (reset view)');
+
+    const reset = () => {
+      if (window.switchPersonaSection) window.switchPersonaSection('landing');
+      if (window.ReaderModal) window.ReaderModal.close();
+      if (window.Omnibar) window.Omnibar.close();
+      if (window.closeMindGraph) window.closeMindGraph();
+      const tome = document.getElementById('main3DTome');
+      if (tome) {
+        tome.classList.remove('is-open');
+        const wrap = tome.closest('.landing-book-wrapper');
+        if (wrap) wrap.classList.remove('is-open');
+        const hint = document.querySelector('.book-hint-desktop');
+        if (hint) hint.textContent = 'Click the book to open the codex';
+      }
+      window.scrollTo(0, 0);
+    };
+
+    brand.addEventListener('click', reset);
+    brand.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        reset();
+      }
     });
   }
 
@@ -199,10 +225,15 @@
       }
 
       const audioBtn = e.target.closest('.audio-notes-btn');
+      const audioCard = e.target.closest('.audio-card');
       if (audioBtn && audioBtn.dataset.slug) {
         e.preventDefault();
         if (window.AudioFX) window.AudioFX.playVinylNeedle();
         readerInstance.open(audioBtn.dataset.slug);
+      } else if (audioCard && audioCard.dataset.slug && !e.target.closest('a')) {
+        e.preventDefault();
+        if (window.AudioFX) window.AudioFX.playVinylNeedle();
+        readerInstance.open(audioCard.dataset.slug);
       }
 
       const caseBtn = e.target.closest('.case-read-btn');

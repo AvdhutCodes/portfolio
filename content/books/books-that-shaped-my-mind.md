@@ -1,11 +1,11 @@
 ---
 title: "The Ten Books That Rewired My Mental Software"
-subtitle: "An annotated canon for the modern autodidact and bibliophile"
+subtitle: "An annotated shelf for the modern autodidact and bibliophile"
 date: 2025-12-15
-tags: [Books, Reading, Bibliophile, Canon, Mental Models]
+tags: [Books, Reading, Bibliophile, Tomes, Mental Models]
 author: Avadh Kulkarni
 rev: 8
-stamp: CANON · VOL 01
+stamp: TOME · VOL 01
 quote: " \"In a world of infinite books, reading the foundational 100 repeatedly is a superpower. — Avadh Kulkarni\""
 excerpt: "If you read the same books everyone else is reading, you will think the same thoughts everyone else is thinking. Here is my foundational shelf."
 cardSnippet: "A curated library is not furniture; it is an external hard drive for your consciousness."

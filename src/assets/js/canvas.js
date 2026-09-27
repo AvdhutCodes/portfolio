@@ -87,7 +87,7 @@
 
     onPointerDown(e) {
       // Don't drag if clicking buttons, links or reader
-      if (e.target.closest('button') || e.target.closest('.site-header') || e.target.closest('.bottom-bar')) {
+      if (e.target.closest('button') || e.target.closest('.site-header') || e.target.closest('.bottom-bar') || e.target.closest('.canvas-hud')) {
         return;
       }
 

@@ -2,9 +2,9 @@
 
 ## Commands
 
-- `npm run dev` — serve repo root on `:3000` (`$env:PORT=3001` to override),
-  watches `content/`, `src/templates/`, `src/assets` and rebuilds on change.
-  Rebuild-only: no browser auto-refresh.
+- `npm run dev` — serve repo root on `:3000` (`PORT=3001 npm run dev`
+  to override), watches `content/`, `src/templates/`, `src/assets` and
+  rebuilds on change. Rebuild-only: no browser auto-refresh.
 - `node build.js` — deterministic offline build (no Letterboxd fetch).
   `npm run build` = Letterboxd sync + build.
 - `npm test` — `node --check` on `build.js`, `dev-server.js`,
@@ -35,12 +35,18 @@ and repo root (dev-server document root). After editing anything under `src/`,
 3. **Live feed is thin.** The rss2json proxy returns ~10 recent items; the SSG
    bundle holds the full 50-entry diary. Never let live data downgrade curated
    sections (Top Four renders SSG-only; live refreshes reel + now-strip).
-4. **Theme via vars, reviewed per surface.** Dark-first design; brand-dark
-   surfaces (Letterboxd cards, vinyl, codex, carousel) stay dark in light mode
-   by decision. New styles must use `var(--bg-*)` / `var(--text-*)` / borders
-   and be checked in BOTH themes. Canvas/JS-drawn colors must read
-   `data-theme` (see `graph-view.js#categoryColor`, `cursor.js#draw`).
-5. **No new runtime deps** without asking. Zero-dependency frontend (Web Audio
+4. **Theme via vars, reviewed per surface.** Full-paper light theme
+   (Antimetal): every surface flips to paper in light mode — no dark
+   islands. Only intentional photo objects stay dark (poster wells, vinyl
+   disc, turntable hardware). New styles must use `var(--bg-*)` /
+   `var(--text-*)` / borders and be checked in BOTH themes.
+   Canvas/JS-drawn colors must read `data-theme` (see
+   `graph-view.js#categoryColor`, `cursor.js#draw`).
+5. **Single navigation: footer only.** Section nav lives in
+   `.site-footer-nav`; the header holds brand + utilities only. Any new
+   section needs a footer button + `switchPersonaSection` target + chapter
+   link, never a header pill.
+6. **No new runtime deps** without asking. Zero-dependency frontend (Web Audio
    FX, hand-rolled canvas); only gray-matter + marked in Node.
 
 ## Verification standard

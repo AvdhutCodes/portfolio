@@ -8,6 +8,7 @@
   <meta property="og:title" content="Avdhut Kulkarni · The Multipotentialite Codex">
   <meta property="og:description" content="Interactive 3D opening book, live Letterboxd reviews, infinite manuscript canvas, vinyl crates, and product design craft.">
   <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230e0e12'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23d4af37' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 
   <!-- Core & Extended Stylesheets -->
   <link rel="stylesheet" href="./assets/css/base.css">
@@ -49,33 +50,7 @@
       </div>
     </div>
 
-    <!-- Center Persona Navigation (The 5 Realms) -->
-    <nav class="nav-personas-group" aria-label="Persona Navigation">
-      <button class="persona-nav-btn active" data-section="landing" id="navBtnLanding" title="Landing: The 3D Opening Codex" aria-label="Codex">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-        <span>Codex</span>
-      </button>
-
-      <button class="persona-nav-btn" data-section="bibliophile" id="navBtnBibliophile" title="Bibliophile: Manuscript Canvas & Books" aria-label="Bibliophile">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        <span>Bibliophile</span>
-      </button>
-
-      <button class="persona-nav-btn" data-section="cinephile" id="navBtnCinephile" title="Cinephile: Letterboxd Live Diary & Posters" aria-label="Cinephile">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-        <span>Cinephile</span>
-      </button>
-
-      <button class="persona-nav-btn" data-section="audiophile" id="navBtnAudiophile" title="Audiophile: Vinyl Crates & Spotify Logs" aria-label="Audiophile">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
-        <span>Audiophile</span>
-      </button>
-
-      <button class="persona-nav-btn" data-section="work" id="navBtnWork" title="Work: Systems Architecture & Product Design" aria-label="Craft">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        <span>Craft</span>
-      </button>
-    </nav>
+    <!-- Section navigation lives in the site footer (single nav, immersive header) -->
 
     <!-- Header Actions (Omnibar, Mind Graph, Sound, Theme, RSS) -->
     <div class="header-actions">
@@ -83,7 +58,7 @@
       <button class="action-pill-btn" id="btnOpenOmnibar" title="Open Command Palette (Cmd+K / Ctrl+K)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span>Search</span>
-        <kbd style="font-size: 0.6rem; opacity: 0.7; padding: 1px 4px; background: rgba(255,255,255,0.1); border-radius: 3px;">⌘K</kbd>
+        <kbd class="kbd-hint">⌘K</kbd>
       </button>
 
       <!-- Mind Graph View Trigger -->
@@ -132,11 +107,6 @@
             <div class="book-back-cover"></div>
             <div class="book-page-edges"></div>
 
-            <!-- Staggered flutter leaves (flip open with delays) -->
-            <div class="book-flutter-leaf f1" aria-hidden="true"></div>
-            <div class="book-flutter-leaf f2" aria-hidden="true"></div>
-            <div class="book-flutter-leaf f3" aria-hidden="true"></div>
-
             <!-- Front Cover (Leather & Gilded Deboss) -->
             <div class="book-front-cover">
               <!-- Inside endpaper, revealed mid-flip -->
@@ -159,16 +129,16 @@
               </div>
             </div>
 
-            <!-- Pages Spread (Left: Manifesto | Right: Table of Chapters) -->
+            <!-- Pages Spread (Left: Memoir | Right: Table of Chapters) -->
             <div class="book-pages-spread">
               
-              <!-- Left Page: The Preface / Manifesto -->
+              <!-- Left Page: The Memoir -->
               <div class="book-page-left">
                 <div>
-                  <span class="page-chapter-label">The Preface</span>
-                  <h3 class="page-manifesto-title">Curiosity Without Permission</h3>
+                  <span class="page-chapter-label">A Memoir in Draft</span>
+                  <h3 class="page-manifesto-title">Hey, I'm Avdhut</h3>
                   <p class="page-manifesto-body">
-                    I believe in intellectual broadness over hyper-specialization. I write essays on leverage and philosophy, dissect cinema as time architecture, collect analogue vinyl frequencies, and architect high-scale software systems.
+                    This is my memoir, still being written. I read fantasy doorstoppers, log films like field notes, wear out vinyl grooves, and build software systems by day. Four chapters, one curious life — pick one and step in.
                   </p>
                 </div>
 
@@ -210,9 +180,9 @@
                   </nav>
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted);">Avdhut Kulkarni</span>
-                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: #ab9058;">Page 1</span>
+                <div class="book-page-foot">
+                  <span class="page-author">Avdhut Kulkarni</span>
+                  <span class="page-num">Page 1</span>
                 </div>
               </div>
 
@@ -222,7 +192,7 @@
 
         <p class="book-interaction-hint">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-6-6l-6 6m6-6V3"></path></svg>
-          <span class="book-hint-desktop">Hover or click the book to unfold the codex</span>
+          <span class="book-hint-desktop">Click the book to open the codex</span>
           <span class="book-hint-mobile">Tap the book to open its chapters</span>
         </p>
 
@@ -313,7 +283,7 @@
               <span class="status-dot" id="letterboxdStatusDot"></span>
               <span id="letterboxdStatusLabel">Loading Letterboxd data…</span>
             </span>
-            <h2 class="cinephile-heading" style="margin-top: 0.3rem;">Cinema as Time Architecture</h2>
+            <h2 class="cinephile-heading cinephile-heading-flush">Cinema as Time Architecture</h2>
             <p class="cinephile-subtext">Automated Letterboxd synchronization for @avd1234 with diary reviews, star ratings, and four favourites.</p>
           </div>
 
@@ -332,7 +302,7 @@
         <div class="top-four-container">
           <div class="section-headline-row">
             <span class="section-label-glow">★ Four Favourites &amp; Masterpieces</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Curated from 5★ Ratings</span>
+            <span class="section-note">Curated from 5★ Ratings</span>
           </div>
 
           <div class="top-four-grid" id="letterboxdTopFourGrid">
@@ -344,7 +314,7 @@
         <div class="recent-watches-container">
           <div class="section-headline-row">
             <span class="section-label-glow">🍿 Recent Letterboxd Diary Logs</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Auto-updating from RSS</span>
+            <span class="section-note">Auto-updating from RSS</span>
           </div>
 
           <div class="letterboxd-reel-grid" id="letterboxdRecentReel">
@@ -353,7 +323,7 @@
         </div>
 
         <!-- FULL OBSIDIAN CINEMA ESSAYS -->
-        <div class="section-headline-row" style="margin-top: 2rem;">
+        <div class="section-headline-row gap-top">
           <span class="section-label-glow">✒ Deep Cinema Essays &amp; Deconstructions</span>
         </div>
         <div class="film-grid" id="filmGrid">
@@ -398,7 +368,7 @@
         <button class="reader-close-btn" id="btnReaderClose">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           <span>Back to View</span>
-          <kbd style="background: var(--border-subtle); padding: 1px 5px; border-radius: 3px; font-size: 0.65rem;">ESC</kbd>
+          <kbd class="kbd-hint">ESC</kbd>
         </button>
 
         <span class="reader-meta-snippet" id="readerMetaSnippet">Reading</span>
@@ -479,8 +449,8 @@
         <span class="site-footer-name">Avdhut Kulkarni</span>
         <span class="site-footer-meta">01 · CODEX · MMXXVI</span>
       </div>
-      <nav class="site-footer-nav" aria-label="Footer sections">
-        <button type="button" data-section="landing">Codex</button>
+      <nav class="site-footer-nav" aria-label="Site sections">
+        <button type="button" data-section="landing" class="active">Codex</button>
         <button type="button" data-section="bibliophile">Bibliophile</button>
         <button type="button" data-section="cinephile">Cinephile</button>
         <button type="button" data-section="audiophile">Audiophile</button>

@@ -123,6 +123,7 @@
     }
 
     open(slug, updateHash = true) {
+      if (!this.modal) return;
       const note = this.notesData.find(n => n.slug === slug);
       if (!note) {
         // Fallback to searching by filename

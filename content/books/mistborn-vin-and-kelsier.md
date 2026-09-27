@@ -5,7 +5,7 @@ date: 2026-03-22
 tags: [Books, Mistborn, Brandon Sanderson, Fiction]
 author: "Avadh Kulkarni"
 rev: 3
-stamp: "CANON · ALLOMANCY"
+stamp: "TOME · ALLOMANCY"
 quote: "There's always another secret. — Kelsier, Survivor of Hathsin"
 excerpt: "A thousand years of ash falling from the sky. Brandon Sanderson's Mistborn reimagines rebellion not as a battle of armies, but as a daring heist of faith and steel."
 cardSnippet: "To smile in the face of a totalitarian god is the ultimate rebellion. Kelsier weaponized hope like an allomantic metal."

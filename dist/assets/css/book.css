@@ -57,14 +57,12 @@
   transform: rotateY(-18deg) rotateX(10deg);
 }
 
-/* When opened, spread flat */
-.book-3d-tome.is-open,
-.landing-book-wrapper:hover .book-3d-tome {
+/* When opened (click toggles .is-open), spread flat */
+.book-3d-tome.is-open {
   transform: rotateY(0deg) rotateX(0deg) translateX(140px);
 }
 
 @media (max-width: 768px) {
-  .landing-book-wrapper:hover .book-3d-tome,
   .book-3d-tome.is-open {
     transform: rotateY(0deg) rotateX(0deg) translateX(0);
   }
@@ -87,7 +85,9 @@
   transform-origin: left center;
   transform-style: preserve-3d;
   transform: translateZ(4px);
-  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -95,10 +95,15 @@
   padding: 2.2rem 1.8rem;
 }
 
-/* Front Cover Opened State */
-.book-3d-tome.is-open .book-front-cover,
-.landing-book-wrapper:hover .book-3d-tome .book-front-cover {
-  transform: translateZ(4px) rotateY(-165deg);
+/* Front Cover Opened State — rests flat, then fades away so the
+   left memoir page is fully readable (cover must not stack over it) */
+.book-3d-tome.is-open .book-front-cover {
+  transform: translateZ(4px) rotateY(-180deg);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.45s ease 0.55s,
+              visibility 0s linear 1.05s;
 }
 
 /* Front Cover Gold Embossed Details (front face: hides when flipped) */
@@ -247,8 +252,7 @@
   overflow: hidden;
 }
 
-.book-3d-tome.is-open .book-pages-spread,
-.landing-book-wrapper:hover .book-pages-spread {
+.book-3d-tome.is-open .book-pages-spread {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -332,6 +336,7 @@
 /* Right Page: Table of Chapters */
 .book-page-right {
   flex: 1;
+  min-width: 0;
   background: linear-gradient(225deg, #13141a 0%, #09090c 100%);
   padding: 2.2rem 2rem;
   display: flex;
@@ -364,7 +369,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  padding: 0.7rem 0.85rem;
+  padding: 0.5rem 0.85rem;
+  min-height: 60px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
@@ -383,23 +389,28 @@
 
 .chapter-num {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: #e5c07b;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  flex: 0 0 72px;
+  letter-spacing: 0.04em;
+  flex: 0 0 62px;
+  min-width: 0;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .chapter-title {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
+  line-height: 1.35;
   color: #ffffff;
-  white-space: nowrap;
+  white-space: normal;
   overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .chapter-arrow {
@@ -408,6 +419,27 @@
   font-size: 0.85rem;
   font-weight: bold;
   transition: transform 0.2s ease;
+}
+
+/* Book page footer strip (replaces inline styles) */
+.book-page-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-page-foot .page-author,
+.book-page-foot .page-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.book-page-foot .page-author {
+  color: var(--text-muted);
+}
+
+.book-page-foot .page-num {
+  color: var(--accent-gold);
 }
 
 .chapter-row-link:hover .chapter-arrow {
@@ -446,15 +478,11 @@
   .book-pages-spread {
     display: none;
   }
-  .book-flutter-leaf {
-    display: none;
-  }
   .book-3d-tome {
     width: 260px;
     height: 360px;
     transform: none;
   }
-  .landing-book-wrapper:hover .book-front-cover,
   .book-3d-tome.is-open .book-front-cover {
     transform: none;
   }
@@ -510,8 +538,8 @@
 }
 
 /* ==========================================================================
-   FOUNDATION DEPTH STACK (Back Board, Page Edges & Flutter Leaves)
-   Pure CSS 3D, driven by .is-open / wrapper hover. MIT-inspired.
+   FOUNDATION DEPTH STACK (Back Board & Page Edges)
+   Pure CSS 3D, driven by click .is-open only.
    ========================================================================== */
 
 .book-back-cover {
@@ -538,36 +566,8 @@
   z-index: 2;
 }
 
-.book-flutter-leaf {
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  width: 49%;
-  height: 98%;
-  transform-origin: left center;
-  background:
-    repeating-linear-gradient(180deg, transparent 0 9px, rgba(60, 50, 30, 0.12) 9px 10px),
-    linear-gradient(105deg, #f4eedd 0%, #e0d6bd 100%);
-  border-radius: 0 3px 3px 0;
-  box-shadow: inset -8px 0 12px rgba(60, 50, 30, 0.22);
-  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  pointer-events: none;
-}
-
-.book-flutter-leaf.f1 { transform: translateZ(-1px); transition-delay: 0.2s; z-index: 7; }
-.book-flutter-leaf.f2 { transform: translateZ(-2px); transition-delay: 0.11s; z-index: 6; }
-.book-flutter-leaf.f3 { transform: translateZ(-3px); transition-delay: 0.02s; z-index: 5; }
-
-.book-3d-tome.is-open .book-flutter-leaf.f1,
-.landing-book-wrapper:hover .book-flutter-leaf.f1 { transform: translateZ(3px) rotateY(-154deg); }
-.book-3d-tome.is-open .book-flutter-leaf.f2,
-.landing-book-wrapper:hover .book-flutter-leaf.f2 { transform: translateZ(2px) rotateY(-147deg); }
-.book-3d-tome.is-open .book-flutter-leaf.f3,
-.landing-book-wrapper:hover .book-flutter-leaf.f3 { transform: translateZ(1px) rotateY(-140deg); }
-
 /* Pedestal breathes when the codex opens */
-.landing-book-wrapper.is-open .book-pedestal-shadow,
-.landing-book-wrapper:hover .book-pedestal-shadow {
+.landing-book-wrapper.is-open .book-pedestal-shadow {
   transform: scaleX(1.28);
   opacity: 0.55;
 }
@@ -575,7 +575,6 @@
 @media (prefers-reduced-motion: reduce) {
   .book-3d-tome,
   .book-front-cover,
-  .book-flutter-leaf,
   .book-pages-spread,
   .book-pedestal-shadow {
     transition: none;
