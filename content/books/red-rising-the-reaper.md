@@ -5,7 +5,7 @@ date: 2026-03-20
 tags: [Books, Red Rising, Pierce Brown, Fiction]
 author: "Avadh Kulkarni"
 rev: 4
-stamp: "CANON · HOWLER"
+stamp: "TOME · HOWLER"
 quote: "I would have lived in peace. But my enemies brought me war. — Darrow of Lykos"
 excerpt: "Pierce Brown's Red Rising is Homeric Greek tragedy injected into the cold vacuum of the solar system. Darrow does not fight for power; he fights for Eo's song."
 cardSnippet: "The measure of a man is not how much he suffers, but how much suffering he can transmute into freedom for others."

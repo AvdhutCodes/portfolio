@@ -2,10 +2,10 @@
 title: "Midnight Marginalia: The Paradox of the Creative Night"
 subtitle: "Why the quietest hours between 1 AM and 4 AM belong entirely to the maker"
 date: 2026-03-01
-category: archive
+category: bibliophile
 author: "Avdhut Kulkarni"
-tags: [Archive, Night, Reflection, Solitude]
-stamp: "ARCHIVE · FOLIO 02"
+tags: [Night, Reflection, Solitude, Journal]
+stamp: "ESSAY · JOURNAL 02"
 quote: "In the night all cats are grey, but all ideas are luminous."
 excerpt: "The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes."
 ---

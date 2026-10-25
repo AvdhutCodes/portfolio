@@ -5,7 +5,7 @@ date: 2026-03-18
 tags: [Books, Tolkien, Lord of the Rings, Fantasy]
 author: "Avadh Kulkarni"
 rev: 7
-stamp: "CANON · ITHILIEN"
+stamp: "TOME · ITHILIEN"
 quote: "All we have to decide is what to do with the time that is given us. — Gandalf"
 excerpt: "Tolkien's legendarium is not a escapist distraction; it is a profound Catholic and pagan meditation on grief, temptation, and unexpected grace."
 cardSnippet: "Despair is only for those who see the end beyond all doubt. We do not. Keep walking even through Moria's dark."

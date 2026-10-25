@@ -1,23 +1,23 @@
 [
   {
     "slug": "2026-spring-reading-journal",
-    "folder": "archive",
-    "category": "archive",
+    "folder": "essays",
+    "category": "bibliophile",
     "title": "Spring Reading & Thought Journal: Fragments from the Margins",
     "subtitle": "Uncurated notebook scraps on silence, notebooks, and solitary walks",
     "date": "2026-03-26",
     "tags": [
-      "Archive",
       "Journal",
       "Margins",
-      "Uncurated"
+      "Reading",
+      "Reflection"
     ],
     "author": "Avdhut Kulkarni",
     "rev": 1,
-    "stamp": "ARCHIVE · FOLIO 01",
+    "stamp": "ESSAY · JOURNAL 01",
     "quote": "The mind is not a vessel to be filled, but a fire to be kindled. — Plutarch",
     "excerpt": "Raw notebook entries from early morning reading sessions. Thoughts before they turn into polished essays.",
-    "cardSnippet": "[!note] Raw Archive Entry · March 2026\n \"Woke at 5:30 AM. Read twenty pages of Seneca's Epistles with black coffee....",
+    "cardSnippet": "[!note] Journal Entry · March 2026\n \"Woke at 5:30 AM. Read twenty pages of Seneca's Epistles with black coffee. Noti...",
     "illustration": null,
     "poster": null,
     "director": null,
@@ -34,8 +34,11 @@
     "skills": null,
     "metrics": null,
     "pinned": false,
+    "x": 570,
+    "y": -363,
+    "rotate": "3.9",
     "readTime": 1,
-    "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Raw Archive Entry · March 2026</span></div>\n      <div class=\"callout-content\"><p>&quot;Woke at 5:30 AM. Read twenty pages of Seneca&#39;s Epistles with black coffee. Noticing how much modern productivity advice is just repackaged Stoicism with a subscription fee.&quot;</p>\n</div>\n    </aside><h2>Fragments &amp; Marginalia</h2>\n<ul>\n<li><strong>On Reading Velocity</strong>: The greatest delusion is that skimming fifty summaries equals understanding one difficult paragraph. If your eyes aren&#39;t stopping, your brain isn&#39;t wrestling.</li>\n<li><strong>On Cinema &amp; Sound</strong>: Watched <em>Stalker</em> by Tarkovsky again. The sound of train wheels clacking in the rain communicates more metaphysical weight than two hours of CGI explosions.</li>\n<li><strong>The Three Pillars</strong>: Reading feeds the imagination; cinema tests empathy; sound tunes the nervous system. The work is simply the synthesis of all three.</li>\n</ul>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Journal Entry · March 2026</span></div>\n      <div class=\"callout-content\"><p>&quot;Woke at 5:30 AM. Read twenty pages of Seneca&#39;s Epistles with black coffee. Noticing how much modern productivity advice is just repackaged Stoicism with a subscription fee.&quot;</p>\n</div>\n    </aside><h2>Fragments &amp; Marginalia</h2>\n<ul>\n<li><strong>On Reading Velocity</strong>: The greatest delusion is that skimming fifty summaries equals understanding one difficult paragraph. If your eyes aren&#39;t stopping, your brain isn&#39;t wrestling.</li>\n<li><strong>On Cinema &amp; Sound</strong>: Watched <em>Stalker</em> by Tarkovsky again. The sound of train wheels clacking in the rain communicates more metaphysical weight than two hours of CGI explosions.</li>\n<li><strong>The Three Pillars</strong>: Reading feeds the imagination; cinema tests empathy; sound tunes the nervous system. The work is simply the synthesis of all three.</li>\n</ul>\n"
   },
   {
     "slug": "overview",
@@ -111,7 +114,7 @@
     ],
     "author": "Avadh Kulkarni",
     "rev": 5,
-    "stamp": "CANON · WINDRUNNER",
+    "stamp": "TOME · WINDRUNNER",
     "quote": "Life before death. Strength before weakness. Journey before destination. — The First Ideal",
     "excerpt": "In Brandon Sanderson's epic, Kaladin Stormblessed begins as a broken slave carrying heavy wooden bridges across chasms. His transcendence is not through power, but through duty.",
     "cardSnippet": "You cannot protect others if you despise yourself. The First Ideal is not a slogan; it is an operating system for carrying suffering.",
@@ -135,7 +138,7 @@
     "y": -80,
     "rotate": -3.6,
     "readTime": 2,
-    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The First Ideal of the Knights Radiant</span></div>\n      <div class=\"callout-content\"><p>&quot;Life before death. Strength before weakness. Journey before destination.&quot;</p>\n</div>\n    </aside><h2>The Tragedy of the Bridge Crew</h2>\n<p>In <em>The Way of Kings</em>, Brandon Sanderson presents one of the most harrowing situations in modern fantasy: <strong>Bridge Four</strong>. Men condemned to carry immense timbers across chasms under raining arrows from the Parshendi, serving solely as disposable meat shields for Highprince Sadeas.</p>\n<p>Most men broken by such circumstances succumb to despair. Kaladin does something far harder: <strong>he refuses apathy</strong>.</p>\n<p>He gathers sap, disinfects arrow wounds with knobweed, teaches pariahs how to stand together, and transforms a death squad into a brotherhood.</p>\n<p><img src=\"../assets/images/stormlight-kaladin.jpg\" alt=\"Kaladin Stormblessed Doodle\"></p>\n<h2>The Windrunner&#39;s Paradox</h2>\n<p>The core struggle of Kaladin Stormblessed is the burden of the protector:</p>\n<ul>\n<li><em>How do you protect those who cannot protect themselves?</em></li>\n<li><em>How do you accept that you cannot save everyone?</em></li>\n</ul>\n<p>The Fourth Ideal is perhaps the most devastating and therapeutic sentence in fantasy literature:</p>\n<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Fourth Ideal</span></div>\n      <div class=\"callout-content\"><p>&quot;I accept that there will be those I cannot protect.&quot;</p>\n</div>\n    </aside><p>Marcus Aurelius would have recognized Kaladin immediately. Both were men forced into leadership across bloody frontlines, carrying a perpetual war within their own chests. The courage is not in the absence of depression, but in stepping forward anyway.</p>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The First Ideal of the Knights Radiant</span></div>\n      <div class=\"callout-content\"><p>&quot;Life before death. Strength before weakness. Journey before destination.&quot;</p>\n</div>\n    </aside><h2>The Tragedy of the Bridge Crew</h2>\n<p>In <em>The Way of Kings</em>, Brandon Sanderson presents one of the most harrowing situations in modern fantasy: <strong>Bridge Four</strong>. Men condemned to carry immense timbers across chasms under raining arrows from the Parshendi, serving solely as disposable meat shields for Highprince Sadeas.</p>\n<p>Most men broken by such circumstances succumb to despair. Kaladin does something far harder: <strong>he refuses apathy</strong>.</p>\n<p>He gathers sap, disinfects arrow wounds with knobweed, teaches pariahs how to stand together, and transforms a death squad into a brotherhood.</p>\n<p><img src=\"./assets/images/stormlight-kaladin.jpg\" alt=\"Kaladin Stormblessed Doodle\"></p>\n<h2>The Windrunner&#39;s Paradox</h2>\n<p>The core struggle of Kaladin Stormblessed is the burden of the protector:</p>\n<ul>\n<li><em>How do you protect those who cannot protect themselves?</em></li>\n<li><em>How do you accept that you cannot save everyone?</em></li>\n</ul>\n<p>The Fourth Ideal is perhaps the most devastating and therapeutic sentence in fantasy literature:</p>\n<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Fourth Ideal</span></div>\n      <div class=\"callout-content\"><p>&quot;I accept that there will be those I cannot protect.&quot;</p>\n</div>\n    </aside><p>Marcus Aurelius would have recognized Kaladin immediately. Both were men forced into leadership across bloody frontlines, carrying a perpetual war within their own chests. The courage is not in the absence of depression, but in stepping forward anyway.</p>\n"
   },
   {
     "slug": "mistborn-vin-and-kelsier",
@@ -152,7 +155,7 @@
     ],
     "author": "Avadh Kulkarni",
     "rev": 3,
-    "stamp": "CANON · ALLOMANCY",
+    "stamp": "TOME · ALLOMANCY",
     "quote": "There's always another secret. — Kelsier, Survivor of Hathsin",
     "excerpt": "A thousand years of ash falling from the sky. Brandon Sanderson's Mistborn reimagines rebellion not as a battle of armies, but as a daring heist of faith and steel.",
     "cardSnippet": "To smile in the face of a totalitarian god is the ultimate rebellion. Kelsier weaponized hope like an allomantic metal.",
@@ -176,7 +179,7 @@
     "y": -540,
     "rotate": 3.2,
     "readTime": 1,
-    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Survivor's Axiom</span></div>\n      <div class=\"callout-content\"><p>&quot;There&#39;s always another secret. Smile, Vin. Laughter is the one thing the Lord Ruler cannot take from us.&quot;</p>\n</div>\n    </aside><h2>Ash Falling from the Sky</h2>\n<p><em>Mistborn: The Final Empire</em> opens in a world where the prophesied hero failed a millennium ago. The ash falls perpetually from red skies; plants are brown; the Skaa are enslaved beneath the immortal iron fist of the Lord Ruler.</p>\n<p>In this suffocating dystopia, <strong>Kelsier</strong> does not simply plot assassination. He orchestrates a myth.</p>\n<p><img src=\"../assets/images/mistborn-vin.jpg\" alt=\"Vin in Mistcloak Doodle\"></p>\n<h2>Vin: The Traumatized Street Urchin</h2>\n<p>While Kelsier is the flamboyant architect of rebellion, <strong>Vin</strong> is the emotional anchor of the trilogy:</p>\n<ul>\n<li>Beaten and betrayed by her brother Reen, her instinct is radical isolation: <em>anyone who loves you will eventually sell you out.</em></li>\n<li>Over three books, Vin’s greatest superpower is not burning pewter, brass, or duralumin—<strong>it is learning to trust Elend and her crew.</strong></li>\n</ul>\n<p>Allomancy is brilliant kinetic physics, but Sanderson’s real magic is human redemption.</p>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Survivor's Axiom</span></div>\n      <div class=\"callout-content\"><p>&quot;There&#39;s always another secret. Smile, Vin. Laughter is the one thing the Lord Ruler cannot take from us.&quot;</p>\n</div>\n    </aside><h2>Ash Falling from the Sky</h2>\n<p><em>Mistborn: The Final Empire</em> opens in a world where the prophesied hero failed a millennium ago. The ash falls perpetually from red skies; plants are brown; the Skaa are enslaved beneath the immortal iron fist of the Lord Ruler.</p>\n<p>In this suffocating dystopia, <strong>Kelsier</strong> does not simply plot assassination. He orchestrates a myth.</p>\n<p><img src=\"./assets/images/mistborn-vin.jpg\" alt=\"Vin in Mistcloak Doodle\"></p>\n<h2>Vin: The Traumatized Street Urchin</h2>\n<p>While Kelsier is the flamboyant architect of rebellion, <strong>Vin</strong> is the emotional anchor of the trilogy:</p>\n<ul>\n<li>Beaten and betrayed by her brother Reen, her instinct is radical isolation: <em>anyone who loves you will eventually sell you out.</em></li>\n<li>Over three books, Vin’s greatest superpower is not burning pewter, brass, or duralumin—<strong>it is learning to trust Elend and her crew.</strong></li>\n</ul>\n<p>Allomancy is brilliant kinetic physics, but Sanderson’s real magic is human redemption.</p>\n"
   },
   {
     "slug": "red-rising-the-reaper",
@@ -193,7 +196,7 @@
     ],
     "author": "Avadh Kulkarni",
     "rev": 4,
-    "stamp": "CANON · HOWLER",
+    "stamp": "TOME · HOWLER",
     "quote": "I would have lived in peace. But my enemies brought me war. — Darrow of Lykos",
     "excerpt": "Pierce Brown's Red Rising is Homeric Greek tragedy injected into the cold vacuum of the solar system. Darrow does not fight for power; he fights for Eo's song.",
     "cardSnippet": "The measure of a man is not how much he suffers, but how much suffering he can transmute into freedom for others.",
@@ -217,7 +220,7 @@
     "y": 60,
     "rotate": 4.5,
     "readTime": 2,
-    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Reaper's Declaration</span></div>\n      <div class=\"callout-content\"><p>&quot;I would have lived in peace. But my enemies brought me war.&quot;</p>\n</div>\n    </aside><h2>The Blood and Soil of Mars</h2>\n<p><em>Red Rising</em> begins in the suffocating helium-3 mines of Mars. Darrow is a Helldiver, convinced by the propaganda of the Society that Reds are sacrificing themselves to pioneer the terraforming of the Red Planet.</p>\n<p>When he discovers that humanity has already inhabited Mars for centuries in opulent, decadent floating cities, the lie detonates.</p>\n<p><img src=\"../assets/images/red-rising-darrow.jpg\" alt=\"Darrow The Reaper Doodle\"></p>\n<h2>The SlingBlade Philosophy</h2>\n<p>Darrow&#39;s journey into the Institute—carved into a Gold, adopting their aristocratic dialect, and wielding their curved razors—is a masterclass in asymmetrical warfare:</p>\n<ol>\n<li><strong>Never play by their rules</strong>: When the Golds expect classical duels, Darrow flips the chessboard.</li>\n<li><strong>Loyalty forged in blood</strong>: Sevro, Cassius, Mustang, and Ragnar become brothers and sisters not through bloodline, but through shared sacrifice.</li>\n<li><strong>The cost of revolution</strong>: You cannot break a system built on three centuries of slavery without bleeding on your own hands.</li>\n</ol>\n<aside class=\"obsidian-callout callout-tip\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z\"></path></svg> <span>The Howler Motto</span></div>\n      <div class=\"callout-content\"><p>&quot;Omnis vir lupus&quot; — <em>Everyone is a wolf.</em> Find your pack and hold the line.</p>\n</div>\n    </aside>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>The Reaper's Declaration</span></div>\n      <div class=\"callout-content\"><p>&quot;I would have lived in peace. But my enemies brought me war.&quot;</p>\n</div>\n    </aside><h2>The Blood and Soil of Mars</h2>\n<p><em>Red Rising</em> begins in the suffocating helium-3 mines of Mars. Darrow is a Helldiver, convinced by the propaganda of the Society that Reds are sacrificing themselves to pioneer the terraforming of the Red Planet.</p>\n<p>When he discovers that humanity has already inhabited Mars for centuries in opulent, decadent floating cities, the lie detonates.</p>\n<p><img src=\"./assets/images/red-rising-darrow.jpg\" alt=\"Darrow The Reaper Doodle\"></p>\n<h2>The SlingBlade Philosophy</h2>\n<p>Darrow&#39;s journey into the Institute—carved into a Gold, adopting their aristocratic dialect, and wielding their curved razors—is a masterclass in asymmetrical warfare:</p>\n<ol>\n<li><strong>Never play by their rules</strong>: When the Golds expect classical duels, Darrow flips the chessboard.</li>\n<li><strong>Loyalty forged in blood</strong>: Sevro, Cassius, Mustang, and Ragnar become brothers and sisters not through bloodline, but through shared sacrifice.</li>\n<li><strong>The cost of revolution</strong>: You cannot break a system built on three centuries of slavery without bleeding on your own hands.</li>\n</ol>\n<aside class=\"obsidian-callout callout-tip\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z\"></path></svg> <span>The Howler Motto</span></div>\n      <div class=\"callout-content\"><p>&quot;Omnis vir lupus&quot; — <em>Everyone is a wolf.</em> Find your pack and hold the line.</p>\n</div>\n    </aside>\n"
   },
   {
     "slug": "lord-of-the-rings-gandalf",
@@ -234,7 +237,7 @@
     ],
     "author": "Avadh Kulkarni",
     "rev": 7,
-    "stamp": "CANON · ITHILIEN",
+    "stamp": "TOME · ITHILIEN",
     "quote": "All we have to decide is what to do with the time that is given us. — Gandalf",
     "excerpt": "Tolkien's legendarium is not a escapist distraction; it is a profound Catholic and pagan meditation on grief, temptation, and unexpected grace.",
     "cardSnippet": "Despair is only for those who see the end beyond all doubt. We do not. Keep walking even through Moria's dark.",
@@ -258,7 +261,7 @@
     "y": 740,
     "rotate": -2.8,
     "readTime": 1,
-    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>Gandalf to Frodo in the Mines of Moria</span></div>\n      <div class=\"callout-content\"><p>&quot;So do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us.&quot;</p>\n</div>\n    </aside><h2>Pity over Might</h2>\n<p>In <em>The Lord of the Rings</em>, the ultimate defeat of Sauron does not come from a grand confrontation between archmages or kings.</p>\n<ul>\n<li>It was Bilbo’s pity in sparing Gollum in <em>The Hobbit</em> that preserved the thread of providence.</li>\n<li>It was Frodo’s quiet endurance across the ash heaps of Gorgoroth.</li>\n<li>It was Samwise Gamgee holding his master’s hand when water ran dry.</li>\n</ul>\n<p><img src=\"../assets/images/lotr-gandalf.jpg\" alt=\"Gandalf The Grey Doodle\"></p>\n<h2>The Bibliophile&#39;s North Star</h2>\n<p>Whenever modern life feels overwhelming with algorithmic noise and manufactured crises, return to Tolkien. </p>\n<pre><code>Power Corrupts          -&gt; The One Ring\nTrue Strength           -&gt; Humility &amp; Fellowship\nThe Cure for Despair    -&gt; Doing the next small duty\n</code></pre>\n<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>Sam's Epiphany</span></div>\n      <div class=\"callout-content\"><p>&quot;There&#39;s some good in this world, Mr. Frodo... and it&#39;s worth fighting for.&quot;</p>\n</div>\n    </aside>\n"
+    "htmlContent": "<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>Gandalf to Frodo in the Mines of Moria</span></div>\n      <div class=\"callout-content\"><p>&quot;So do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us.&quot;</p>\n</div>\n    </aside><h2>Pity over Might</h2>\n<p>In <em>The Lord of the Rings</em>, the ultimate defeat of Sauron does not come from a grand confrontation between archmages or kings.</p>\n<ul>\n<li>It was Bilbo’s pity in sparing Gollum in <em>The Hobbit</em> that preserved the thread of providence.</li>\n<li>It was Frodo’s quiet endurance across the ash heaps of Gorgoroth.</li>\n<li>It was Samwise Gamgee holding his master’s hand when water ran dry.</li>\n</ul>\n<p><img src=\"./assets/images/lotr-gandalf.jpg\" alt=\"Gandalf The Grey Doodle\"></p>\n<h2>The Bibliophile&#39;s North Star</h2>\n<p>Whenever modern life feels overwhelming with algorithmic noise and manufactured crises, return to Tolkien. </p>\n<pre><code>Power Corrupts          -&gt; The One Ring\nTrue Strength           -&gt; Humility &amp; Fellowship\nThe Cure for Despair    -&gt; Doing the next small duty\n</code></pre>\n<aside class=\"obsidian-callout callout-quote\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 0 4 1.5 6 3 8z\"></path></svg> <span>Sam's Epiphany</span></div>\n      <div class=\"callout-content\"><p>&quot;There&#39;s some good in this world, Mr. Frodo... and it&#39;s worth fighting for.&quot;</p>\n</div>\n    </aside>\n"
   },
   {
     "slug": "specific-knowledge",
@@ -473,20 +476,20 @@
   },
   {
     "slug": "stream-of-consciousness-midnight",
-    "folder": "archive",
-    "category": "archive",
+    "folder": "essays",
+    "category": "bibliophile",
     "title": "Midnight Marginalia: The Paradox of the Creative Night",
     "subtitle": "Why the quietest hours between 1 AM and 4 AM belong entirely to the maker",
     "date": "2026-03-01",
     "tags": [
-      "Archive",
       "Night",
       "Reflection",
-      "Solitude"
+      "Solitude",
+      "Journal"
     ],
     "author": "Avdhut Kulkarni",
     "rev": 1,
-    "stamp": "ARCHIVE · FOLIO 02",
+    "stamp": "ESSAY · JOURNAL 02",
     "quote": "In the night all cats are grey, but all ideas are luminous.",
     "excerpt": "The telephone is dead; Slack is asleep; the algorithms have stopped chirping. Midnight is when original thought finally breathes.",
     "cardSnippet": "[!note] Midnight Log\n \"The world is asleep. There are no notifications to respond to, no peer expectations, no meeti...",
@@ -506,6 +509,9 @@
     "skills": null,
     "metrics": null,
     "pinned": false,
+    "x": -792,
+    "y": -459,
+    "rotate": "-3.3",
     "readTime": 1,
     "htmlContent": "<aside class=\"obsidian-callout callout-note\">\n      <div class=\"callout-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg> <span>Midnight Log</span></div>\n      <div class=\"callout-content\"><p>&quot;The world is asleep. There are no notifications to respond to, no peer expectations, no meetings. In this brief pocket of time, you are entirely free.&quot;</p>\n</div>\n    </aside><h2>The Solitude Dividend</h2>\n<p>Why do bibliophiles and makers love late hours? It is not about sleep deprivation; it is about <strong>psychological insulation</strong>.\nWhen society powers down, the atmospheric pressure of other people&#39;s anxieties lifts. You can sit with a book, a sketch, or a musical passage and exist purely in the moment.</p>\n"
   },
@@ -887,18 +893,18 @@
     "folder": "books",
     "category": "bibliophile",
     "title": "The Ten Books That Rewired My Mental Software",
-    "subtitle": "An annotated canon for the modern autodidact and bibliophile",
+    "subtitle": "An annotated shelf for the modern autodidact and bibliophile",
     "date": "2025-12-15",
     "tags": [
       "Books",
       "Reading",
       "Bibliophile",
-      "Canon",
+      "Tomes",
       "Mental Models"
     ],
     "author": "Avadh Kulkarni",
     "rev": 8,
-    "stamp": "CANON · VOL 01",
+    "stamp": "TOME · VOL 01",
     "quote": " \"In a world of infinite books, reading the foundational 100 repeatedly is a superpower. — Avadh Kulkarni\"",
     "excerpt": "If you read the same books everyone else is reading, you will think the same thoughts everyone else is thinking. Here is my foundational shelf.",
     "cardSnippet": "A curated library is not furniture; it is an external hard drive for your consciousness.",

@@ -17,6 +17,7 @@
       
       this.currentSlug = null;
       this.notesData = [];
+      this.previousFocusElement = null;
 
       this.init();
     }
@@ -53,7 +54,7 @@
 
       // Card clicks on desk
       document.addEventListener('click', (e) => {
-        const card = e.target.closest('.manuscript-card, .archive-item, .obsidian-link');
+        const card = e.target.closest('.manuscript-card, .obsidian-link');
         if (card && card.dataset.slug) {
           e.preventDefault();
           this.open(card.dataset.slug);
@@ -78,6 +79,19 @@
           this.navigateStep(-1);
         } else if (e.key === 'ArrowRight') {
           this.navigateStep(1);
+        } else if (e.key === 'Tab') {
+          const focusable = Array.from(this.modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+            .filter(el => el.getClientRects().length > 0);
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && (document.activeElement === first || !this.modal.contains(document.activeElement))) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && (document.activeElement === last || !this.modal.contains(document.activeElement))) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       });
 
@@ -109,12 +123,16 @@
     }
 
     open(slug, updateHash = true) {
+      if (!this.modal) return;
       const note = this.notesData.find(n => n.slug === slug);
       if (!note) {
         // Fallback to searching by filename
         console.warn('Note not found for slug:', slug);
         return;
       }
+
+      const wasOpen = this.isOpen();
+      if (!wasOpen) this.previousFocusElement = document.activeElement;
 
       this.currentSlug = slug;
 
@@ -154,7 +172,10 @@
       if (this.progressBar) this.progressBar.style.width = '0%';
 
       this.modal.classList.add('is-open');
+      this.modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      if (!wasOpen && this.btnClose) this.btnClose.focus({ preventScroll: true });
 
       if (updateHash) {
         window.history.pushState(null, '', `#/notes/${slug}`);
@@ -165,8 +186,14 @@
       if (!this.isOpen()) return;
 
       this.modal.classList.remove('is-open');
+      this.modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       this.currentSlug = null;
+
+      if (this.previousFocusElement && this.previousFocusElement.isConnected) {
+        this.previousFocusElement.focus({ preventScroll: true });
+      }
+      this.previousFocusElement = null;
 
       if (updateHash) {
         window.history.pushState(null, '', window.location.pathname);

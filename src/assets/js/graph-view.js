@@ -30,16 +30,14 @@
     bibliophile: '#ffffff',
     cinephile: '#00e054', // Letterboxd Green
     audiophile: '#f59e0b', // Vinyl Amber
-    work: '#3b82f6',       // Cobalt Systems
-    archive: '#a855f7'     // Archive Purple
+    work: '#3b82f6'       // Cobalt Systems
   };
 
   const CATEGORY_COLORS_LIGHT = {
-    bibliophile: '#1d1a14',
+    bibliophile: '#1a1614',
     cinephile: '#009444',
     audiophile: '#b45309',
-    work: '#1d4ed8',
-    archive: '#7e22ce'
+    work: '#1d4ed8'
   };
 
   function isLightTheme() {
@@ -72,7 +70,9 @@
 
     nodes = rawNotes.map((n, i) => {
       const angle = (i / rawNotes.length) * Math.PI * 2;
-      const radius = 120 + Math.random() * 180;
+      const radius = window.innerWidth <= 600
+        ? 55 + Math.random() * 105
+        : 120 + Math.random() * 180;
       return {
         id: n.slug,
         title: n.title,
@@ -245,7 +245,11 @@
 
     panX = 0;
     panY = 0;
-    zoom = 1.0;
+    zoom = window.innerWidth <= 600 ? 0.72 : 1.0;
+    if (zoom < 1) {
+      panX = (1 - zoom) * cssW / 2;
+      panY = (1 - zoom) * cssH / 2;
+    }
     initGraphData();
     isRunning = true;
     graphLoop();
@@ -292,7 +296,8 @@
     if (closeBtn) closeBtn.addEventListener('click', closeGraphModal);
 
     if (canvasEl) {
-      canvasEl.addEventListener('mousedown', (e) => {
+      canvasEl.addEventListener('pointerdown', (e) => {
+        canvasEl.setPointerCapture(e.pointerId);
         const { worldX, worldY, mouseScreenX, mouseScreenY } = getGraphMousePos(e);
         const node = findNodeAt(worldX, worldY);
         downWorldX = worldX;
@@ -306,7 +311,7 @@
         }
       });
 
-      window.addEventListener('mousemove', (e) => {
+      window.addEventListener('pointermove', (e) => {
         if (!isRunning) return;
         const { worldX, worldY, mouseScreenX, mouseScreenY } = getGraphMousePos(e);
 
@@ -324,7 +329,7 @@
         }
       });
 
-      window.addEventListener('mouseup', (e) => {
+      const finishPointer = (e) => {
         if (draggedNode) {
           // If barely moved since mousedown, treat as click to open note
           const { worldX, worldY } = getGraphMousePos(e);
@@ -341,6 +346,12 @@
           draggedNode = null;
         }
         isPanning = false;
+      };
+      window.addEventListener('pointerup', finishPointer);
+      window.addEventListener('pointercancel', finishPointer);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalEl.classList.contains('open')) closeGraphModal();
       });
 
       canvasEl.addEventListener('wheel', (e) => {

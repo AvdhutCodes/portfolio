@@ -21,7 +21,7 @@
     return audioCtx;
   }
 
-  // Synthesize soft parchment paper rustle (for 3D book & carousel)
+  // Synthesize soft parchment paper rustle (for 3D book page turns)
   function playPageTurn() {
     if (!isSoundEnabled) return;
     try {

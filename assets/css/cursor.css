@@ -38,23 +38,31 @@
   pointer-events: none;
   z-index: calc(var(--z-cursor) - 1);
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease,
-              background-color 0.3s ease;
+              background-color 0.3s ease,
+              opacity 0.3s ease;
 }
 
-/* Card Hover State */
-body.is-hovering-card .cursor-ring {
-  width: 60px;
-  height: 60px;
+.cursor-ring.is-active {
+  opacity: 1;
+}
+
+/* Hoverable Hover State (matches JS .cursor-hover class) */
+.cursor-ring.cursor-hover {
+  width: 56px;
+  height: 56px;
   border-color: rgba(200, 150, 62, 0.65);
   background: rgba(200, 150, 62, 0.08);
 }
 
-body.is-hovering-card .cursor-dot {
-  transform: scale(1.6);
-  background-color: #e2b05b;
+/* Click State (matches JS .cursor-clicked class) */
+.cursor-ring.cursor-clicked {
+  width: 28px;
+  height: 28px;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Dragging Canvas State */
@@ -81,4 +89,20 @@ body.is-dragging-canvas .cursor-ring {
   .custom-cursor, .cursor-ring {
     display: none !important;
   }
+}
+
+/* Light paper: bistre cursor instead of white */
+[data-theme="light"] .cursor-dot {
+  background-color: #1a1614;
+}
+
+[data-theme="light"] .cursor-ring {
+  border-color: rgba(26, 22, 20, 0.4);
+}
+
+/* Custom circle cursor removed by design — native cursor plus the
+   stardust particle trail (still driven by cursor.js) only. */
+.custom-cursor,
+.cursor-ring {
+  display: none !important;
 }

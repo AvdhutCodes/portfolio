@@ -48,17 +48,43 @@
   document.body.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
+  const DPR = Math.min(2, window.devicePixelRatio || 1);
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
 
+  function sizeCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * DPR);
+    canvas.height = Math.floor(height * DPR);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+  }
+  sizeCanvas();
+
+  let resizeTimer = null;
   window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    initStars();
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      sizeCanvas();
+      initStars();
+    }, 200);
   });
 
-  const STAR_COUNT = Math.min(85, Math.floor((width * height) / 14000));
+  const STAR_COUNT = Math.min(140, Math.floor((width * height) / 9000));
   let stars = [];
+
+  // Click ripples — expanding rings where the pointer lands
+  let ripples = [];
+  window.addEventListener('mousedown', (e) => {
+    if (REDUCED_MOTION) return;
+    if (ripples.length < 6) ripples.push({ x: e.clientX, y: e.clientY, r: 6, alpha: 0.5 });
+  }, { passive: true });
+
+  function isLightTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
 
   class Star {
     constructor() {
@@ -67,8 +93,8 @@
     reset() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.size = Math.random() * 1.5 + 0.5;
-      this.baseAlpha = Math.random() * 0.5 + 0.2;
+      this.size = Math.random() * 1.8 + 0.6;
+      this.baseAlpha = Math.random() * 0.55 + 0.25;
       this.alpha = this.baseAlpha;
       this.twinkleSpeed = Math.random() * 0.02 + 0.008;
       this.twinklePhase = Math.random() * Math.PI * 2;
@@ -89,7 +115,10 @@
       if (this.alpha > 0.85) this.alpha = 0.85;
     }
     draw() {
-      ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+      const light = isLightTheme();
+      ctx.fillStyle = light
+        ? `rgba(26, 22, 20, ${this.alpha * 0.7})`
+        : `rgba(255, 255, 255, ${this.alpha})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -122,7 +151,10 @@
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.rotation);
-      ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha * 0.35})`;
+      const light = isLightTheme();
+      ctx.strokeStyle = light
+        ? `rgba(26, 22, 20, ${this.alpha * 0.4})`
+        : `rgba(255, 255, 255, ${this.alpha * 0.35})`;
       ctx.lineWidth = 0.75;
 
       // Draw delicate rosette / geometric flower
@@ -156,31 +188,33 @@
   initStars();
 
   function renderAtmosphere() {
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.clearRect(0, 0, width, height);
 
     // 1. Draw and update florals
     florals.forEach(f => {
-      f.update();
+      if (!REDUCED_MOTION) f.update();
       f.draw();
     });
 
     // 2. Update and draw stars
     stars.forEach(s => {
-      s.update();
+      if (!REDUCED_MOTION) s.update();
       s.draw();
     });
 
     // 3. Draw constellation connections between nearby stars
-    const maxDist = 95;
+    const light = isLightTheme();
+    const maxDist = 120;
     for (let i = 0; i < stars.length; i++) {
       for (let j = i + 1; j < stars.length; j++) {
         const dx = stars[i].x - stars[j].x;
         const dy = stars[i].y - stars[j].y;
         const dist = Math.hypot(dx, dy);
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.12;
-          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-          ctx.lineWidth = 0.5;
+          const alpha = (1 - dist / maxDist) * (light ? 0.22 : 0.2);
+          ctx.strokeStyle = light ? `rgba(26, 22, 20, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
+          ctx.lineWidth = 0.8;
           ctx.beginPath();
           ctx.moveTo(stars[i].x, stars[i].y);
           ctx.lineTo(stars[j].x, stars[j].y);
@@ -188,14 +222,14 @@
         }
       }
 
-      // Constellation to mouse cursor
+      // Constellation to mouse cursor — wide, bright web that follows you
       const mdx = stars[i].x - curX;
       const mdy = stars[i].y - curY;
       const mdist = Math.hypot(mdx, mdy);
-      if (mdist < 140) {
-        const mAlpha = (1 - mdist / 140) * 0.28;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${mAlpha})`;
-        ctx.lineWidth = 0.65;
+      if (mdist < 220) {
+        const mAlpha = (1 - mdist / 220) * (light ? 0.5 : 0.45);
+        ctx.strokeStyle = light ? `rgba(26, 22, 20, ${mAlpha})` : `rgba(255, 255, 255, ${mAlpha})`;
+        ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(stars[i].x, stars[i].y);
         ctx.lineTo(curX, curY);
@@ -203,8 +237,24 @@
       }
     }
 
-    requestAnimationFrame(renderAtmosphere);
+    // 4. Click ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rp = ripples[i];
+      const rLight = isLightTheme();
+      ctx.strokeStyle = rLight ? `rgba(26, 22, 20, ${rp.alpha})` : `rgba(255, 255, 255, ${rp.alpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.stroke();
+      if (!REDUCED_MOTION) {
+        rp.r += 2.4;
+        rp.alpha -= 0.02;
+        if (rp.alpha <= 0) ripples.splice(i, 1);
+      }
+    }
+
+    if (!REDUCED_MOTION) requestAnimationFrame(renderAtmosphere);
   }
-  requestAnimationFrame(renderAtmosphere);
+  renderAtmosphere();
 
 })();

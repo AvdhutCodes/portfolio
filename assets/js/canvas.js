@@ -87,7 +87,7 @@
 
     onPointerDown(e) {
       // Don't drag if clicking buttons, links or reader
-      if (e.target.closest('button') || e.target.closest('.site-header') || e.target.closest('.bottom-bar')) {
+      if (e.target.closest('button') || e.target.closest('.site-header') || e.target.closest('.bottom-bar') || e.target.closest('.canvas-hud')) {
         return;
       }
 
@@ -111,8 +111,9 @@
 
     onPointerMove(e) {
       // Always track torch coordinate
-      this.torchX = e.clientX;
-      this.torchY = e.clientY;
+      const viewportRect = this.viewport.getBoundingClientRect();
+      this.torchX = e.clientX - viewportRect.left;
+      this.torchY = e.clientY - viewportRect.top;
       document.documentElement.style.setProperty('--torch-x', `${this.torchX}px`);
       document.documentElement.style.setProperty('--torch-y', `${this.torchY}px`);
 
@@ -179,8 +180,9 @@
 
       if (newScale === this.scale) return;
 
-      const mouseX = e.clientX - window.innerWidth / 2;
-      const mouseY = e.clientY - window.innerHeight / 2;
+      const rect = this.viewport.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left - rect.width / 2;
+      const mouseY = e.clientY - rect.top - rect.height / 2;
 
       // Adjust pan so the point under cursor remains invariant
       this.panX = mouseX - (mouseX - this.panX) * (newScale / this.scale);

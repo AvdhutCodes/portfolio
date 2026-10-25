@@ -27,13 +27,11 @@
   }
 
   const QUICK_ACTIONS = [
-    { type: 'action', title: 'Chapter I: The Bibliophile', desc: 'Infinite manuscript canvas, essays, and fantasy canons', action: () => switchSection('bibliophile'), badge: 'Realm' },
+    { type: 'action', title: 'Chapter I: The Bibliophile', desc: 'Infinite manuscript canvas and essays', action: () => switchSection('bibliophile'), badge: 'Realm' },
     { type: 'action', title: 'Chapter II: The Cinephile', desc: 'Live Letterboxd diary, 5★ films, and review commentary', action: () => switchSection('cinephile'), badge: 'Realm' },
     { type: 'action', title: 'Chapter III: The Audiophile', desc: 'Analogue vinyl logs, Spotify tracks, and acoustic essays', action: () => switchSection('audiophile'), badge: 'Realm' },
     { type: 'action', title: 'Chapter IV: Work & Craft', desc: 'Software systems, product design, and business leverage', action: () => switchSection('work'), badge: 'Realm' },
     { type: 'action', title: 'Open Mind Graph View', desc: 'Explore the 2D interactive knowledge graph of ideas', action: () => openGraphView(), badge: 'Visual' },
-    { type: 'action', title: 'Open Favorite Books Canon', desc: 'Browse Stormlight, Mistborn, Red Rising, and LOTR carousel', action: () => openBooksCarousel(), badge: 'Canon' },
-    { type: 'action', title: 'Open Chronological Archive', desc: 'Midnight marginalia, uncurated scraps, and reading journals', action: () => openArchiveDrawer(), badge: 'Archive' },
     { type: 'action', title: 'Toggle Synthesized Audio FX', desc: 'Enable/disable procedural page turns and clicks', action: () => window.AudioFX && window.AudioFX.toggleSound(), badge: 'Sound' },
     { type: 'action', title: 'Surprise Me (Random Note)', desc: 'Read a randomly selected essay or critique', action: () => openRandomNote(), badge: 'Discover' },
     { type: 'action', title: 'Visit Letterboxd Profile', desc: 'letterboxd.com/avd1234', action: () => window.open('https://letterboxd.com/avd1234/', '_blank'), badge: 'External' }
@@ -41,25 +39,12 @@
 
   function switchSection(sectionId) {
     closeOmnibar();
-    const btn = document.querySelector(`.persona-nav-btn[data-section="${sectionId}"]`);
-    if (btn) btn.click();
+    if (window.switchPersonaSection) window.switchPersonaSection(sectionId);
   }
 
   function openGraphView() {
     closeOmnibar();
     if (window.openMindGraph) window.openMindGraph();
-  }
-
-  function openBooksCarousel() {
-    closeOmnibar();
-    const btn = document.getElementById('btnToggleBooksCarousel');
-    if (btn) btn.click();
-  }
-
-  function openArchiveDrawer() {
-    closeOmnibar();
-    const btn = document.getElementById('btnToggleArchive');
-    if (btn) btn.click();
   }
 
   function openRandomNote() {

@@ -9,7 +9,7 @@
   width: 100vw;
   height: 100vh;
   background: #000000;
-  z-index: 99998;
+  z-index: var(--z-graph);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -65,6 +65,12 @@
   color: var(--text-muted);
 }
 
+.mind-graph-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .legend-item {
   display: flex;
   align-items: center;
@@ -81,12 +87,14 @@
 .legend-dot.cine   { background: #00e054; }
 .legend-dot.audio  { background: #f59e0b; }
 .legend-dot.work   { background: #3b82f6; }
-.legend-dot.archive{ background: #a855f7; }
+
+[data-theme="light"] .legend-dot.biblio { background: #1a1614; }
 
 .mind-graph-canvas {
   width: 100%;
   height: 100%;
   display: block;
+  touch-action: none;
 }
 
 .mind-graph-hint {
@@ -101,17 +109,55 @@
 }
 
 [data-theme="light"] .mind-graph-modal {
-  background: #f4efe4;
+  background: #d7d7d0;
 }
 
 [data-theme="light"] .mind-graph-header {
-  background: linear-gradient(180deg, rgba(244, 239, 228, 0.92) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(215, 215, 208, 0.92) 0%, transparent 100%);
 }
 
 [data-theme="light"] .mind-graph-title-group h2 {
-  color: #1d1a14;
+  color: #1a1614;
+  font-weight: 400;
 }
 
 [data-theme="light"] .mind-graph-hint {
-  color: rgba(29, 26, 20, 0.55);
+  color: rgba(26, 22, 20, 0.6);
+}
+
+@media (max-width: 600px) {
+  .mind-graph-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.75rem;
+  }
+  .mind-graph-title-group h2 {
+    font-size: 1rem;
+  }
+  .mind-graph-title-group p {
+    max-width: 100%;
+    font-size: 0.58rem;
+  }
+  .mind-graph-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .mind-graph-legend {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.65rem;
+    max-width: 100%;
+    font-size: 0.58rem;
+  }
+  .mind-graph-actions > .action-pill-btn {
+    padding: 0.25rem 0.55rem;
+  }
+  .mind-graph-hint {
+    font-size: 0.55rem;
+    line-height: 1.5;
+    bottom: 0.75rem;
+    width: calc(100% - 1.5rem);
+    text-align: center;
+  }
 }

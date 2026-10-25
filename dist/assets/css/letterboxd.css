@@ -68,6 +68,18 @@
   animation: pulseGreen 2s infinite;
 }
 
+.status-dot.cached {
+  background: var(--text-muted);
+  box-shadow: none;
+  animation: none;
+}
+
+.status-dot.unavailable {
+  background: #b45309;
+  box-shadow: none;
+  animation: none;
+}
+
 @keyframes pulseGreen {
   0% { transform: scale(0.95); opacity: 0.8; }
   50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--lb-green); }
@@ -80,6 +92,16 @@
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 1.2rem;
+}
+
+.section-headline-row.gap-top {
+  margin-top: 2rem;
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
 }
 
 .section-label-glow {
@@ -141,7 +163,17 @@
 
 [data-theme="light"] .top-four-card,
 [data-theme="light"] .letterboxd-film-card {
-  box-shadow: 0 14px 34px rgba(20, 24, 28, 0.28);
+  box-shadow: 0 14px 34px rgba(26, 22, 20, 0.20);
+}
+
+[data-theme="light"] .cinephile-header-bar {
+  border-bottom: 1px dashed rgba(26, 22, 20, 0.24);
+}
+
+[data-theme="light"] .cinephile-brand-badge {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
+  color: #1a1614;
 }
 
 .top-four-badge {
@@ -165,6 +197,39 @@
   aspect-ratio: 2 / 3;
   overflow: hidden;
   background: #000;
+}
+
+.poster-unavailable {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(255, 128, 0, 0.16), transparent 48%),
+    linear-gradient(155deg, #202329, #101216 62%, #191b1e);
+}
+
+.poster-unavailable-label {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  font: 600 0.62rem/1.5 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.poster-unavailable-label[hidden] {
+  display: none;
+}
+
+.poster-unavailable-label::before {
+  width: 2rem;
+  height: 2.6rem;
+  border: 1px solid rgba(255, 128, 0, 0.65);
+  border-radius: 2px;
+  background: linear-gradient(145deg, rgba(255, 128, 0, 0.18), transparent 55%);
+  content: "";
 }
 
 .top-four-img {
@@ -364,4 +429,77 @@
 .lb-open-btn:hover {
   gap: 0.6rem;
   color: #fff;
+}
+
+/* Full Antimetal paper in light mode (no dark islands) */
+[data-theme="light"] .top-four-card {
+  background: #f7f6f3;
+  border: 1px solid rgba(26, 22, 20, 0.16);
+  color: #1a1614;
+}
+
+[data-theme="light"] .top-four-title {
+  color: #1a1614;
+  font-weight: 400;
+}
+
+[data-theme="light"] .top-four-review {
+  color: #53504c;
+}
+
+[data-theme="light"] .letterboxd-film-card {
+  background: #f7f6f3;
+  border: 1px solid rgba(26, 22, 20, 0.16);
+}
+
+[data-theme="light"] .lb-title a {
+  color: #1a1614;
+}
+
+[data-theme="light"] .lb-review-text {
+  color: #53504c;
+}
+
+[data-theme="light"] .lb-footer-row {
+  border-top: 1px dashed rgba(26, 22, 20, 0.2);
+}
+
+[data-theme="light"] .lb-open-btn {
+  color: #0e7490;
+}
+
+[data-theme="light"] .lb-open-btn:hover {
+  color: #1a1614;
+}
+
+/* Full paper chips (no dark islands on paper cards) */
+[data-theme="light"] .top-four-badge {
+  background: #fdfcfa;
+  color: #1a1614;
+  border-color: rgba(26, 22, 20, 0.4);
+}
+
+[data-theme="light"] .poster-unavailable {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(226, 230, 125, 0.4), transparent 60%),
+    linear-gradient(155deg, #fdfcfa, #f7f6f3 62%, #e3e3de);
+}
+
+[data-theme="light"] .poster-unavailable-label {
+  color: rgba(26, 22, 20, 0.72);
+}
+
+[data-theme="light"] .poster-unavailable-label::before {
+  border-color: rgba(26, 22, 20, 0.5);
+  background: linear-gradient(145deg, rgba(26, 22, 20, 0.08), transparent 55%);
+}
+
+[data-theme="light"] .lb-stars-badge {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
+}
+
+[data-theme="light"] .lb-rewatch-icon {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.2);
 }

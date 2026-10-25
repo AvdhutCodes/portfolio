@@ -5,7 +5,7 @@ date: 2026-03-24
 tags: [Books, Stormlight, Brandon Sanderson, Philosophy]
 author: "Avadh Kulkarni"
 rev: 5
-stamp: "CANON · WINDRUNNER"
+stamp: "TOME · WINDRUNNER"
 quote: "Life before death. Strength before weakness. Journey before destination. — The First Ideal"
 excerpt: "In Brandon Sanderson's epic, Kaladin Stormblessed begins as a broken slave carrying heavy wooden bridges across chasms. His transcendence is not through power, but through duty."
 cardSnippet: "You cannot protect others if you despise yourself. The First Ideal is not a slogan; it is an operating system for carrying suffering."

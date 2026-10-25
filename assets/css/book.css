@@ -11,12 +11,13 @@
 
 .landing-stage-hero {
   position: relative;
-  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100vh - var(--header-h) - var(--footer-h));
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2.5rem 1.5rem 4rem;
+  justify-content: flex-start;
+  padding: 2.5rem 1.5rem 7rem;
+  gap: 0.5rem;
   z-index: 2;
 }
 
@@ -56,14 +57,12 @@
   transform: rotateY(-18deg) rotateX(10deg);
 }
 
-/* When opened, spread flat */
-.book-3d-tome.is-open,
-.landing-book-wrapper:hover .book-3d-tome {
+/* When opened (click toggles .is-open), spread flat */
+.book-3d-tome.is-open {
   transform: rotateY(0deg) rotateX(0deg) translateX(140px);
 }
 
 @media (max-width: 768px) {
-  .landing-book-wrapper:hover .book-3d-tome,
   .book-3d-tome.is-open {
     transform: rotateY(0deg) rotateX(0deg) translateX(0);
   }
@@ -85,7 +84,10 @@
     inset -4px 0 10px rgba(0, 0, 0, 0.7);
   transform-origin: left center;
   transform-style: preserve-3d;
-  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateZ(4px);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -93,10 +95,15 @@
   padding: 2.2rem 1.8rem;
 }
 
-/* Front Cover Opened State */
-.book-3d-tome.is-open .book-front-cover,
-.landing-book-wrapper:hover .book-3d-tome .book-front-cover {
-  transform: rotateY(-165deg);
+/* Front Cover Opened State — rests flat, then fades away so the
+   left memoir page is fully readable (cover must not stack over it) */
+.book-3d-tome.is-open .book-front-cover {
+  transform: translateZ(4px) rotateY(-180deg);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.45s ease 0.55s,
+              visibility 0s linear 1.05s;
 }
 
 /* Front Cover Gold Embossed Details (front face: hides when flipped) */
@@ -123,6 +130,8 @@
     linear-gradient(135deg, #2a1410 0%, #422016 55%, #220e0b 100%);
   border: 1px solid rgba(230, 195, 120, 0.3);
   border-radius: 10px 4px 4px 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,7 +235,9 @@
   top: 0;
   left: 0;
   width: 600px;
+  max-width: min(92vw, 600px);
   height: 420px;
+  max-height: 100%;
   background: #0a0a0d;
   border-radius: 4px;
   display: flex;
@@ -234,15 +245,18 @@
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.08);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.4s ease 0.2s;
+  transition: opacity 0.4s ease 0.2s, visibility 0s linear 0.6s;
   z-index: 5;
+  overflow: hidden;
 }
 
-.book-3d-tome.is-open .book-pages-spread,
-.landing-book-wrapper:hover .book-pages-spread {
+.book-3d-tome.is-open .book-pages-spread {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.4s ease 0.2s, visibility 0s;
 }
 
 /* Left Page: Preface Manifesto */
@@ -322,6 +336,7 @@
 /* Right Page: Table of Chapters */
 .book-page-right {
   flex: 1;
+  min-width: 0;
   background: linear-gradient(225deg, #13141a 0%, #09090c 100%);
   padding: 2.2rem 2rem;
   display: flex;
@@ -353,13 +368,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0.95rem;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  min-height: 60px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.25s ease;
   color: #ffffff;
+  min-width: 0;
 }
 
 .chapter-row-link:hover {
@@ -371,25 +389,57 @@
 
 .chapter-num {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: #e5c07b;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  width: 75px;
+  letter-spacing: 0.04em;
+  flex: 0 0 62px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .chapter-title {
-  flex: 1;
-  font-size: 0.88rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.84rem;
   font-weight: 600;
+  line-height: 1.35;
   color: #ffffff;
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .chapter-arrow {
+  flex: 0 0 auto;
   color: #e5c07b;
   font-size: 0.85rem;
   font-weight: bold;
   transition: transform 0.2s ease;
+}
+
+/* Book page footer strip (replaces inline styles) */
+.book-page-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-page-foot .page-author,
+.book-page-foot .page-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.book-page-foot .page-author {
+  color: var(--text-muted);
+}
+
+.book-page-foot .page-num {
+  color: var(--accent-gold);
 }
 
 .chapter-row-link:hover .chapter-arrow {
@@ -411,6 +461,14 @@
   animation: pulseHint 2.4s infinite ease-in-out;
 }
 
+.book-hint-mobile {
+  display: none;
+}
+
+.mobile-chapters-list {
+  display: none;
+}
+
 @keyframes pulseHint {
   0%, 100% { opacity: 0.45; }
   50% { opacity: 0.9; }
@@ -420,19 +478,68 @@
   .book-pages-spread {
     display: none;
   }
-  .book-flutter-leaf {
-    display: none;
-  }
   .book-3d-tome {
     width: 260px;
     height: 360px;
     transform: none;
   }
+  .book-3d-tome.is-open .book-front-cover {
+    transform: none;
+  }
+  .cover-gold-border {
+    padding: 1.1rem 0.9rem;
+  }
+  .cover-name {
+    font-size: 1.15rem;
+    white-space: normal;
+    line-height: 1.2;
+  }
+  .cover-subtitle {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+  }
+  .cover-stamp-text {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+  .book-hint-desktop {
+    display: none;
+  }
+  .book-hint-mobile {
+    display: inline;
+  }
+  .landing-book-wrapper.is-open ~ .book-interaction-hint {
+    display: none;
+  }
+  .mobile-chapters-list {
+    display: none;
+    width: min(100%, 420px);
+    margin: 0 auto 1rem;
+    padding: 0 1rem;
+  }
+  .landing-book-wrapper.is-open ~ .mobile-chapters-list {
+    display: block;
+  }
+  .mobile-chapters-list .chapters-list {
+    gap: 0.45rem;
+    margin: 0;
+  }
+  .mobile-chapters-list .chapter-row-link {
+    padding: 0.65rem 0.75rem;
+  }
+  .mobile-chapters-list .chapter-num {
+    width: 68px;
+    font-size: 0.62rem;
+  }
+  .mobile-chapters-list .chapter-title {
+    font-size: 0.78rem;
+  }
 }
 
 /* ==========================================================================
-   FOUNDATION DEPTH STACK (Back Board, Page Edges & Flutter Leaves)
-   Pure CSS 3D, driven by .is-open / wrapper hover. MIT-inspired.
+   FOUNDATION DEPTH STACK (Back Board & Page Edges)
+   Pure CSS 3D, driven by click .is-open only.
    ========================================================================== */
 
 .book-back-cover {
@@ -459,36 +566,8 @@
   z-index: 2;
 }
 
-.book-flutter-leaf {
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  width: 49%;
-  height: 98%;
-  transform-origin: left center;
-  background:
-    repeating-linear-gradient(180deg, transparent 0 9px, rgba(60, 50, 30, 0.12) 9px 10px),
-    linear-gradient(105deg, #f4eedd 0%, #e0d6bd 100%);
-  border-radius: 0 3px 3px 0;
-  box-shadow: inset -8px 0 12px rgba(60, 50, 30, 0.22);
-  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  pointer-events: none;
-}
-
-.book-flutter-leaf.f1 { transform: translateZ(3px); transition-delay: 0.2s; z-index: 7; }
-.book-flutter-leaf.f2 { transform: translateZ(2px); transition-delay: 0.11s; z-index: 6; }
-.book-flutter-leaf.f3 { transform: translateZ(1px); transition-delay: 0.02s; z-index: 5; }
-
-.book-3d-tome.is-open .book-flutter-leaf.f1,
-.landing-book-wrapper:hover .book-flutter-leaf.f1 { transform: translateZ(3px) rotateY(-154deg); }
-.book-3d-tome.is-open .book-flutter-leaf.f2,
-.landing-book-wrapper:hover .book-flutter-leaf.f2 { transform: translateZ(2px) rotateY(-147deg); }
-.book-3d-tome.is-open .book-flutter-leaf.f3,
-.landing-book-wrapper:hover .book-flutter-leaf.f3 { transform: translateZ(1px) rotateY(-140deg); }
-
 /* Pedestal breathes when the codex opens */
-.landing-book-wrapper.is-open .book-pedestal-shadow,
-.landing-book-wrapper:hover .book-pedestal-shadow {
+.landing-book-wrapper.is-open .book-pedestal-shadow {
   transform: scaleX(1.28);
   opacity: 0.55;
 }
@@ -496,9 +575,142 @@
 @media (prefers-reduced-motion: reduce) {
   .book-3d-tome,
   .book-front-cover,
-  .book-flutter-leaf,
   .book-pages-spread,
   .book-pedestal-shadow {
     transition: none;
   }
+}
+
+/* ==========================================================================
+   LIGHT THEME — FULL ANTIMETAL PAPER CODEX (no dark islands)
+   Parchment canvas, cream pages, bistre ink, dashed hairlines, one chartreuse
+   dot. Headings stay weight 400 per Antimetal.
+   ========================================================================== */
+
+[data-theme="light"] .book-front-cover {
+  background: linear-gradient(135deg, #f7f6f3 0%, #fdfcfa 55%, #e3e3de 100%);
+  border-color: rgba(26, 22, 20, 0.24);
+  box-shadow:
+    -10px 12px 30px rgba(26, 22, 20, 0.22),
+    inset 4px 0 10px rgba(255, 255, 255, 0.6),
+    inset -4px 0 10px rgba(26, 22, 20, 0.08);
+}
+
+[data-theme="light"] .cover-gold-border {
+  border: 1px dashed rgba(26, 22, 20, 0.28);
+}
+
+[data-theme="light"] .cover-gold-border::before {
+  background: #f7f6f3;
+  color: #8a6d2f;
+}
+
+[data-theme="light"] .cover-header-meta,
+[data-theme="light"] .cover-subtitle,
+[data-theme="light"] .cover-stamp-text {
+  color: #66635f;
+}
+
+[data-theme="light"] .cover-name {
+  color: #1a1614;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+[data-theme="light"] .cover-stamp-icon,
+[data-theme="light"] .cover-inner-stamp {
+  color: #8a6d2f;
+}
+
+[data-theme="light"] .cover-inner-face {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(226, 230, 125, 0.35), transparent 60%),
+    linear-gradient(135deg, #f7f6f3 0%, #e3e3de 100%);
+  border: 1px dashed rgba(26, 22, 20, 0.28);
+}
+
+[data-theme="light"] .cover-inner-text {
+  color: rgba(26, 22, 20, 0.65);
+}
+
+[data-theme="light"] .book-back-cover {
+  background: linear-gradient(135deg, #e3e3de 0%, #f7f6f3 60%, #d7d7d0 100%);
+  border-color: rgba(26, 22, 20, 0.2);
+  box-shadow: -6px 10px 26px rgba(26, 22, 20, 0.25);
+}
+
+[data-theme="light"] .book-pages-spread {
+  background: #f7f6f3;
+  border: 1px solid rgba(26, 22, 20, 0.16);
+  box-shadow: 0 15px 40px rgba(26, 22, 20, 0.25);
+}
+
+[data-theme="light"] .book-page-left {
+  background: linear-gradient(135deg, #fdfcfa 0%, #f7f6f3 100%);
+  border-right: 1px dashed rgba(26, 22, 20, 0.16);
+}
+
+[data-theme="light"] .book-page-left::after {
+  background: linear-gradient(90deg, transparent, rgba(26, 22, 20, 0.12));
+}
+
+[data-theme="light"] .book-page-right {
+  background: linear-gradient(225deg, #fdfcfa 0%, #f7f6f3 100%);
+}
+
+[data-theme="light"] .book-page-right::before {
+  background: linear-gradient(90deg, rgba(26, 22, 20, 0.12), transparent);
+}
+
+[data-theme="light"] .page-chapter-label {
+  color: #8a6d2f;
+}
+
+[data-theme="light"] .page-manifesto-title {
+  color: #1a1614;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+[data-theme="light"] .page-manifesto-body {
+  color: #53504c;
+}
+
+[data-theme="light"] .page-quote-box {
+  background: rgba(226, 230, 125, 0.22);
+  border-left: 3px solid #8a6d2f;
+  color: #1a1614;
+}
+
+[data-theme="light"] .page-quote-author {
+  color: #66635f;
+}
+
+[data-theme="light"] .chapter-row-link {
+  background: #fdfcfa;
+  border: 1px solid rgba(26, 22, 20, 0.14);
+  color: #1a1614;
+}
+
+[data-theme="light"] .chapter-row-link:hover {
+  background: #f7f6f3;
+  border-color: #1a1614;
+  box-shadow: none;
+}
+
+[data-theme="light"] .chapter-num {
+  color: #8a6d2f;
+}
+
+[data-theme="light"] .chapter-title {
+  color: #1a1614;
+  font-weight: 500;
+}
+
+[data-theme="light"] .chapter-arrow {
+  color: #8a6d2f;
+}
+
+[data-theme="light"] .book-pedestal-shadow {
+  background: radial-gradient(ellipse at center, rgba(26, 22, 20, 0.35) 0%, rgba(26, 22, 20, 0.12) 50%, transparent 80%);
 }

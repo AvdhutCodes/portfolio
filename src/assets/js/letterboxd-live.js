@@ -19,6 +19,7 @@
         if (res.ok) {
           localData = await res.json();
           renderLetterboxdUI(localData);
+          updateLiveIndicator(false, true);
           break;
         }
       } catch (e) {
@@ -38,10 +39,12 @@
         // full 50-entry diary at build time) so it never downgrades.
         renderLetterboxdUI(liveParsed, { skipTopFour: true });
         updateLiveIndicator(true);
+      } else {
+        updateLiveIndicator(false, Boolean(localData));
       }
     } catch (err) {
       console.log('Live RSS fetch fallback to bundled data:', err.message);
-      if (localData) updateLiveIndicator(false);
+      updateLiveIndicator(false, Boolean(localData));
     }
   }
 
@@ -111,14 +114,14 @@
     return `${parsed.getFullYear()}-${m}-${d}`;
   }
 
-  function updateLiveIndicator(isLive) {
+  function updateLiveIndicator(isLive, hasData = true) {
     const dot = document.getElementById('letterboxdStatusDot');
     const label = document.getElementById('letterboxdStatusLabel');
     if (dot) {
-      dot.className = isLive ? 'status-dot live-pulse' : 'status-dot cached';
+      dot.className = isLive ? 'status-dot live-pulse' : `status-dot ${hasData ? 'cached' : 'unavailable'}`;
     }
     if (label) {
-      label.textContent = isLive ? 'Live Sync Active' : 'Synced from Ledger';
+      label.textContent = isLive ? 'Live Sync Active' : hasData ? 'Synced from Ledger' : 'Letterboxd unavailable';
     }
   }
 
@@ -144,7 +147,8 @@
         <a href="${film.link}" target="_blank" rel="noopener" class="top-four-card" title="${film.title} (${film.year})">
           <div class="top-four-badge">#${idx + 1} FAVOURITE</div>
           <div class="top-four-poster-wrap">
-            <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="top-four-img" loading="lazy" />
+            <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="top-four-img" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('poster-unavailable');this.nextElementSibling.hidden=false" />
+            <span class="poster-unavailable-label" aria-hidden="true" hidden>Poster unavailable</span>
             <div class="top-four-stars">${film.stars}</div>
           </div>
           <div class="top-four-info">
@@ -162,7 +166,8 @@
       recentReel.innerHTML = data.recentWatches.map((film, idx) => `
         <article class="letterboxd-film-card${idx % 5 === 4 ? ' collage-feature' : ''}">
           <div class="lb-poster-box">
-            <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" />
+            <img src="${film.poster || './assets/images/poster-oppenheimer.jpg'}" alt="${film.title}" class="lb-poster-img" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('poster-unavailable');this.nextElementSibling.hidden=false" />
+            <span class="poster-unavailable-label" aria-hidden="true" hidden>Poster unavailable</span>
             <div class="lb-stars-badge">${film.stars}</div>
             ${film.rewatch ? `<span class="lb-rewatch-icon" title="Rewatch">↺</span>` : ''}
           </div>

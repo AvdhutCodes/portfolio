@@ -1,6 +1,6 @@
 /**
  * AVDHUT KULKARNI — THE MULTI-POTENTIALITE PORTFOLIO
- * Main Controller: 3D Book Codex, 4 Personas, Theme Shifts, Archive Drawer, Audio & Live Signals
+ * Main Controller: 3D Book Codex, 4 Personas, Theme Shifts, Audio & Live Signals
  */
 
 (function (window, document) {
@@ -17,20 +17,16 @@
     // 2. Initialize Persona Sections Switcher & 3D Book
     initPersonaSwitching();
     init3DBook();
+    initSiteFooter();
+    initBrandReset();
 
-    // 3. Initialize Archive Drawer
-    initArchiveDrawer();
-
-    // 4. Initialize Tag Filtering on Bibliophile Desk
+    // 3. Initialize Tag Filtering on Bibliophile Desk
     initTagFiltering(desk);
 
-    // 5. Initialize Theme Toggle (Dark / Light)
+    // 4. Initialize Theme Toggle (Dark / Light)
     initThemeToggle();
 
-    // 6. Initialize Ambient Book & Character Carousel
-    initBookCarousel(reader);
-
-    // 7. Initialize Direct Click Handlers for Films, Audio, and Work
+    // 5. Initialize Direct Click Handlers for Films, Audio, and Work
     initCardReaders(reader);
 
     // 8. Start Local Time Ticker
@@ -38,8 +34,8 @@
   });
 
   // Persona Switching (Landing Codex, Bibliophile, Cinephile, Audiophile, Work)
+  // Single-site navigation: footer buttons are the only section nav.
   function initPersonaSwitching() {
-    const personaButtons = document.querySelectorAll('.persona-nav-btn');
     const sectionViews = document.querySelectorAll('.persona-section-view');
     const personaLabel = document.getElementById('personaLabel');
 
@@ -52,22 +48,14 @@
     };
 
     window.switchPersonaSection = function (targetSection) {
-      // Update nav buttons
-      personaButtons.forEach(b => {
-        if (b.dataset.section === targetSection) {
-          b.classList.add('active');
-        } else {
-          b.classList.remove('active');
-        }
+      // Update footer nav buttons
+      document.querySelectorAll('.site-footer-nav button').forEach(b => {
+        b.classList.toggle('active', b.dataset.section === targetSection);
       });
 
       // Update active section
       sectionViews.forEach(view => {
-        if (view.id === `section-${targetSection}`) {
-          view.classList.add('active');
-        } else {
-          view.classList.remove('active');
-        }
+        view.classList.toggle('active', view.id === `section-${targetSection}`);
       });
 
       // Update persona label under Avdhut Kulkarni
@@ -83,12 +71,6 @@
         window.AudioFX.playClick(850);
       }
     };
-
-    personaButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        window.switchPersonaSection(btn.dataset.section);
-      });
-    });
   }
 
   // Interactive 3D Opening Book
@@ -100,8 +82,12 @@
       tome.addEventListener('click', (e) => {
         if (e.target.closest('.chapter-row-link')) return;
         tome.classList.toggle('is-open');
+        const isOpen = tome.classList.contains('is-open');
         const wrap = tome.closest('.landing-book-wrapper');
-        if (wrap) wrap.classList.toggle('is-open', tome.classList.contains('is-open'));
+        if (wrap) wrap.classList.toggle('is-open', isOpen);
+        // Swap the hint so it never reads stale ("open" while already open)
+        const hint = document.querySelector('.book-hint-desktop');
+        if (hint) hint.textContent = isOpen ? 'Click the book to close the codex' : 'Click the book to open the codex';
         if (window.AudioFX) {
           window.AudioFX.playPageTurn();
         }
@@ -117,46 +103,49 @@
         }
         if (target && window.switchPersonaSection) {
           window.switchPersonaSection(target);
-        } else if (link.dataset.drawer === 'archive') {
-          const btn = document.getElementById('btnToggleArchive');
-          if (btn) btn.click();
         }
       });
     });
   }
 
-  // Separate Archive Drawer
-  function initArchiveDrawer() {
-    const drawer = document.getElementById('archiveDrawer');
-    const btnToggle = document.getElementById('btnToggleArchive');
-    const btnClose = document.getElementById('btnCloseArchive');
-
-    if (!drawer || !btnToggle) return;
-
-    btnToggle.addEventListener('click', () => {
-      const isOpen = drawer.classList.contains('active');
-      if (isOpen) {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
-      } else {
-        drawer.classList.add('active');
-        btnToggle.classList.add('active');
-      }
-      if (window.AudioFX) window.AudioFX.playClick(900);
-    });
-
-    if (btnClose) {
-      btnClose.addEventListener('click', () => {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
-        if (window.AudioFX) window.AudioFX.playClick(750);
+  function initSiteFooter() {
+    document.querySelectorAll('.site-footer-nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.switchPersonaSection) window.switchPersonaSection(btn.dataset.section);
       });
-    }
+    });
+  }
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('active')) {
-        drawer.classList.remove('active');
-        btnToggle.classList.remove('active');
+  // Brand corner resets the whole site: landing section, closed book,
+  // closed modals, top of page. Keyboard accessible.
+  function initBrandReset() {
+    const brand = document.querySelector('.brand-wrap');
+    if (!brand) return;
+    brand.setAttribute('role', 'button');
+    brand.setAttribute('tabindex', '0');
+    brand.setAttribute('title', 'Back to Codex (reset view)');
+
+    const reset = () => {
+      if (window.switchPersonaSection) window.switchPersonaSection('landing');
+      if (window.ReaderModal) window.ReaderModal.close();
+      if (window.Omnibar) window.Omnibar.close();
+      if (window.closeMindGraph) window.closeMindGraph();
+      const tome = document.getElementById('main3DTome');
+      if (tome) {
+        tome.classList.remove('is-open');
+        const wrap = tome.closest('.landing-book-wrapper');
+        if (wrap) wrap.classList.remove('is-open');
+        const hint = document.querySelector('.book-hint-desktop');
+        if (hint) hint.textContent = 'Click the book to open the codex';
+      }
+      window.scrollTo(0, 0);
+    };
+
+    brand.addEventListener('click', reset);
+    brand.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        reset();
       }
     });
   }
@@ -204,7 +193,8 @@
     }
 
     const stored = localStorage.getItem('avdhut-theme');
-    const initial = stored === 'light' || stored === 'dark' ? stored : 'dark';
+    const attrTheme = document.documentElement.getAttribute('data-theme');
+    const initial = stored === 'light' || stored === 'dark' ? stored : (attrTheme === 'light' ? 'light' : 'dark');
     document.documentElement.setAttribute('data-theme', initial);
     localStorage.setItem('avdhut-theme', initial);
     paintThemeIcon(initial);
@@ -235,10 +225,15 @@
       }
 
       const audioBtn = e.target.closest('.audio-notes-btn');
+      const audioCard = e.target.closest('.audio-card');
       if (audioBtn && audioBtn.dataset.slug) {
         e.preventDefault();
         if (window.AudioFX) window.AudioFX.playVinylNeedle();
         readerInstance.open(audioBtn.dataset.slug);
+      } else if (audioCard && audioCard.dataset.slug && !e.target.closest('a')) {
+        e.preventDefault();
+        if (window.AudioFX) window.AudioFX.playVinylNeedle();
+        readerInstance.open(audioCard.dataset.slug);
       }
 
       const caseBtn = e.target.closest('.case-read-btn');
@@ -250,93 +245,6 @@
         e.preventDefault();
         readerInstance.open(caseCard.dataset.slug);
       }
-    });
-  }
-
-  // Ambient Favorite Books & Heroes Carousel
-  function initBookCarousel(readerInstance) {
-    const wrap = document.getElementById('ambientCarousel');
-    const btnToggle = document.getElementById('btnToggleBooksCarousel');
-    const btnClose = document.getElementById('btnCloseCarousel');
-    const btnPrev = document.getElementById('btnPrevSlide');
-    const btnNext = document.getElementById('btnNextSlide');
-    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
-
-    if (!wrap || !slides.length) return;
-
-    let currentIndex = 0;
-    let autoTimer = null;
-
-    function showSlide(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
-      currentIndex = index;
-
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentIndex);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
-
-      if (window.AudioFX) window.AudioFX.playPageTurn();
-    }
-
-    function nextSlide() {
-      showSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentIndex - 1);
-    }
-
-    if (btnToggle) {
-      btnToggle.addEventListener('click', () => {
-        const isOpen = wrap.classList.contains('is-spotlight');
-        if (isOpen) {
-          wrap.classList.remove('is-spotlight');
-          btnToggle.classList.remove('active');
-        } else {
-          wrap.classList.add('is-spotlight');
-          btnToggle.classList.add('active');
-        }
-        if (window.AudioFX) window.AudioFX.playPageTurn();
-      });
-    }
-
-    if (btnClose) {
-      btnClose.addEventListener('click', () => {
-        wrap.classList.remove('is-spotlight');
-        if (btnToggle) btnToggle.classList.remove('active');
-        if (window.AudioFX) window.AudioFX.playClick(750);
-      });
-    }
-
-    if (btnPrev) btnPrev.addEventListener('click', prevSlide);
-    if (btnNext) btnNext.addEventListener('click', nextSlide);
-
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => showSlide(idx));
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && wrap.classList.contains('is-spotlight')) {
-        wrap.classList.remove('is-spotlight');
-        if (btnToggle) btnToggle.classList.remove('active');
-      }
-    });
-
-    document.querySelectorAll('.slide-read-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const slug = btn.dataset.slug;
-        wrap.classList.remove('is-spotlight');
-        if (btnToggle) btnToggle.classList.remove('active');
-        if (readerInstance && slug) {
-          readerInstance.open(slug);
-        }
-      });
     });
   }
 
